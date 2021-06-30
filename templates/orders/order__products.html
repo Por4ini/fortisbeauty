@@ -1,0 +1,52 @@
+{% load static %}{% load i18n %}
+
+
+{% for item in cart.items %}
+    <li>
+        <div class="image">
+            <a href="{{ item.url }}" class="wrapper">
+                <img src="{{ item.image }}" alt="*">
+            </a>
+        </div>
+        <div class="data">
+            <div class="info">
+                <span class="name">{{ item.name }}</span>
+                <span class="price">{{ item.price }} грн.</span>
+            </div>
+            <div class="qunatity">
+                <div class="counter">
+                    <button class="action minus">-</button>
+                    {% if request.user.real_stock %}
+                        <input 
+                            class="product_quantity" 
+                            data-cart="true"
+                            data-variant-id="{{ item.id }}" 
+                            type="number" value="{{ item.quantity }}" min="1" max="{{ item.stock }}"
+                        >
+                    {% else %}
+                        <input 
+                            class="product_quantity" 
+                            data-cart="true"
+                            data-variant-id="{{ item.id }}" 
+                            type="number" value="{{ item.quantity }}" min="1" max="10000"
+                        >
+                    {% endif %}
+                  
+                    <button class="action plus">+</button>
+                </div>
+            </div>
+            <div class="totol">
+                <span>{{ item.total }} грн.</span>
+            </div>
+        </div>
+       
+        <span class="remove" data-id="{{ item.id }}" onclick=removeFromCart(this)>
+            <img src="{% static 'img/icons/svg/Garbage.svg' %}" alt="x">
+        </span>
+    </li>
+{% endfor %}
+
+
+
+
+

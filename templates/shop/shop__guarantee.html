@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+<!-- LINKS -->
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/shop/shop__guarantee.css' %}">
+{% endblock %}
+{% block content %}
+<div class="content guarantee">
+	<div class="richtext">
+		<h1 class="medium h1 mt24 pb24 center">{% trans 'Гарантия и возврат' %}</h1>
+		{{ text.warranty_and_returns.translate.text|safe }}
+	</div>
+</div>
+{% endblock %}

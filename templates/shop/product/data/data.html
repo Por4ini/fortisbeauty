@@ -1,0 +1,16 @@
+{% load static %}{% load i18n %}<div class="product__data">
+    <span class="brand" itemprop="brand">{{ product.brand.name }}</span>
+    <span class="human">{{ product.human }}</span>
+    <span class="name">{{ product.name }}</span>
+    {% if stars %}
+        <div class="stars">
+            {% for start in stars %}
+                {% if star == 1 %}
+                    <img src="{% static 'img/star.png' %}" alt="*">
+                {% else %}
+                    <img src="{% static 'img/star__empty.png' %}" alt="*">
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

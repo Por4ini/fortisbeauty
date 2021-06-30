@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}NEWS{% endblock %}
+<!-- GET LINKS -->
+{% block links %}
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css'>
+<link rel="stylesheet" href="{% static 'libs/photoswipe/css/style.css' %}">
+{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+<div class="news_post_outer">
+	<div class="content ">
+		<div class="news_post">
+			<h1 class="h1 pd-top-48">{% if lang == 'ru' %}{{ post.title_ru }}{% elif lang == 'uk' %}{{ post.title_uk }}{% elif lang == 'en' %}{{ post.title_en }}{% endif %}</h1>
+			<div class="main_img" style="background-image: url({{ post.image_large.url }})"><p></p></div>
+			<div class="rich_text_field pd-top-48">{% if lang == 'ru' %}{{ post.text_ru|safe }}{% elif lang == 'uk' %}{{ post.text_uk|safe }}{% elif lang == 'en' %}{{ post.text_en|safe }}{% endif %}</div>
+		</div>
+        <!-- GALERY -->
+        <h2 class="h2 pd-top-24 pd-bottom-48">Фотографии семинара</h2>
+        <div class="galley">
+            <div class="my-gallery mg-bottom-96" itemscope itemtype="http://schema.org/ImageGallery">
+                {% for image in images %}
+                    <!-- IMG -->
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                        <a href="{{ image.image_large.url }}" itemprop="contentUrl" data-size="4000x2000">
+                            <img src="{{ image.image_small.url }}" itemprop="thumbnail" alt="Image description" />
+                        </a>
+                        <figcaption itemprop="caption description">Image caption  1</figcaption>
+                    </figure>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- GALERY ROOT -->
+        {% include 'shop/ajax/galery_root.html' %}
+        <!-- END GALERY -->
+	</div>
+</div>
+<!-- SCRIPTS SRC -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js'></script>
+<script  src="{% static 'libs/photoswipe/js/index.js' %}"></script>
+
+<!-- SCRIPTS -->
+
+
+{% endblock %}

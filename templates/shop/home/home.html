@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+<!-- TITLE -->
+{% block title %}{% trans 'Главная страница' %}{% endblock %}
+<!-- LINKS -->
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/home/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/home__slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/home__products.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/home__news.css' %}">
+{% endblock %}
+{% block og %}
+    <meta property="og:title"        content="Fortis Beauty" />
+    <meta property="og:description"  content="Интренет магазин проффесиональной косметологической продукции" />
+    <meta property="og:type"         content="shop"/>
+    <meta property="og:url"          content="https://fortisbeauty.com.ua/{{ request.path }}" />
+    <meta property="og:image:width"  content="480" />
+    <meta property="og:image:height" content="480" />
+    <meta property="og:image"        content="https://fortisbeauty.com.ua{% static 'img/og-logo.jpg' %}" />
+{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+    <div class="home">
+         <!-- MAIN SLIDER -->
+         {% include 'shop/home/home__slider.html' %}
+         <div class="home__categories">
+            <div class="content">
+                <p class="title1">Категории</p>
+                <ul>
+                    {% for category in tree %}
+                        <li>
+                            <a href="{{ category.url }}">
+                                <img src="{{ category.image }}" alt="{{ category.name }}">
+                                <p class="name">
+                                    {% if category.human %}{{ category.human }}{% else %}{{ category.name }}{% endif %}
+                                </p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- PRODUCTS -->
+        {% include 'shop/home/home__products.html' with heading="Новинки" %}
+        <!-- ABOUR -->
+        {% include 'shop/home/home__about.html' %}
+    
+    </div>
+{% endblock %}
+
+
+{% block js %}
+<script>
+    var Slider = new Swiper ('.home-slider', {
+        autoplay: { 
+            delay: 12000, 
+        },
+        spaceBetween: 0,
+        direction: 'horizontal',
+        loop: true,
+        navigation: {
+        nextEl: '.home-slider__button.next',
+        prevEl: '.home-slider__button.prev',
+        },
+
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+</script>
+
+<script src="{% static 'js/shop/Home/home_products.js' %}"></script>
+{% endblock %}

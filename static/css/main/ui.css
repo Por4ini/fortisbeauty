@@ -1,0 +1,112 @@
+.ico {
+    object-fit: contain;
+    object-position: center;
+}
+
+.ico_s {
+    width: var(--px32);
+    height: var(--px32);
+    object-fit: contain;
+    object-position: center;
+}
+.ico_m {
+    width: var(--px48);
+    height: var(--px48);
+    object-fit: contain;
+    object-position: center;
+}
+.ico_l {
+    width: var(--px64);
+    height: var(--px64);
+    object-fit: contain;
+    object-position: center;
+}
+
+.pagination-button-div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--px80);
+    height: var(--px80);
+    border-radius: var(--px80);
+    background-color: white;
+    box-shadow: 0 var(--px8) var(--px16) rgba(0,0,0, 0.15);
+    margin-left: var(--px16);
+    z-index: 0;
+}
+.pagination-button-div {
+    transition: 0.5s;
+}
+.pagination-button-div:hover {
+    background-color: var(--clr-2-darker);
+    box-shadow: 0 var(--px8) var(--px16) rgba(0,0,0, 0.3);
+    transition: 0.5s;
+    color: white;
+
+}
+.home-product-top-div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr var(--px240);
+    grid-gap: var(--px48);
+}
+@media(max-width: 960px) {
+    .home-product-top-div {
+        grid-template-columns: 1fr;
+    }
+    .watchlist .home-product-top-div .heading {
+        padding-bottom: var(--px32);
+    }
+}
+
+
+
+
+.home-product-top-div .buttons{
+    display: grid;
+    grid-template-columns: 80px 80px;
+    grid-gap: 24px;
+}
+
+
+
+.breadcrumbs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-bottom: 48px;
+}
+.breadcrumbs span {
+    color: grey;
+    margin: 0 4px;
+}
+.breadcrumbs span.slash {
+    color: grey;
+}
+.breadcrumbs * {
+    font-size: var(--h6);
+}
+@media(max-width: 960px) {
+    .breadcrumbs {
+        padding-bottom: 24px;
+    }
+    .breadcrumbs * {
+        font-size: var(--h5);
+    }
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 2px solid var(--clr-1);
+    background-color: transparent;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: var(--clr-1);
+    color: white;
+}

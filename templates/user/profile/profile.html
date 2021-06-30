@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/user/profile/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user/profile/profile__navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user/profile/profile__orders.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user/profile/from.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/product/product__comments.css' %}">
+    
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="breadcrumbs">
+            <a href="/">
+                <span>Главная</span>
+            </a>
+            <span class="slash">/</span>
+            <span>Кабинет пользователя</sapn>
+        </div>    
+    </div>
+    <div class="content">
+        <div class="profile">
+        <div>
+            <ul class="navigation">
+                <a href="{% url 'user:profile' %}">
+                  <li>
+                      <img src="{% static 'img/icons/svg/Avatar.svg' %}" alt="*">
+                      <p>
+                          <span>Личная информация</span>
+                          <span class="email">{{ request.user.email }}</span>
+                      </p>
+                    </li>
+                </a>
+                <a href="{% url 'user:user_orders' %}">
+                    <li>
+                      <img src="{% static 'img/icons/svg/Basket.svg' %}" alt="*">
+                      <p>Мои заказы</p>
+                    </li>
+                </a>
+                <a href="{% url 'user:user_wishlist' %}">
+                    <li>
+                        <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="*">
+                        <p>Список желаний</p>
+                    </li>
+                </a>
+                {% if request.user.is_whoosaler %}
+                <a href="{% url 'user:user_company' %}">
+                    <li>
+                        <img src="{% static 'img/icons/svg/Page.svg' %}" alt="*">
+                        <p>Информация о компании</p>
+                    </li>
+                </a>
+                {% endif %}
+                <a href="{% url 'user:user_comments' %}">
+                  <li>
+                      <img src="{% static 'img/icons/svg/Comment.svg' %}" alt="*">
+                      <p>Мои отзывы</p>
+                    </li>
+                </a>
+                <a href="{% url 'user:user_questions' %}">
+                    <li>
+                        <img src="{% static 'img/icons/svg/Comment.svg' %}" alt="*">
+                        <p>Мои вопросы</p>
+                      </li>
+                  </a>
+                <a href="{% url 'user:user_logout' %}">
+                    <li>
+                        <img src="{% static 'img/icons/svg/Forward_2.svg' %}" alt="*">
+                        <p>Выйти</p>
+                    </li>
+                </a>
+            </ul>
+        </div>
+        <div class="data profile_data">
+            {% with user=request.user %}
+                {% block profile %}{% endblock %}
+            {% endwith %}
+        </div>
+    </div>
+</div>
+    
+
+{% endblock %}
+
+{% block js %}
+<script>
+    const profileData = document.querySelector('.profile_data') 
+    var profileDataInputs = profileData.querySelectorAll('input, select, input:not(.edit)')
+    var edits = profileData.querySelectorAll('input.edit')
+
+    for (let input of profileDataInputs) {
+        input.dataset.value = input.value
+    }
+
+    for (let edit of edits) {
+        edit.onchange = () => {
+            if (edit.checked == false) {
+               let form = edit.parentElement.querySelector('.form')
+               for (let input of form.querySelectorAll('input, select')) {
+                    input.value = input.dataset.value
+                    
+               }
+            }
+        }
+    }
+</script>
+{% endblock %}

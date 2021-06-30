@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% load static %}{% load i18n %}{% block content %}
+<div class="order__payment">
+    <div class="content">
+        <button type="button" onclick="pay();">Оплатить</button>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+
+<script type="text/javascript"> 	
+    var reqData = null
+
+
+  
+    var wayforpay = new Wayforpay(); 	
+    var pay = function () { 		
+        wayforpay.run(reqData, 			
+        function (response) {
+            // on approved				 			
+        }, 			
+        function (response) {
+            // on declined 			
+        }, 			
+        function (response) {
+            // on pending or in processing 			
+        } 		
+        ); 	
+    }
+</script>
+
+
+{% endblock %}
+

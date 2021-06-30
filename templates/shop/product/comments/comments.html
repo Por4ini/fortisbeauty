@@ -1,0 +1,22 @@
+{% load static %}{% load mptt_tags %}
+<input type="radio" name="comment__type" id="comment__type__comment" checked>
+<input type="radio" name="comment__type" id="comment__type__question">
+
+<div class="comment__type">
+     <label for="comment__type__comment">Коментрии</label>
+     <label for="comment__type__question">Вопросы</label>
+</div>
+<div class="comments__list hidden">
+     <div class="button__wrapper">
+          <button class="add-comment">Отсавть отзыв</button>
+     </div>
+     {{ comments }}
+</div>
+
+<div class="questions__list hidden">
+     <div class="button__wrapper">
+          <button class="add-question">Задать вопрос</button>
+     </div>
+     {{ questions }}
+</div>
+

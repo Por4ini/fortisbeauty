@@ -1,0 +1,119 @@
+{% load static %}{% load i18n %}<header>
+    <div class="top">
+        <div class="content">   
+            <!-- LANGUAGES -->
+            <div class="left">
+                <select name="languages" id="language_select">
+                    {% for key, value in languages.items %}
+                    <option value="{{ key }}" data-path="{{ value.path }}" {% if value.active %}selected{% endif %}>{{ key }}</option>
+                    {% endfor %}
+                </select>                
+            </div>
+            <div class="actions">
+                <span class="action pointer header_phone_icon">
+                    <img  onclick="Open('mobile-header-hidden-phones',this)" class="ico" src="{% static 'img/icons/call.png' %}" alt="call">
+                    <span class="h5" onclick="Open('mobile-header-hidden-phones',this)">{% trans 'Позвонить' %}</span>
+                    <div class="hidden-phones">
+                        <!-- CALL ME -->
+                        <a class="fast-call" onclick="Close('mobile-header-hidden-phones')">
+                            <img src="{% static 'img/icons/phone-call.png' %}" alt="life">
+                            <span class="h5">{% trans 'Перезвонить мне' %}</span>
+                        </a>
+                        <!-- KYIVSTAR -->
+                        <a href="tel:+380962923451"onclick="Close('mobile-header-hidden-phones')">
+                            <img src="{% static 'img/icons/kyivstar.png' %}"  alt="kyivstar">
+                            <span class="h5">+38 096 292 34 51</span>
+                        </a>
+                        <!-- LIFE -->
+                        <a href="tel:+380632355562" onclick="Close('mobile-header-hidden-phones')">
+                            <img src="{% static 'img/icons/life.png' %}" alt="life">
+                            <span class="h5">+38 063 235 55 62</span>
+                        </a>
+                        <!-- VODAPHONE -->
+                        <a href="tel:+380509719195" onclick="Close('mobile-header-hidden-phones')">
+                            <img src="" alt="life">
+                            <span class="h5">+38 050 971 91 95</span>
+                        </a>
+                        <!-- TELEPHONE -->
+                        <a href="tel:+380443534332" onclick="Close('mobile-header-hidden-phones')">
+                            <img src="{% static 'img/icons/telefon.png' %}"  alt="telefon">
+                            <span class="h5">044 35 34 33 2</span>
+                        </a>
+                    </div>
+                </span>
+                <span data-modaal-content-source="#geo__adress" data-modaal-type="inline" data-modaal-animation="fade" class="action pointer modaal">
+                    <img src="{% static 'img/icons/geo.png' %}" class="ico" alt="adress">
+                    <span class="h5">{% trans 'Адрес' %}</span>
+                </span>
+                <span class="action ">
+                    <img src="{% static 'img/icons/clock.png' %}" class="ico " alt="working time">
+                    <span class="h5">8:00-18:00</span>
+                </span>
+            </div>
+            <div class="right" onclick="SidebarOpen('sidebar_wishlist')">
+                <img src="{% static 'img/icons/user/Heart.svg' %}" alt="wishlist" class="ico">
+                <p>{% trans 'Список желаний' %}</p>
+            </div>
+        </div>
+    </div>
+        <!-- MAIN BLOCK -->
+        <div class="main">
+            <div class="content">
+                <!-- LEFT -->
+                <span class="left">
+                    <!-- MENU -->
+                    <span onclick="SidebarOpen('sidebar_menu')" class="pointer action">
+                        <img src="{% static 'img/icons/burger.png' %}" alt="menu" class="ico burger pointer" class="mr8" >
+                        <span>{% trans 'Меню' %}</span>
+                    </span>
+                    <!-- SEARCH -->
+                    <span onclick="Open('header__search', this)" id='header__search__icons__outer' class="pointer">
+                        <img src="{% static 'img/icons/search.png' %}"  alt="search"   class="ico search">
+                    </span>
+                </span>
+                <!-- LOGO -->
+                <a href="{% url 'shop:home' %}">
+                    <img src="{% static 'img/logo.png' %}" alt="FortisBeauty" class="logo" href="{% url 'shop:home' %}" class="logo-img" >
+                </a>
+                <!-- RIGHT -->
+                <div class="right">
+                    <div class="profile action">
+                        <img src="{% static 'img/icons/user/Avatar.svg' %}" alt="Пользоввтель" class="ico">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'profile' %}" class="user_profile_icon">{% trans 'Кабинет' %}</a>    
+                        {% else %}
+                            <a href="{% url 'user:login' %}">{% trans 'Вход' %}</a>
+                            <span class="slash">/</span>
+                            <a href="{% url 'user:registration' %}">{% trans 'Регистрация' %}</a>
+                        {% endif %}
+                    </div>
+                    <!-- CART -->
+                    <span class="cart action" onclick="SidebarOpen('sidebar_cart')">
+                        <img src="{% static 'img/icons/user/Basket_2.svg' %}" class="ico" >
+                        <p class="ml16" id="header__cart__data" style="white-space:nowrap">
+                            <span class="cart__quantity">0</span>
+                        </p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="header__search" id="header__search">
+        <div class="content">
+            <input id="search_input" type="text" name="search" value="" placeholder="{% trans 'Начниете вводить название товара' %}">
+            <div id="search_output_header"></div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,214 @@
+{% load static %}{% load i18n %}{% load compress %}{% load cache %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <title>FortisBeauty - {% block title %}Ваш лучший потставщик косметики{% endblock %}</title>
+    <!-- OPENGRAPH -->
+    {% block og %}
+        <meta property="og:title"        content="Fortis Beauty" />
+        <meta property="og:description"  content="Интренет магазин проффесиональной косметологической продукции" />
+        <meta property="og:type"         content="shop"/>
+        <meta property="og:url"          content="https://fortisbeauty.com.ua/{{ request.path }}" />
+        <meta property="og:image:width"  content="480" />
+        <meta property="og:image:height" content="480" />
+        <meta property="og:image"        content="https://fortisbeauty.com.ua{% static 'img/og-logo.jpg' %}" />
+    {% endblock %}
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/header/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/header/header__menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/colors.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/elements/popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/richtext.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/home__products.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/header/hedaer__search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/wishlist.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/seo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/home__products.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/swiper/css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/modaal/css/modaal.css' %}">
+    {% block links %}{% endblock %}
+</head>
+<body>
+<!-- Header -->
+{% include 'base/header/header.html' %}
+{% include 'base/header/header__menu.html' %}
+
+<!-- Main -->
+<main>{% block content %}{% endblock %}</main>
+
+<!-- Wathclist -->
+<div class="watchlist"></div>
+
+<!-- Page end block -->
+{% block last %}{% endblock %}
+
+<!-- Footer -->
+{% include 'base/footer/footer.html' %}
+
+<!-- Poup outer -->
+<div class="outer"></div>
+
+<!-- Cart sidebar -->
+{% include 'shop/cart/cart.html' %}
+
+<!-- Watchlist sidebar -->
+{% include 'wishlist/wishlist.html' %}
+
+<!-- POPUPS -->
+{% include 'base/header/header__geo__popup.html' %}
+{% include 'base/components/popup.html' %}
+
+<!-- Recall form -->
+<div class="form__recall hidden">
+    <form action="{% url 'core:recall' %}" class="form" method="POST">
+        {% csrf_token %}
+        <div class="fields">
+            <input type="text" name="phone" placeholder="+38 000 000 00 00">
+        </div>
+        <button type="submit">{% trans 'Отправить запрос' %}</button>
+    </form>    
+</div>
+
+<!-- CSRF token input -->
+{% csrf_token %}
+
+<!-- JS -->
+<script>
+    const csrf = document.querySelector('input[name="csrfmiddlewaretoken"]')
+    const addCSRF = (form) => {
+        const fields = form.querySelector('.fields')
+        if (fields) {
+            fields.appendChild(csrf)
+        } else {
+            form.appendChild(csrf)
+        }
+        return form
+    }
+</script>
+<script src="{% static 'js/popup/popup.js' %}"></script>
+<script src="{% static 'js/shop/product/counter.js' %}"></script>
+<script>
+  const protocol = '{% if request.is_secure %}https://{% else %}http://{% endif %}'
+  const host =     '{{ request.get_host }}'
+  const language = '{{ request.LANGUAGE_CODE }}'
+  const baseUrl =  protocol + host + '/' + language
+  const url_cart_add =    "{% url 'shop:cart__add' %}"
+  const url_cart_delete = "{% url 'shop:cart__delete' %}"
+  const url_cart_data =   "{% url 'shop:cart__get' %}"
+  const WatchlistUrl = '{% url "shop:watchlist" %}'
+  const WishlistUrl =  '{% url "wishlist:wishlist" %}'
+</script>
+<script src="{% static 'libs/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'libs/modaal/js/modaal.js' %}"></script>
+<script src="{% static 'libs/lazyload/lazyload.min.js' %}"></script>
+<script src="{% static 'libs/swiper/js/swiper.min.js' %}"></script>
+<script src="{% static 'js/open__close.js' %}"></script> 
+<script src="{% static 'libs/form_validation.js' %}"></script>
+<script src="{% static 'js/shop/Home/home_products.js' %}"></script>
+<script src="{% static 'js/interactions/showhide.js' %}"></script>
+
+<!-- LAZYLOAD -->
+<script>
+    const searchUrl = `{% url 'search:search' %}`
+    var searchTimout = null
+
+    const searchOutput =   document.querySelector('.search__output')
+    const searchOutputMore = searchOutput.querySelector('.more')
+    const outputProducts = document.querySelector('.search__output-products')
+    const outputCategory = document.querySelector('.search__output-category')
+    const outputBrands =   document.querySelector('.search__output-brands')
+
+    const searchInput = document.querySelector('input[name="search"]')
+    
+ 
+    searchInput.oninput = (e) => {
+        if (searchInput.value.length > 0) {
+            searchOutput.classList.add('active')
+        } else {
+            searchOutput.classList.remove('active')
+        }
+
+        searchTimout !== null && clearTimeout(searchTimout);
+        searchTimout = setTimeout(() => {
+            fetch(searchUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrf.value
+                },
+                body: JSON.stringify({input: e.target.value})
+            })
+            .then(res => res.json())
+            .then(json => {
+                
+                outputProducts.innerHTML = ''
+                if (json.variants) {
+                    outputProducts.innerHTML += json.variants
+                } 
+                if (json.products) {
+                    outputProducts.innerHTML += json.products
+                } 
+
+                if (json.categories) {
+                    outputCategory.innerHTML = json.categories
+                } else { outputCategory.innerHTML = '' }
+                
+                if (json.brands) {
+                    outputBrands.innerHTML = json.brands
+                } else { outputBrands.innerHTML = '' }
+
+                if (json.brands || json.categories) {
+                    searchOutputMore.classList.add('active')
+                } else {
+                    searchOutputMore.classList.remove('active')
+                }
+
+                // if (!json.products && !json.categories && !json.brands) {
+                //     outputProducts.innerHTML = `
+                //         <p>По Вашему запросу ничего не найдено</p>
+                //     `
+                // }
+            })
+            
+        }, 150);
+    } 
+
+
+function lazy() {
+    var lazyLoadInstance = new LazyLoad({
+    elements_selector: ".lazy"
+});
+} lazy()
+document.querySelector('.button__recall').onclick = () => {
+    popupHeading.innerHTML = 'Введите свой номер и мы перезвоним Вам в ближайшнн время'
+    popupContent.innerHTML = document.querySelector('.form__recall').innerHTML
+    openPopUp()
+}
+document.querySelector('select[name="set_language"]').onchange = (e) => {
+    document.location.href = e.target.value
+}
+</script>
+<script src="{% static 'js/sidebar.js' %}"></script>
+<script src="{% static 'js/shop/cart/cart.js' %}"></script>
+<script src="{% static 'js/shop/watchlist.js' %}"></script>
+<script src="{% static 'js/shop/wishlist.js' %}"></script>
+{% block js %}
+{% endblock %}
+</body>
+</html>

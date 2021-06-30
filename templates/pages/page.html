@@ -1,0 +1,33 @@
+{% extends 'base.html' %}{% load i18n %}{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/pages/page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <!-- BREADCRUMBS -->
+    <div class="content">
+        <div class="breadcrumbs">
+            <a href="/">{% trans 'Главная' %}</a>
+            <span class="slash">/</span>
+            <p>{{ page.trans.title }}</p>
+        </div>
+    </div>
+       
+    
+    <div class="page">
+        <div class="content">
+            <!-- TITLE -->
+            <p class="title1">
+                {{ page.trans.title }}
+            </p>
+            {% if page.text %}
+                <div class="richtext">{{ page.trans.text|safe }}</div>
+            {% endif %}
+        </div>
+    </div>
+   
+    
+</div>
+{% endblock %}

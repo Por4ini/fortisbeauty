@@ -1,0 +1,86 @@
+.products__description {
+    position: relative;
+    width: 100%;
+}
+.products__description > .title {
+    display: block;
+    font-size: var(--h3);
+    margin-bottom: 24px;
+    text-align: center;
+    margin: 48px 0;
+}
+.products__description ul {
+    display: block;
+    width: 100%;
+    grid-gap: 48px;
+    columns: 2;
+    margin-bottom: 48px;
+}
+.products__description ul li > .title {
+    position: relative;
+    display: block;
+    font-size: var(--h5);
+    font-weight: 600;
+    margin-bottom: 16px;
+    margin-top: 24px;
+}
+
+
+.products__properties table {
+    margin-top: 32px;
+    width: 100%;
+}
+.products__properties table tr {
+    border-bottom: 1px solid whitesmoke;
+}
+.products__properties table tr td {
+    padding: 16px 40px 16px 0;
+}
+.products__properties table tr td:first-of-type {
+    width: 33%;
+}
+.products__properties table tr a {
+    color: var(--clr-2);
+}
+
+
+
+
+input[name="description__type"] {
+    display: none;
+}
+.select__buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 32px;
+}
+.select__buttons label {
+    padding: 16px 2px;
+    border-bottom: 2px solid whitesmoke;
+    margin-right: 16px;
+    cursor: pointer; 
+    width: 100%;
+}
+.select__buttons label:last-child {
+    margin-right: 0px;
+}
+
+
+input#description__type__text:checked ~       .select__buttons label[for="description__type__text"],
+input#description__type__properties:checked ~ .select__buttons label[for="description__type__properties"] {
+    border-color: var(--clr-1);
+    color:  var(--clr-1-spr-drk);
+    font-weight: 600;
+}
+
+
+
+input#description__type__text:checked ~ .products__description,
+input#description__type__properties:checked ~ .products__properties {
+    display: block;
+}
+@media(max-width: 960px) {
+    .products__description ul {
+        columns: 1;
+    }
+}

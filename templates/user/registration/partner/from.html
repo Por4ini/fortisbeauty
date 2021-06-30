@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/main/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user/registration__partner.css' %}">
+{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+<div class="content">
+    <div class="registration__partner">
+        <p class="h1 center">Регистрация партнера</p>
+        <form action="{% url 'user:registration_business' %}" class="form validate" method="POST">
+            {% csrf_token %}
+            <!-- Errors -->
+            {% if form.errors %}
+                <ul class="errors">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <!-- Form | Persona info -->
+            <div class="fields personal">
+                {% for field in form %}
+                    <p class="{% if field.name == 'is_whoosaler' %}hidden{% endif %}">
+                        {{ field }}
+                    </p>
+                {% endfor %}
+            </div>
+            <!-- FormSet | Business info -->
+            <p class="title">Информация о Вашей компании</p>
+            <div id="business">
+                {{ business__formset.management_form }}
+                {% for form in business__formset %}
+                    <fieldset class="fields business__formset">
+                        {{ form.as_p }}
+                    </fieldset>
+                {% endfor %}
+            </div>
+            <button type="submit">Зарегестроватся</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/form/validation.js' %}"></script>
+{% endblock %}

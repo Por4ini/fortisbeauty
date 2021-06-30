@@ -1,0 +1,111 @@
+.form {
+    display: grid;
+    grid-auto-columns: auto;
+    grid-gap: var(--px16);
+    max-width: var(--px1140);
+    grid-template-columns: repeat(1, 1fr);
+}
+.form button {
+    cursor: pointer;
+    padding: 16px;
+    border: 0px;
+    border-radius: 4px;
+    background-color: #ff2261 !important;
+    width: 100% !important;
+    color: white;
+    margin-top: 24px;
+    transition: all 0.2s ease-in-out;
+
+}
+.form button:hover {
+    background-color: var(--clr-3) !important;
+}
+.form label {
+    position: relative;
+    display: block;
+    margin-bottom: 12px;
+}
+.form label > span {
+    display: block;
+    color: grey;
+    margin-bottom: 8px;
+    font-size: var(--h6);
+}
+
+.form .fields > p {
+    position: relative;
+    display: block;
+    margin-bottom: 16px;
+}
+.form .fields > p:last-child {
+    margin-bottom: 0px;
+}
+.form .fields > p label {
+    display: block;
+}
+.form .fields ul.errorlist {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    margin-bottom: 24px;
+}
+.form .fields ul.errorlist * {
+    color: var(--clr-2);
+    font-size: var(--h6);
+    font-weight: 600;
+}
+
+.form input, 
+.form textarea,
+.form select {
+    width: 100%;
+    font-size: var(--h5);
+    padding: 12px 12px;
+    width: calc(100% - 26px);
+    border: 2px solid var(--clr-1) ;
+    border-radius: 4px;
+}
+.form input::placeholder {
+    color: grey;
+}
+
+.form input.err {
+    border-color: var(--clr-2) !important;
+}
+
+
+.form select {
+    width: calc(100% + 2px);
+}
+
+.form textarea {
+    resize: vertical;
+}
+.form .color-alert {
+    font-size: var(--px12) !important;
+}
+
+
+.form .msg {
+    position: relative;
+    font-size: 12px;
+    color: var(--clr-2);
+    font-weight: 600;
+    margin-top: 4px;
+}
+label.err input{
+    border-color: var(--clr-2) !important;
+}
+input[data-valid="true"] {
+    border-color: rgb(93, 236, 136) !important;
+}
+
+.form ul.errors {
+    display: grid;
+    margin-bottom: 48px;
+    grid-gap: 4px;
+}
+.form ul.errors li  {
+    color: var(--clr-2);
+    text-align: center;
+}

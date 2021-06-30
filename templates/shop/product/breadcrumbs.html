@@ -1,0 +1,15 @@
+<ul class="breadcrumbs">
+    <li>
+        <a href="/">Главная</a>
+    </li>
+    {% for c in categories %}
+    <span class="slash">></span>
+    <li>
+        <a href="{{ c.url }}">{{ c.name }}</a>
+    </li>
+    {% endfor %}
+    <span class="slash">></span>
+    <li>
+        <span>{{ product.human }}</span>  
+    </li>
+</ul>

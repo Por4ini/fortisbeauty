@@ -1,0 +1,7 @@
+{% if products|length %}
+    {% for product in products %}
+        {% include 'shop/catalogue/catalogue__product.html' %}
+    {% endfor %}
+{% else %}
+    <p>Товары по данному запросу отсутвуют</p>
+{% endif %}

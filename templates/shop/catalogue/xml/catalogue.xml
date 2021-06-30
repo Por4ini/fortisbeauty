@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+	<channel>
+		<title>Moami</title>
+		<link>{{ request.scheme }}://{{ current_site }}</link>
+		<description>This is a feed for {{ request.scheme }}://{{ current_site }}</description>
+        {% for product in products %}
+            {% for variant in product.variants.all %}
+                <item>
+                    <g:id>{{ product.brand.slug }}_{{ product.slug }}_{{ variant.value }}_pk_{{ product.pk }}_{{ variant.pk }}</g:id>
+                    <g:brand>{{ product.brand.name }}</g:brand>
+                    <g:title>{{ product.brand.name }} - {{ product.name }}, {{ product.human }}, {{ variant.value }} {{ variant.type.translate.unit }}</g:title>
+                    <g:description>{% autoescape on %}{{ product.description_text }}{% endautoescape %}</g:description>
+                    <g:link>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:link>
+                    <g:url>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:url>
+                    <g:image_link>{{ request.scheme }}://{{ current_site }}{{ product.main_image_medium.url }}</g:image_link>
+                    <g:gender>unisex</g:gender>
+                    <g:condition>New</g:condition>
+                    <g:availability>in stock</g:availability>
+                    <g:price>{{ variant.price }} UAH</g:price>
+                    <g:shipping>
+                        <g:country>UA</g:country>
+                        <g:service>Standard</g:service>
+                        <g:price>50 UAH</g:price>
+                    </g:shipping>
+                    <!-- SEARCH FOR -->
+                    <g:google_product_category>{{ product.category.google_product_category.name }}</g:google_product_category>
+                    <g:product_type>{{ product.category.product_type }}</g:product_type>
+                </item>
+             {% endfor %}
+        {% endfor %}
+	</channel>
+</rss>

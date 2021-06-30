@@ -1,0 +1,19 @@
+.guarantee {
+    display: flex;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.guarantee > div {
+    width: 100%;
+    max-width: 720px;
+    
+}
+.guarantee p {
+    line-height: 1.75;
+}
+
+
+.guarantee h1 {
+    padding: 48px 0 24px 0;
+}

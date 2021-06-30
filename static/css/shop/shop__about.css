@@ -1,0 +1,18 @@
+.about {
+	display: flex;
+	justify-content: center;
+	min-height: 60vh;
+}
+
+.about > div {
+	width: 100%;
+	max-width: 720px;
+}
+
+.about img {
+	display: block;
+	width: 100%;
+	max-width: 480px;
+	margin: 48px auto;
+}
+

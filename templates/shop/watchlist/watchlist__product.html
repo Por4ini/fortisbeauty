@@ -1,0 +1,58 @@
+{% load static %}
+{% load i18n %}
+
+<div class="poduct-outer">
+    <div class="item" id="product-{{ product.pk }}">
+        <a class="product_image" id="product_{{ product.pk }}_url" href="{{ product.get_absolute_url }}">
+            <img 
+                class="lazy product_image_img" 
+                src="{{ product.images.all.0.image_xs.url }}" 
+                data-src="{{ product.images.all.0.image_s.url }}" 
+                alt="">
+            <p></p>
+        </a>
+       
+        </a>
+        <div class="prodtuct-description">
+            <a href="{{ product.product.get_absolute_url }}" class="product_name medium center h4 pb8">{{ product.parent.translate.human }}</a>
+            <p class="medium h6 center">
+                <span class="grey">{{ product.parent.name }}</span>
+                <span class="grey variant_value">{{ product.value }} {{ product.unit }}</span>
+            </p>
+            <p class="product_brand h6">
+                <span class="brand pt8 pb8"><a class="color-2" href="{{ product.parent.brand.get_absolute_url }}">{{ product.parent.brand.name }}</a></span>
+            </p>
+            <!-- PRICE -->
+          
+                <p class="h5 center pb8">
+                    <!-- CURRENT PRICE -->
+                    <span class="product_price">{{ product.price }}</span>
+                    <span class="currency"> {% trans 'грн.' %}</span>
+                    <!-- OLDPRICE -->
+                    {% if product.discount_price > 0 %}
+                        <span class="product_price grey">{{ product.discount_price }}</span>
+                        <span class="currency grey"> {% trans 'грн.' %}</span>
+                    {% endif %}
+                </p>
+               
+           
+            <div class="buttons pt8">
+                <button 
+                    id="product_page__add_to_cart__button"
+                    data-product_id="{{ product.parent.pk }}" 
+                    data-variant_id="{{ product.pk }}"
+                    data-price="{{ product.price }}"
+                    data-quantity="1"
+                    onclick="addToCart(this)"
+                    class="button catalogue_buy_button upper">
+                    {% trans 'Купить' %}
+                </button>
+                <span class="add_to_wishlist" data-product='{{ product.pk }}'>
+                    <img src="{% static 'img/icons/wishlist.png' %}" alt="wishlist" class="ico">
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

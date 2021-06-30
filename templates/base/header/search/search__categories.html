@@ -1,0 +1,6 @@
+<li class="bold">Категории</li>
+{% for category in categories %}
+<a href="{{ category.url }}">
+    <li>{{ category.name }}</li>
+</a>
+{% endfor %}

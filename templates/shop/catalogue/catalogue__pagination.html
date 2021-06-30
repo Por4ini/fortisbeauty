@@ -1,0 +1,14 @@
+{% if total.index > 1 %}
+<div class="pagination" data-page="{{ current.index }}" data-pages="{{ total.index }}" >
+    <a class="{% if previous.index == 1 %}disabled{% endif %}" href="{% if previous.index > 1 %}{{ previous.url }}{% endif %}"><</a>
+    <a class="{% if not next %}disabled{% endif %}" href="{{ next.url }}">></a>
+    <span>|</span>
+    <a class="{% if current.index == first.index %}active{% endif %}" href="{{ first.url }}">1</a>
+    {% if middle|length and current.index > 4 %}<span>...</span>{% endif %}
+    {% for page in middle %}
+        <a class="{% if current.index == page.index %}active disabled{% endif %}" href="{{ page.url }}">{{ page.index }}</a>
+    {% endfor %}
+    {% if middle|length and current.index < total.limit %}<span>...</span>{% endif %}
+    <a class="{% if current.index == total.index %}active disabled{% endif %}" href="{{ total.url }}">{{ total.index }}</a>
+</div>
+{% endif  %}

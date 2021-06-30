@@ -1,0 +1,80 @@
+{% load static %}
+<span class="product__code">Код товара: {{ variant.code }}</span>
+<span class="product__code">В наличии: {{ variant.stock }} шт.</span>
+
+<div class="product__price">
+    <span class="reatail__price">
+        <span class="price__wishlist">
+            <div class="price__wrapper">
+                {% if variant.discount_price > 0 and variant.discount_price < variant.price %}
+                    <span class="discount_wrapper">
+                        <span class="price">{{ variant.discount_price }} грн.</span>
+                        <span class="discount_price">{{ variant.price }} грн.</span>
+                    </span>
+                {% else %}
+                    <span class="price">{{ variant.price }} грн.</span>
+                {% endif %}
+            </div>
+           
+            <span class="produc__wishlist__btn__wrapper add-to-wishlist" data-id='{{ variant.id }}' onclick=AddToWishlist(this)>
+                <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="Wishlist">
+            </apsn>
+        </span>
+       
+    </span>
+    {% if request.user.is_whoosaler %}
+        <div class="whoosale_wrapper">
+            <div class="whoosale_price_wrapper">
+                {% if variant.discount_price > 0 and variant.discount_price < variant.price %}
+                    <span class="discount_wrapper">
+                        <span class="whoosale__price">Опт: {{ variant.discount_whoosale_price }} грн.</span>
+                            <span class="discount_price">{{ variant.whoosale_price }} грн.</span>
+                        </span>
+                    </span>
+                {% else %}
+                    <span class="whoosale__price">Опт: {{ variant.whoosale_price }} грн.</span>
+                {% endif %}
+                <span class="helptext">При добавлении в корзину, для Вас, будет учитыватся оптовая цена</span>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+{% if variants|length > 1 %}
+    <div class="product__varaints">
+        {% for v in variants %}
+            <a class="variant {% if v.id == variant.id %}active{% endif %}" href="{{ v.url }}">
+                <img  class="image" src="{{ v.images.0.xs }}" alt="{{ v.value }} {{ v.unit }}">
+                <div class="info">
+                    <span class="value">{{ v.value }}, {{ v.unit }}</span>
+                    <span class="price">{{ v.price }} грн.</span>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+<div class="buy__actions">
+    <div class="counter">
+        <button class="action minus">-</button>
+        {% if request.user.real_stock %}
+            <input 
+                class="product_quantity" 
+                data-product-id="{{ product.id }}" 
+                data-variant-id="{{ variant.id }}" 
+                type="number" value="1" min="1" max="{{ variant.stock }}"
+            >
+        {% else %}
+            <input 
+                class="product_quantity" 
+                data-product-id="{{ product.id }}" 
+                data-variant-id="{{ variant.id }}" 
+                type="number" value="1" min="1" max="10000"
+            >
+        {% endif %}
+        <button class="action plus">+</button>
+    </div>
+    <button class="buy__button">Купить</button>
+</div>
+
+<div class="buyer__info"></div>

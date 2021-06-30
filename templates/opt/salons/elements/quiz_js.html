@@ -1,0 +1,33 @@
+{% load static %}
+
+<script src="{% static 'libs/swiper/js/swiper.min.js' %}"></script>
+<script>
+    var slider = new Swiper ('#quiz_swiper', {
+        slidesPerView: 1,
+        loop: false,
+        noSwiping: true,
+        noSwipingClass: 'no_swipe',
+        autoHeight:true,
+        navigation: {
+            nextEl: '.next',
+            prevEl: '.prev',
+        },
+    })
+    var totalSlidesNum = document.querySelectorAll('.swiper-slide').length
+    document.getElementById('total_slides').innerHTML = totalSlidesNum
+    slider.on('slideChange', function () {
+        document.getElementById('current_slide').innerHTML = slider.realIndex + 1
+        if (totalSlidesNum == slider.realIndex + 1) {
+            document.querySelector('.arr.next').style.display = 'none';
+        } else {
+            document.querySelector('.arr.next').style.display = 'block';
+        }
+    });
+</script>
+<script src="{% static 'libs/TagAutocomple/selectize.js' %}"></script>
+<script>
+$('.select-state').selectize({
+    plugins: ['remove_button'],
+    create: true,
+});
+</script>

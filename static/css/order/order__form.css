@@ -1,0 +1,118 @@
+.order__form form {
+    position: relative;
+    display: grid;
+    grid-gap: 32px;
+    width: 420px;
+    padding: 24px;
+    background-color: whitesmoke;
+    border-radius: 4px;
+}
+.order__form form label {
+    margin: 0;
+}
+
+.order__form .title {
+    position: relative;
+    display: block;
+    font-size: 20px;
+    margin-bottom: 32px;
+    font-weight: 600;
+}
+
+
+.personal-info__form .fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+}
+
+
+.delivery-types {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+    margin-bottom: 40px;
+}
+.delivery-types__item {
+    position: relative;
+    display: block;
+}
+.delivery-types__item a {
+    position: relative;
+    display: block;
+    /* padding-top: 50%; */
+    border: 2px solid rgb(228, 228, 228);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    height: 120px;
+}
+.delivery-types__item a img {
+    position: absolute;
+    display: block;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    top: 0;
+    object-position: center;
+    object-fit: contain;
+    margin: 8px;
+}
+
+input#delivery__new_post:checked ~ ul.delivery-types li [data-id="delivery__new_post"],
+input#delivery__curier:checked ~   ul.delivery-types li [data-id="delivery__curier"] {
+    border-color: var(--clr-1);
+    background-color: #99ecff50;
+}
+.delivery__type-form .fields{
+    margin-bottom: 40px;
+}
+
+
+.delivery__type-form .fields {
+    display: grid;
+    grid-gap: 16px;
+}
+
+
+.payment-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+}
+.payment-types label  {
+    position: relative;
+    display: block;
+    padding: 16px; 
+    border: 2px solid rgb(228, 228, 228);
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+input#paytype_1:checked ~ .payment-types label[for="paytype_1"],
+input#paytype_2:checked ~ .payment-types label[for="paytype_2"] {
+    border-color: var(--clr-1);
+    background-color: #99ecff50;
+}
+
+.order__form button[type='submit'] {
+    margin: 0;
+}
+
+@media(max-width: 1250px) {
+    .order__form form {
+        width: calc(100% - 48px);
+    }
+   
+    
+}
+@media(max-width: 640px) {
+    .delivery-types, 
+    .payment-types {
+        grid-template-columns: 1fr;
+    }
+   
+    
+}
+

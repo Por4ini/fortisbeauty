@@ -1,0 +1,62 @@
+{% load static %}
+{% load i18n %}
+<!-- LINKS -->
+
+<!-- HTML -->
+<div class="popup__outer" id="quiz">
+    <div class="popup__conteiner">
+        <div class="popup__wrapper">
+        <div onclick="Close('quiz')" class="close">
+            <img src="{% static 'img/icons/close.png' %}" alt="X">
+        </div>
+        <!-- Slider main container -->
+        <form id="quiz_form" action="{% url 'opt:opt_offer_quiz' %}" method="POST">
+            {% csrf_token %}
+            <div class="swiper-container" id="quiz_swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- SLIDE 1 -->
+                    {% include 'opt/salons/quiz/slide_1.html' %}
+                    <!-- SLIDE 2 -->
+                    {% include 'opt/salons/quiz/slide_2.html' %}
+                    <!-- SLIDE 3 -->
+                    {% include 'opt/salons/quiz/slide_3.html' %}
+                
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="navigation">
+                    <div class="prev">Назад</div>
+                    <div class="next">Далее</div>
+                </div>
+               
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="{% static 'libs/swiper/js/swiper.min.js' %}"></script>
+<script>
+    var siper = new Swiper ('#quiz_swiper', {
+        slidesPerView: 1,
+        loop: false,
+        autoHeight:true,
+        navigation: {
+            nextEl: '.next',
+            prevEl: '.prev',
+        },
+    })
+</script>
+<script src="{% static 'libs/TagAutocomple/selectize.js' %}"></script>
+<script>
+$('.select-state').selectize({
+    plugins: ['remove_button'],
+    create: true,
+});
+</script>
+

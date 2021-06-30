@@ -1,0 +1,19 @@
+{% load static %}
+<div class="sidebar cart right" id="sidebar_cart">
+    <!-- TITLE -->
+    <div class="title">
+        <span class="h4">Корзина</span>
+        <img class="close" onclick="SidebarClose('sidebar_cart')" src="{% static 'img/icons/close.png' %}" alt="X" >
+    </div>
+    <!-- MAIN -->
+    <div class="main">
+        <ul id="side_cart_products_list">
+            {% include 'shop/cart/cart__list.html' %}
+        </ul>
+    </div>
+    <!-- ACTIONS -->
+    <div class="actions">
+        {% include 'shop/cart/cart__total.html' %}
+    </div>
+</div>
+<div class="sidebar-outer" id="sidebar_outer" data-id="sidebar_cart"></div>

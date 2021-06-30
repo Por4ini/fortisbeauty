@@ -1,0 +1,22 @@
+{% extends 'base.html' %}{% load i18n %}{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/pages/page.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content page">
+    <!-- BREADCRUMBS -->
+    <div class="breadcrumbs">
+        <a href="/">{% trans 'Главная' %}</a>
+        <span class="slash">/</span>
+        <p>{% trans 'Контакты' %}</p>
+        <span class="slash">/</span>
+        <p>{% trans 'Сообщение отправлено' %}</p>
+    </div>
+    <!-- TITLE -->
+    <p class="title1">
+        {% trans 'Спасибо за Ваше обращение. В скором времени мы свяжемся с Вами' %}
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+:root {
+    --clr-1: #99ecff;
+    --clr-1-drk: #3fbdda;
+    --clr-1-spr-drk: #00809d;
+    --clr-2: #ff3655;
+    --clr-3: #753871;
+    --grey: rgb(170, 170, 170);
+    --border: 2px solid #ededed;
+    --button-border: 2px solid #75387150;
+}
+

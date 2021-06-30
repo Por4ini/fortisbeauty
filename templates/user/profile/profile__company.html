@@ -1,0 +1,80 @@
+{% extends './profile.html' %}
+{% load static %}
+{% block profile %}
+
+<div class="company__info forms">
+    <p class="title1">Информация о компании</p>
+    <ul>
+        <!-- Realprice -->
+        <li class="block user__company-info">
+            <input class="edit" type="checkbox" id="user__company-info_edit">
+            <div class="heading">
+                <p class="title2">Хочу покупать по рекльному прайсу</p>
+                <label for="user__company-info_edit">
+                    <img src="{% static 'img/icons/edit.png' %}" alt="">
+                    <span class="unchecked">Редактировать</span>
+                    <span class="checked">Отменить</span>
+                </label>
+            </div>
+            <form action="{% url 'user:user_company' %}?real_price=change" method="POST" class="form">
+                {% csrf_token %}
+             
+                <div class="hidden">
+                    {% for field in real_price_form.hidden_fields %}
+                        {{ field }}
+                    {% endfor %}
+                </div>
+                <div class="fields">
+                    {% for field in real_price_form.visible_fields %}
+                        <div class="{{ field.name }}">
+                            {{ field.label_tag }}
+                            {{ field.errors }}
+                            <p>{{ field }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+               
+                <button type="submit">Обновить</button>
+            </form>
+        </li>
+
+        <!-- Company -->
+        <li class="block user__company-info">
+            <input class="edit" type="checkbox" id="user__company-info_edit">
+            <div class="heading">
+                <p class="title2">Компания</p>
+                <label for="user__company-info_edit">
+                    <img src="{% static 'img/icons/edit.png' %}" alt="">
+                    <span class="unchecked">Редактировать</span>
+                    <span class="checked">Отменить</span>
+                </label>
+            </div>
+            <form action="{% url 'user:user_company' %}" method="POST" class="form">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                {% for f in formset %}
+                <div class="hidden">
+                    {% for field in f.hidden_fields %}
+                        {{ field }}
+                    {% endfor %}
+                </div>
+                <div class="fields">
+                    {% for field in f.visible_fields %}
+                        <div class="{{ field.name }}">
+                            {{ field.label_tag }}
+                            {{ field.errors }}
+                            {% if field.name == 'business_type' %}
+                                {{ field }}
+                            {% else %}
+                                <p>{{ field }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <button type="submit">Обновить</button>
+            </form>
+        </li>
+    </ul>
+</div>
+{% endblock %}

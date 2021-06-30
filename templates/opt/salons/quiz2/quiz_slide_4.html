@@ -1,0 +1,25 @@
+<div class="swiper-slide no_swipe">
+    <!-- INCOLME -->
+    <p class="h2">4. Ваш месячный доход</p>
+    <input type="hidden" name="month_income" id="month_income">
+    <div class="p24">
+        <input type="text" class="js-range-slider" name="my_range" value="" />
+    </div>
+    <button class="form_submit h3" type="submit">Получить расчет окупаемости</button>
+    
+    <script>
+        $(".js-range-slider").ionRangeSlider({
+            skin: "sharp",
+            grid: true,
+            min: 1000,
+            max: 500000,
+            from: 1000,
+            step: 1000,
+            max_postfix: "+",
+            prefix: "грн.",
+            onFinish: function (data) {
+                document.getElementById("month_income").value = data.from
+            },
+    });
+    </script>
+</div>

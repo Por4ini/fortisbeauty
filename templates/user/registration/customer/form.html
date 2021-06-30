@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/main/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user/user__partner.css' %}">
+{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+<div class="content">
+    <div class="user_registration pb64">
+        <p class="h1 center pb16">Регистрация пользователя</p>
+        <form 
+            class="form partner_form" 
+            id="userForm" 
+            data-ajax=false 
+            action="{% url 'user:registration' %}" 
+            method='POST' 
+            enctype="multipart/form-data" 
+            novalidate
+        >
+            <!-- CSRF TOKEN -->
+            {% csrf_token %}
+           
+
+            {% if form.errors %}
+                <div class="messges">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p class="red">{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <p class="red">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- FIELDSET USER INFO -->
+            <div class="fieldset userinfo">
+                <p class="title f-headline">Персональная информация</p>
+                <ul class="fields">
+                    <li>{{ form.first_name }}</li>
+                    <li>{{ form.last_name }}</li>
+                    <li>{{ form.email }}</li>
+                    <li>{{ form.phone }}</li>
+                </ul>
+            </div>
+            <!-- FIELDSET USER PASSWORD -->
+            <div class="fieldset password">
+                <p class="title f-headline">Пароль</p>
+                <ul class="fields">
+                    <li>{{ form.password1 }}</li>
+                    <li>{{ form.password2 }}</li>
+                </ul>
+            </div>
+            <button type="submit">Зарегестрироватся</button>
+            
+        
+        </form>
+    </div>
+</div>
+{% endblock %}

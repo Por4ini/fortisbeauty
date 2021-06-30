@@ -1,0 +1,41 @@
+<div class="newpost delivery__type-form">
+    <div class="fields">
+        <label>
+            <input 
+                type="text" 
+                data-type="text"  
+                data-empty="Введите город отправки"
+                name="city" 
+                value="" 
+                placeholder="Город отправки" 
+                required>
+        </label>
+  
+        <label>
+            <input 
+                type="text" 
+                data-type="text" 
+                data-empty="Номер отделения Новой почты"
+                name="branch" 
+                value="" 
+                placeholder="Номер отделения Новой почты" 
+                required>
+        </label>
+    </div>
+       
+    <div>
+        <span class="subtitle">Способ оплаты</span>
+        
+        <input class="hidden" type="radio" name="pay_type" value="cash" id="paytype_1" checked>
+        <input class="hidden" type="radio" name="pay_type" value="card" id="paytype_2" id="order_card_pay">
+        <ul class="payment-types">
+            <label for="paytype_1">
+                <li>Наложеный платежь</li>
+            </label>
+            <label for="paytype_2">
+                <li>Оплатить картой</li>
+            </label>
+        </ul>
+        
+    </div>
+</div>

@@ -1,0 +1,9 @@
+__pycache__
+media
+projectenv
+static_root
+ckeditor
+local_settings
+*.sqlite3
+tmp/
+

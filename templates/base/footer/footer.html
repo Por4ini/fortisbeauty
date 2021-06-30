@@ -1,0 +1,97 @@
+{% load static %}{% load i18n %}{% load compress %}{% load cache %}{% get_current_language as LANGUAGE_CODE %}
+<footer>
+    <div class="content">
+        <div class="contacts">
+            <div class="block">
+                
+                <span class="title">Контакты</span>
+                <span>
+                    <span>Email:</span>
+                    <a href="mail:fortistbeauty@gmail.com">fortistbeauty@gmail.com</a>
+                </span>
+            </div>
+           
+            <ul class="phones">
+                {% for phone in phones %}
+                    <li>
+                        <a href="tel:{{ phone.phone_nums }}">{{ phone.phone }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <span>Пн-пт 10:00-19:000</span>
+        </div>
+        <div class="links">
+            <div class="info">
+                <span class="title">Информация</span>
+                <ul>
+                    <li>
+                        <a href="{% url 'shop:catalogue' %}">Каталог</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'shop:brands' %}">Бернды</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'pages:about' %}">О нас</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'blog:list' %}">Блог</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'pages:contacts' %}">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="block partners">
+                <span class="title">Партнерам</span>
+                <ul>
+                    <li>
+                        <a href="{% url 'opt:opt' %}">Опт</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="block clients">
+                <span class="title">Клиентам</span>
+                <ul>
+                    <li>
+                        <a href="{% url 'pages:payment-and-delivery' %}">Доставка и оплата</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="payment">
+            <div class="block payment">
+                <span class="title">Способы оплты</span>
+                <ul class="pay_methods">
+                    <li>
+                        <img src="{% static 'img/paymethods.png' %}" alt="paymethods">
+                    </li>
+                </ul>
+            </div>
+            <div class="block payment">
+                <span class="title">Социальные сети</span>
+                <ul class="socials">
+                    <li>
+                        <a href="">
+                            <img src="{% static 'img/instagram.png' %}" alt="instagram">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="{% static 'img/facebook.png' %}" alt="facebook">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+                
+            <a href="{% url 'core:sitemap' %}">{% trans 'Карта сайта' %}</a>
+        </div>
+    </div>
+    
+
+
+    
+    
+</footer>

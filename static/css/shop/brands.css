@@ -1,0 +1,46 @@
+ul.brands__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-gap: 24px;
+}
+
+ul.brands__list li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+ul.brands__list li .image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-top: 50%;
+}
+ul.brands__list li .image img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+ul.brands__list li .name {
+    position: relative;
+    display: block;
+    margin-top: 16px;
+    font-weight: 600;
+}
+ul.brands__list a:hover {
+    transform: translateY(-4px);
+}
+ul.brands__list a:hover li {
+    background-color: rgb(241, 241, 241);
+    box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.1);
+}

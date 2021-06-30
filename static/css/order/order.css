@@ -1,0 +1,11 @@
+.order__wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 24px;
+    margin-bottom: 48px;
+}
+@media(max-width: 1250px) {
+    .order__wrapper {
+        grid-template-columns: 1fr;
+    }
+}

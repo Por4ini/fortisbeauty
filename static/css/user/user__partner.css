@@ -1,0 +1,63 @@
+.user_registration {
+    display: block;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 64px;
+}
+.fieldset {
+    margin-top: 24px;
+}
+.fieldset ul.fields {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+    margin-top: 24px;
+}
+form.partner_form {
+    grid-gap: 0px;
+}
+form .messges {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 8px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+label.checkbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+label.checkbox .check {
+    content: "";
+    position: relative;
+    display: block;
+    border: 2px solid #ededed;
+    border-radius: 4px;
+    width: 16px;
+    height: 16px;
+    margin-right: 16px;
+}
+label.checkbox input {
+    display: none;
+}
+input#whoosale_client:checked ~ label[for='whoosale_client'] .check,
+label.checkbox input:checked ~ .check {
+    background-color: var(--clr-1);
+    border-color: var(--clr-1);
+}
+
+input#whoosale_client ~ .fieldset.company,
+input#whoosale_client ~ .fieldset.business {
+    display: none;
+}
+
+input#whoosale_client:checked ~ .fieldset.company,
+input#whoosale_client:checked ~ .fieldset.business {
+    display: block;
+}

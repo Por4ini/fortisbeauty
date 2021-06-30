@@ -1,0 +1,25 @@
+{% load mptt_tags %}<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+    <loc>https://www.fortisbeauty.com.ua</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+</url>
+{% recursetree categories %}
+    <url>
+        <loc>https://www.fortisbeauty.com.ua{{ node.get_absolute_url }}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    {% for product in node.product.all %}
+         <url>
+            <loc>https://www.fortisbeauty.com.ua{{ product.get_absolute_url }}</loc>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+    {% endfor %}
+    {% if not node.is_leaf_node %}
+        {{ children }}
+    {% endif %}
+{% endrecursetree %}
+</urlset>

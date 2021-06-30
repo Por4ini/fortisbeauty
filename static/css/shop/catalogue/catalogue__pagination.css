@@ -1,0 +1,31 @@
+.pagination {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 24px 0;
+}
+.pagination span,
+.pagination a {
+    position: reletive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 36px;
+    height: 36px;
+    margin: 0 3px;
+}
+.pagination a {
+    background-color: whitesmoke;
+    border-radius: 4px;
+} 
+.pagination a:hover ,
+.pagination a.active {
+    background-color: var(--clr-1) !important;
+    color: var(--clr-1-drk) !important;
+}
+.pagination a.disabled {
+    pointer-events: none;
+    background-color: whitesmoke;
+    color: grey;
+}

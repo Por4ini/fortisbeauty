@@ -1,0 +1,52 @@
+{% load static %}
+<div class="slider">
+    <div class="content">
+        <div class="swiper-container home-slider">
+            <div class="swiper-wrapper">
+                {% if banners|length %}
+                    {% for slide in banners %}
+                        <div class="swiper-slide home-slider__slide">
+                            <img class="lazy banner__pc"     src="{{ slide.pc.image_thmb.l.path }}"     alt="{{ slide.title }}">
+                            <img class="lazy banner__mobile" src="{{ slide.mobile.image_thmb.l.path }}" alt="{{ slide.title }}">
+                            <div class="data">
+                                <div class="text">
+                                    {% if slide.title %}
+                                        <span class="title">{{ slide.title }}</span>
+                                    {% endif %}
+                                    {% if slide.description %}
+                                        <span class="description">{{ slide.description }}</span>
+                                    {% endif %}
+                                </div>
+                                {% if slide.link|length %}
+                                <div>
+                                    <a class="button" href="{{ slide.link }}">Поробнее</a>
+                                </div>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="swiper-slide home-slider__slide logo-slide">
+                       
+                        
+                    </div>
+                {% endif %}
+                
+            </div>
+            <div class="buttons">
+    
+                <button class="home-slider__button prev">
+                    <img src="{% static 'img/icons/arrow-prev.png' %}" alt="<">
+                </button>
+                <!-- NEXT -->
+                <button class="home-slider__button next">
+                    <img src="{% static 'img/icons/arrow-next.png' %}" alt=">">
+                </button>
+    
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    
+</div>

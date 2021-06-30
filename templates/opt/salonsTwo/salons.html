@@ -1,0 +1,123 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as lang %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предложение для салонов красоты</title>
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap&subset=cyrillic" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/reset.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/base/base.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/opt/salons.css' %}">
+    <!-- SWIPER -->
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="{% static 'css/main/elements/elements__popup.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/swiper/css/swiper.css' %}">
+    <!-- SELECTIZE -->
+    <link href="{% static 'libs/TagAutocomple/selectize.bootstrap3.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{% static 'libs/icheck/skins/flat/blue.css' %}">
+</head>
+<body>
+    <div class="header_opt">
+        <div class="content">
+            <a class="logo" href="{% url 'shop:home' %}">
+                <img src="{% static 'img/logo_distr.png' %}" alt="FortisBeauty" class="logo" href="{% url 'shop:home' %}" class="logo-img" >
+            </a>
+            <p class="slogan h3 medium">Оптовая продажа професиональной косметики в Украине</p>
+            <ul class="phones">
+                <a href="tel:+380639923451"><li class="h4">+38 (063) 992 34 51</li></a>
+                <a href="tel:+380962923451"><li class="h4">+38 (063) 992 34 51</li></a>
+            </ul>
+        </div>
+        
+    </div>
+    <div class="content pt24 pb24">
+       
+        <p class="heading1 h1 medium center">
+            Увеличте годовую прибыль на <span>10 000 $</span> в своем бизнесе, <span>продавая косметику</span>, используя уникальный <span>9-ти летний опыт Fortis Beauty</span>.
+        </p>
+        <p class="h2 center mt24">
+            80% выручки бренда составляет до 20% его асортимента. Получи бесплатно пошаговое руководство как эфективно управлять 10 и более ьрендами професиональной косметики.
+        </p>
+        <img class="main_image mt24" src="{% static 'img/sahmpoo.gif' %}" alt="">
+        <button onclick="Open('quiz',this)" class="h1 mt24 openquiz">10 000 $</button>
+
+        <div class="extra">
+            <div><img src="{% static 'img/icons/opt/1.png' %}" alt=""><p>Наличие товара 100%</p></div>
+            <div><img src="{% static 'img/icons/opt/2.png' %}" alt=""><p>Гарантия обмена или возврата товара</p> </div>
+            <div><img src="{% static 'img/icons/opt/3.png' %}" alt=""><p>Сертификаты качества</p></div>
+            <div><img src="{% static 'img/icons/opt/4.png' %}" alt=""><p>Доствака до 2-х дней</p> </div>
+            <div><img src="{% static 'img/icons/opt/5.png' %}" alt=""><p>Только стабильные РРЦ</p> </div>
+            <div><img src="{% static 'img/icons/opt/6.png' %}" alt=""><p>Резерв товара</p> </div>
+        </div>
+    </div>
+
+    {% include 'opt/salons/popup_quiz.html' %}
+    <script src="{% static 'js/open__close.js' %}"></script>
+<script src="{% static 'libs/icheck/icheck.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-blue',
+        radioClass: 'iradio_flat-blue'
+      });
+    });
+
+    function GetParent(parent){ 
+        let name = parent.dataset.value
+        let custom = parent.querySelectorAll('#' + name + '_' + 'custom')
+        let check = parent.querySelectorAll('input[type=checkbox]')
+        let radio = parent.querySelectorAll('input[type=radio]')
+        // Inputs
+        let inputs = []
+        if (check.length != 0) { inputs = check } else { inputs = radio }
+
+        let values = []
+
+        for (let i = 0; i < inputs.length; i++) {
+            let el = inputs[i];
+            if (el.checked == true) {
+                values.push(el.dataset.value) 
+            }
+        } 
+
+        let select = parent.querySelector('select')
+        if (select != undefined) {
+            let selectOptions = select.querySelectorAll('option')
+            selectOptions.forEach(el => {
+                values.push(el.value);
+            });
+        }
+        document.getElementById(name + '_' + 'hidden').value = values.join(', ');
+    }
+
+
+
+    function Calc() {
+        let quizBlocks = document.querySelectorAll('.quiz_block')
+        for (let i = 0; i < quizBlocks.length; i++) {
+            let parent = quizBlocks[i];
+            GetParent(parent)
+        }
+    }
+
+
+    var form = document.getElementById('quiz_form')
+    form.addEventListener('submit', function(event) {
+        event.preventDefault()
+        Calc()
+        form.submit()
+    })
+
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,18 @@
+.page {
+	min-height: 60vh;
+}
+.page .content {
+	margin-bottom: 96px;
+}
+
+.page > div {
+	max-width: 720px;
+}
+
+.page img {
+	display: block;
+	width: 100%;
+	max-width: 480px;
+	margin: 48px auto;
+}
+

@@ -1,0 +1,20 @@
+{% load static %}<li id="category-li-{{ category.id }}">
+    <span class="title">
+        <a href="{{ category.url }}">{{ category.name }}</a>
+        {% if category.children %}
+            <img src="{% static 'img/icons/arrow-next.png' %}" alt=">">
+        {% endif %}
+    </span>
+    {% if category.children %}
+        <ul class="children">
+            <li>
+                <span class="title back">< Назад к {{ category.name }}</span>
+            </li>
+            {% for children in category.children %}
+                {% with category=children %}
+                    {% include "base/header/components/category.html" %}
+                {% endwith %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>

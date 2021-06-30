@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/main/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user/login.css'%}">
+{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+<div class="login_page">
+    <div class="content">
+        <div class="form_wrapper">
+            <p class="h4 title">Авторизация пользователя</p>
+            <form action="{% url 'user:login' %}" class="form" method="POST">
+                {% csrf_token %}
+                <div class="fields">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit">Войти</button>
+                <a class="password__reset" href="{% url 'user:restore_password' %}">{% trans 'Забыли пароль' %}?</a>
+                <a class="password__reset" href="{% url 'user:registration' %}">{% trans 'Регистрация' %}</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+   document.querySelector('input[name="email"]').focus()
+</script>
+{% endblock %}

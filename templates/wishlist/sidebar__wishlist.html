@@ -1,0 +1,23 @@
+{% load static %}
+{% load i18n %}
+<!-- LINKS -->
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/shop/wishlist.css' %}">
+{% endblock %}
+
+<div class="sidebar wishlist right" id="sidebar_wishlist">
+    <!-- TITLE -->
+    <div class="title">
+        <p class="h3 pl32">{% trans 'Список желаний' %} ❤️</p>
+        <img class="close" onclick="SidebarClose('sidebar_wishlist')" src="{% static 'img/icons/close.png' %}" alt="X" >
+    </div>
+    <!-- MAIN -->
+    <div class="main" id="sidebar__wishlist__products__list">
+        {% include './wishlist__list.html' %}
+    </div>
+    <!-- ACTIONS -->
+    <div class="actions"></div>
+</div>
+<div class="sidebar-outer" id="sidebar_wishlist_outer" data-id="sidebar_wishlist"></div>
+
+

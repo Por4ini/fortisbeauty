@@ -1,0 +1,81 @@
+.color-alert {
+	position: absolute;
+	margin-top: calc((-1) * var(--px19));
+	color:#ff3655;
+}
+.color-grey {
+	color: grey;
+}
+.color-white {
+	color: white !important;
+}
+#main-content {
+	position: relative;
+	display: block;
+	top: var(--px136);
+}
+##main-content::after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+#subscription-form button {
+	background-color: #ff92b1 !important;
+}
+
+::selection {
+  background: #ffb7b7; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #ffb7b7; /* Gecko Browsers */
+}
+.alert-div {
+	margin-top: var(--px24);
+    background-color: #ffc9c9;
+    padding: var(--px16) var(--px16);
+}
+
+.alert-2-div {
+	margin-top: var(--px24);
+    background-color: var(--clr-2);
+    padding: var(--px16) var(--px32);
+}
+.alert-2-div span,
+.alert-2-div span a {
+	color: #ab9063;
+	cursor: pointer;
+}
+.registr-success {
+	min-height: 640px;
+}
+.lh {
+	line-height: 1.5 !important;
+}
+.registr-success-p {
+	line-height: var(--px24);
+	max-width: 960px;
+}
+.good {
+    background-color: #e4ffe1;
+}
+
+.border-valid {
+    border: 2px solid #adf3ba !important;
+}
+.border-invalid {
+    border: 2px solid #fbbbbb !important;
+}
+
+.invalid {
+    color: #ff556f;
+}
+
+.valid {
+    color: #38c86d;
+}
+
+.hide {
+    display: block;
+}
+

@@ -1,0 +1,30 @@
+{% load static %}<li class="comment reply">
+    <div class="heading">
+         <div class="image_wrapper">
+              <div class="image">
+              
+              </div>
+         </div>
+         <div class="info">
+              <span>
+                   <span class="name">{{ reply.user.first_name }} {{ reply.user.last_name }}</span>
+              </span>
+              <div class="line">
+                   <span class="date">{{ reply.date}}</span>
+              </div>
+         </div>
+    </div>
+    <div class="data">
+         <p class="text">
+            {% if reply.parent %}
+                <span class="to">{{ reply.parent.user.first_name }},&nbsp;</span>
+            {% else %}
+                <span class="to">{{ comment.user.first_name }},&nbsp;</span>
+            {% endif %}
+            {{ reply.text }}
+        </p>
+    </div>
+    <div class="actions">
+         <a class="reply reply_comment" href="{% url 'shop:comment_reply_form' comment.pk reply.pk %}">Ответить</a>
+    </div>
+</li>

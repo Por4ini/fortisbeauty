@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+<!-- TITLE -->
+{% block title %}
+    {{ product.brand.name }} - {{ product.name }}, {{ product.human }}
+{% endblock %}
+<!-- LINKS -->
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/shop/product/product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/product/product__description.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/product/product__comments.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/photoswipe/photoswipe.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/photoswipe/default-skin/default-skin.css' %}"> 
+{% endblock %}
+<!-- OPENGRAPH -->
+{% block og %}
+    <meta property="og:title"        content="FortisBeauty: {{ product.brand.name }} {{ product.name }} {{ product.translate.human }}" />
+    <meta property="og:description"  content="variant.translate.seo_description" />
+    <meta property="og:type"         content="shop" />
+    <meta property="og:url"          content="https://fortisbeauty.com.ua/{{ request.path }}" />
+    <meta property="og:image:width"  content="480" />
+    <meta property="og:image:height" content="480" />
+    <meta property="og:image"        content="https://fortisbeauty.com.ua{{ product.variant.all.0.images.all.0.image_s.url }}" />
+    <script type="application/ld+json">
+        {{ schema|safe }}
+    </script>
+{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+<div class="content" >
+    {% include 'shop/product/breadcrumbs.html' %}
+    <div class="product" >
+        {% include 'shop/product/data/data.html' %}
+        <div class="product__galery__wrapper">
+            {% include 'shop/product/galery/galery.html' %}
+        </div>
+        <div class="product__actions">
+            {% include 'shop/product/actions.html' %}
+        </div>
+    </div>
+    <!-- Description -->
+    {% include 'shop/product/description/description.html' %}
+    <!-- Products same serie -->
+    <div class="serie__products home__products"></div>
+    <div class="comment_or_question">
+        <div class="choose"></div>
+    </div>
+    <div class="products__comments">
+        {% include 'shop/product/comments/comments.html' with comments=comments questions=questions %}
+    </div>
+</div>
+<div class="comments__form"></div>
+<!-- PHOTOSWIPE -->
+{% include 'shop/product/galery/photoswipe.html' %}
+{% endblock %}
+
+
+{% block js %}
+    {{ variants|json_script:"variants" }}
+    <script src="{% static 'libs/photoswipe/photoswipe.js' %}"></script>
+    <script src="{% static 'libs/photoswipe/photoswipe-ui-default.js' %}"></script>
+    <script src="{% static 'js/shop/product/photoswipe.js' %}"></script>
+    <script src="{% static 'js/shop/product/swiper.js' %}"></script>
+    <script src="{% static 'js/Product/Comments/CommentsForm.js' %}"></script>
+    <script>
+        var   buyerInfo =            null
+        var   currentPath =          window.location.href
+        const buyerInfoDiv =         document.querySelector('.buyer__info')
+        const productGaleryWrapper = document.querySelector('.product__galery__wrapper')
+        const productActions =       document.querySelector('.product__actions')
+        const variantPrice =         document.querySelector('.variant__price')
+
+        const buyButtonAction = () => {
+            document.querySelector('.buy__button').onclick = (e) => {
+                const data = {
+                    'id' :       document.querySelector('.product_quantity').dataset.variantId, 
+                    'quantity' : document.querySelector('.product_quantity').value,
+                }
+                addToCartRequest(data)
+            }
+        } 
+        buyButtonAction()
+        
+
+        const initProduct = () => {
+           document.querySelector('.buyer__info').innerHTML = buyerInfo
+           productGalerySwiper()
+           initPhotoSwipeFromDOM('.product__galery');
+           Counter()
+           buyButtonAction()
+        }
+
+        const chngeVriant = (link) => {
+            currentPath = link
+            const data = new FormData()
+                  data.append(csrf.name, csrf.value)
+            fetch(link, {
+                method : 'POST',
+                body : data
+            })
+            .then(res => res.json())
+            .then(json => {
+                productGaleryWrapper.innerHTML = json.galery
+                productActions.innerHTML = json.actions
+                initVariants()
+                initProduct()
+            })
+        }
+
+        window.onpopstate = () => {
+            if (currentPath != window.location.href) {
+                chngeVriant(window.location.href)
+            }
+        }
+
+        const initVariants = () => {
+            const variants = document.querySelectorAll('a.variant')
+            for (let variant of variants) {
+                variant.onclick = (e) => {
+                    e.preventDefault()
+                    window.history.pushState({}, null, variant.href);
+                    chngeVriant(variant.href)
+                }
+            }
+        }
+        initVariants()
+
+        
+        fetch('{% url "shop:tpl-buyer_info" %}', {method : 'GET'})
+        .then(res => res.json())
+        .then(json => {
+            if (json.template) {
+                buyerInfoDiv.innerHTML = json.template
+                buyerInfo =  json.template
+            }
+        })
+    </script>
+    <script>
+        const variants = JSON.parse(document.getElementById('variants').textContent);
+        const serieProducts = document.querySelector('.serie__products')
+        const commentFomtFetchUrl =   `{% url "shop:product_comment_form" product_id=product.id comment_type="COMMENT" %}`
+        const questionsFomtFetchUrl = `{% url "shop:product_comment_form" product_id=product.id comment_type="QUESTION" %}`
+        
+        const productQuantityInput = document.querySelector('.product_quantity')
+
+
+
+        
+    </script>
+    
+    <script async>
+        fetch('{% url "shop:fetch_serie" product.id %}', {method : 'GET'})
+        .then(res => res.json())
+        .then(json => {
+            if (json.serie) {
+                serieProducts.innerHTML = json.serie
+                initSwiperProductList(serieProducts)
+                new LazyLoad({container: serieProducts});
+            }
+        })
+
+
+    </script>
+    <script src="{% static 'js/shop/Home/home_products.js' %}"></script>
+   
+    
+{% endblock %}

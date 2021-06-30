@@ -1,0 +1,63 @@
+<div class="curier delivery__type-form ">
+    <div class="fields">
+        {% if user.is_authenticated and user.adress.all|length %}
+            <div>
+                <select name="adress" class="user_chosen_adress">
+                    {% for adress in user.adress.all %}
+                        {% if user.adress_chosen.adress.pk == adress.pk %}
+                            <option value="{{ adress.pk }}" selected>{{ adress }}  </option>
+                        {% else %}
+                            <option value="{{ adress.pk }}">{{ adress }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        {% endif %}
+        <label>
+            <input 
+                placeholder="Город" 
+                type="text"  data-type="text" name="city" 
+                value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.city }}{% endif %}"
+                required
+            >
+        </label>
+        <label>
+            <input 
+                placeholder="Улица" 
+                type="text" data-type="text" name="street" id="input_street"
+                value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.street }}{% endif %}" 
+                required
+            >
+        </label>
+        <label>
+            <input 
+                placeholder="Дом" 
+                type="text" data-type="text" name="house" 
+                value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.house }}{% endif %}" 
+                required
+            >
+        </label>
+        <label>
+            <input 
+                placeholder="Квартира / Офис" 
+                type="text" data-type="text" name="appartment" 
+                value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.appartment }}{% endif %}"
+            >
+        </label>
+    </div>
+    
+
+    <div>
+        <span class="subtitle">Способ оплаты</span>
+        <input class="hidden" type="radio" name="pay_type" value="cash" id="paytype_1" checked>
+        <input class="hidden" type="radio" name="pay_type" value="card" id="paytype_2">
+        <ul class="payment-types">
+            <label for="paytype_1">
+                <li>Наличными</li>
+            </label>
+            <label for="paytype_2">
+                <li>Оплатить картой</li>
+            </label>
+        </ul>
+    </div>
+</div>

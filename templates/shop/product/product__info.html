@@ -1,0 +1,38 @@
+{% load i18n %}
+<div class="info">
+    <div>
+        <h2 class="brand__name h4 color-2">{{ product.brand.name }}</h2>
+        <h1 class="h1 pt16">
+            {{ product.translate.human }} 
+            {% if variant.value %}
+                {{ variant.value }} {{ variant.parent.unit.translate.unit }}</h1>
+            {% endif %}
+        <h2 class="h3 pt8 color-3 ">
+            {{ product.name }} 
+            {% if variant.value %}
+                {{ variant.value }}</h1>
+            {% endif %}
+        </h2>
+        
+        <!-- STARS -->
+        {% include 'shop/product/product__stars.html' %}
+        <!-- OPTIONS -->
+        <ul class="options pt16 pb32">
+            {% for option in product.product_options.all %}
+            <li class="pt4">
+                <span class="semibold pr4">{{ option.group.translate.name }}:</span>
+                <span>
+                    {% for opt in option.option.all %}
+                        {% if forloop.last %}
+                            {{ opt.translate.name }}
+                        {% else %}
+                            {{ opt.translate.name }},
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            </li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>

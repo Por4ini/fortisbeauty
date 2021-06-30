@@ -1,0 +1,68 @@
+.inf__drop-area * {
+	box-sizing: border-box;
+}
+
+.inf__drop-area {
+	position: relative;
+	display: flex;
+	align-items: center;
+    height: 65px;
+	width: calc(100% - 44px);
+	border: 2px solid #ededed;
+	border-radius: 3px;
+	padding: 0 20px;
+	transition: 0.2s;
+}
+
+.inf__drop-area.is-active {
+	border: 2px solid var(--clr-1);
+	background-color: var(--clr-1);
+}
+.inf__drop-area.is-active .inf__btn {
+	border: 2px solid var(--clr-1);
+}
+
+input[type="file"] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+input[type="file"]:focus {
+	border: 2px solid var(--clr-3);
+	outline: none;
+}
+input[type="file"]:focus .inf__btn {
+	border: 2px solid var(--clr-1);
+}
+
+
+
+.inf__btn {
+	display: inline-block;
+	border: 2px solid var(--clr-1);
+	border-radius: 3px;
+	padding: 5px 12px;
+	margin-right: 10px;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+.inf__drop-area:hover  {
+	border: 2px solid var(--clr-1);
+	background-color: var(--clr-1);
+}
+.inf__drop-area:hover .inf__btn {
+	background-color: white;
+}
+
+.inf__hint {
+	flex: 1;
+	font-size: 11px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

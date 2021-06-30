@@ -1,0 +1,43 @@
+{% extends 'base.html' %}{% load static %}{% load i18n %}
+
+
+{% block title %}
+{% trans 'Предложение оптовому покупателю' %}
+{% endblock %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/opt/opt.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="content">
+    <div class="breadcrumbs">
+        <a href="/">{% trans 'Главная' %}</a>
+        <span class="slash">/</span>
+        <p>Опт</p>
+    </div>
+</div>
+   
+
+<div class="content opt">
+    <h1>{% trans 'Предложение оптовым клиентам' %}</h1>
+    <div class="richtext">
+        {{ text.text|safe }}
+    </div>
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_whoosaler %}
+            <a class="button" href="{% url 'shop:catalogue' %}">{% trans 'Перейти в каталог' %}</a>
+        {% else %}
+            <form action="{% url 'opt:opt' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button">Хочу покупать оптом</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <a class="button" href="{% url 'user:registration_business' %}">{% trans 'Зарегестрироватся как оптовый покупатель' %}</a>
+    {% endif %}
+</div>
+{% endblock %}

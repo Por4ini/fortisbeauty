@@ -1,0 +1,76 @@
+{% extends 'base.html' %}{% load i18n %}{% load static %}
+
+{% block links %}
+   <link rel="stylesheet" href="{% static 'css/pages/page__contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <!-- BREADCRUMBS -->
+    <div class="breadcrumbs">
+        <a href="/">
+            <span>{% trans 'Главная' %}</span>
+        </a>
+        <span class="slash">/</span>
+        <p>{% trans 'Контакты' %}</p>
+    </div>
+
+    <!-- TITLE -->
+    <p class="hdng">
+        {{ page.trans.title }}
+    </p>
+
+    <div class="page__contacts">
+        <div class="info__wrapper">
+            <div class="info">
+                <p class="title title2">{% trans 'Контактная информация' %}</p>
+                <p class="text">{% trans 'Заполните форму и наша команда свяжется с Вами в течении 20 мин.' %}</p>
+                <ul>
+                    <li>
+                        <img src="{% static 'img/icons/svg/Phone.svg' %}" alt="">
+                        <span>
+                            <a href="tel:{{ phones.0.phone }}">{{ phones.0.phone }}</a>
+                        </span>
+                    </li>
+                    <li>
+                        <img src="{% static 'img/icons/svg/The_envelope.svg' %}" alt="">
+                        <span>
+                            <a href="mail:{{ page.email }}">{{ maindata.email }}</a>
+                        </span>
+                    </li>
+                    <li>
+                        <img src="{% static 'img/icons/svg/Address.svg' %}" alt="">
+                        <span>
+                            <a href="">{{ maindata.adress }}</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="constct__form">
+            
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+    const formInnerDara = `
+        <form action="{% url 'pages:contacts' %}" method="POST" class="form validate" id="contact_form">
+            {% csrf_token %}
+            <div class="fields">
+                {{ form.as_p }}
+            </div>
+            <button data-action='submit'>Отправить</button>
+        </form>
+    ` 
+    document.querySelector('.constct__form').innerHTML = formInnerDara
+</script>
+<script src="{% static 'js/form/validation.js' %}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+<!-- LINKS -->
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/shop/shop__about.css' %}">
+{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+<div class="content about">
+	<div>
+		<div class="richtext">
+			<h1 class="medium h1 mt24 pb32 block center">{% trans 'Публичная оферта' %}</h1>
+			{{ text.public_offer.translate.text|safe }}
+		</div>
+	</div>
+</div>
+{% endblock %}

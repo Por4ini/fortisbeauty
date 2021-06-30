@@ -1,0 +1,36 @@
+
+.login_page .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 640px;
+    margin-bottom: 32px;
+}
+.login_page .title {
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--clr-3);
+}
+.login_page input {
+    width: 320px;
+    max-width: calc(100% - 32px)
+}
+
+.form_wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 344px;
+    border: 2px solid var(--clr-1);
+    border-radius: 4px;
+    padding: 48px;
+}
+
+.password__reset {
+    margin-top: 24px;
+}

@@ -1,0 +1,75 @@
+{% load static %}
+{% load i18n %}
+<li class="catalogue__product__wrapper">
+    <div class="catalogue__product" id="product-{{ product.pk }}">
+        {% if product.variant.0.images|length %}
+            <a class="image" id="product_{{ product.pk }}_url" href="{{ product.url }}" >
+                <img class="lazy" src="{{ product.variant.0.images.0.xs }}" data-src="{{ product.variant.0.images.0.s }}" alt="{{ product.brand.name }} {{ product.name }} ">
+            </a>
+        {% else %}
+            <a class="image blank" id="product_{{ product.pk }}_url" href="{{ product.url }}" >
+                <img src="{% static 'img/no_image.png' %}" dalt="{{ product.brand.name }} {{ product.name }} ">
+            </a>
+        {% endif %}
+
+        <div class="info">
+            <a class="name" href="{{ variant.get_absolute_url }}">
+                <span>{{ product.name }}</span>
+                <span class="variant__value">{% if product.variant.0.value %}{{ product.variant.0.value }} мл.{% endif %}</span>
+            </a>
+            <span class="human">{{ product.human }}</span>
+            <span class="brand">{{ product.brand }}</span>
+
+            <!-- Whosale price -->
+            <span class="whoosale_wrapper">
+                {% if product.variant.0.whoosale_price %}
+                    {% if product.variant.0.discount_price > 0 and product.variant.0.discount_price < product.variant.0.price %}
+                        <span class="discount_wrapper">
+                            <span class="whoosale_price">Опт: {{ product.variant.0.discount_whoosale_price }} грн.</span>
+                            <span class="discount_price">{{ product.variant.0.whoosale_price }} грн.</span>
+                        </span>
+                    {% else %}
+                        <span class="whoosale_price">Опт: {{ product.variant.0.whoosale_price }} грн.</span>
+                    {% endif %}
+                {% endif %}
+            </span>
+           
+
+            <!-- Reatil price -->
+            {% if product.variant.0.discount_price > 0 and product.variant.0.discount_price < product.variant.0.price %}
+                <span class="discount_wrapper">
+                    <span class="price">{{ product.variant.0.discount_price }} грн.</span>
+                    <span class="discount_price">{{ product.variant.0.price }} грн.</span>
+                </span>
+            {% else %}
+                <span class="price">{{ product.variant.0.price }} грн.</span>
+            {% endif %}
+            
+            <!-- Variants -->
+            {% if product.variant|length > 1 %}
+                <ul class="variants">
+                    {% for variant in product.variant %}
+                        {% if variant.value %}
+                            <a href="{{ variant.url }}">
+                                <li>{{ variant.value }} мл.</li>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="buttons"> 
+            <button class="add_to_cart"
+                data-id="{{ product.variant.0.id }}"
+                onclick=addToCart(this)>
+                В корзину
+            </button>
+            <span data-id="{{ product.variant.0.id }}" onclick=AddToWishlist(this)>
+                <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="wishlist" class="ico">
+            </span>
+        </div>
+        
+    </div>
+</li>
+
+

@@ -1,0 +1,147 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as lang %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предложение для салонов красоты</title>
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/fonts.css' %}">
+    <link rel="alternate"  href="{% static 'css/main/elements/popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/opt/salons/salons.css' %}">
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-2.2.4.min.js"></script> -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- SWIPER -->
+    <link rel="stylesheet" href="{% static 'libs/swiper/css/swiper.css' %}">
+    <!-- SELECTIZE -->
+    <link href="{% static 'libs/TagAutocomple/selectize.bootstrap3.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{% static 'libs/icheck/skins/flat/blue.css' %}">
+    <!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    <!--Plugin JavaScript file-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+</head>
+<body>
+    <div class="header_opt">
+        <div class="content">
+            <a class="logo" href="{% url 'shop:home' %}">
+                <img src="{% static 'img/logo_distr.png' %}" alt="FortisBeauty" class="logo" href="{% url 'shop:home' %}" class="logo-img" >
+            </a>
+            <p class="slogan h3 medium">Оптовая продажа професиональной косметики в Украине</p>
+            <ul class="phones">
+                <a href="tel:+380639923451"><li class="h5">+38 (063) 992 34 51</li></a>
+            </ul>
+        </div>
+        
+    </div>
+    <div class="content">
+        {% include 'opt/salons/quiz/quiz.html' %}
+    </div>
+
+
+
+<script src="{% static 'js/open__close.js' %}"></script>
+<script src="{% static 'libs/icheck/icheck.min.js' %}"></script>
+<script src="{% static 'libs/swiper/js/swiper.min.js' %}"></script>
+<script>
+        var slider = new Swiper ('#quiz_swiper', {
+            slidesPerView: 1,
+            loop: false,
+            noSwiping: true,
+            noSwipingClass: 'no_swipe',
+            autoHeight:true,
+            navigation: {
+                nextEl: '.next',
+                prevEl: '.prev',
+            },
+        })
+        var totalSlidesNum = document.querySelectorAll('.swiper-slide').length
+        document.getElementById('total_slides').innerHTML = totalSlidesNum
+        slider.on('slideChange', function () {
+            document.getElementById('current_slide').innerHTML = slider.realIndex + 1
+            if (totalSlidesNum == slider.realIndex + 1) {
+                document.querySelector('.arr.next').style.display = 'none';
+            } else {
+                document.querySelector('.arr.next').style.display = 'block';
+            }
+        });
+    </script>
+    <script src="{% static 'libs/TagAutocomple/selectize.js' %}"></script>
+    <script>
+    $('.select-state').selectize({
+        plugins: ['remove_button'],
+        create: true,
+    });
+</script>
+<script>
+    $(document).ready(function(){
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-blue',
+        radioClass: 'iradio_flat-blue'
+      });
+    });
+
+    function GetParent(parent){ 
+        console.log(parent);
+        let name = parent.dataset.value
+        let custom = parent.querySelectorAll('#' + name + '_' + 'custom')
+        let check = parent.querySelectorAll('input[type=checkbox]')
+        let radio = parent.querySelectorAll('input[type=radio]')
+        // Inputs
+        let inputs = []
+        if (check.length != 0) { inputs = check } else { inputs = radio }
+
+        let values = []
+
+        for (let i = 0; i < inputs.length; i++) {
+            let el = inputs[i];
+            if (el.checked == true) {
+                values.push(el.dataset.value) 
+            }
+        } 
+
+        let select = parent.querySelector('select')
+        if (select != undefined) {
+            let selectOptions = select.querySelectorAll('option')
+            selectOptions.forEach(el => {
+                values.push(el.value);
+            });
+        }
+       
+        
+        document.getElementById(name + '_' + 'hidden').value = values.join(', ');
+    }
+
+
+
+    function Calc() {
+        let quizBlocks = document.querySelectorAll('.quiz_block')
+        for (let i = 0; i < quizBlocks.length; i++) {
+            let parent = quizBlocks[i];
+            GetParent(parent)
+        }
+    }
+
+
+    var form = document.getElementById('quiz_form')
+    form.addEventListener('submit', function(event) {
+        event.preventDefault()
+        Calc()
+        form.submit()
+    })
+
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,21 @@
+
+{% load static %}{% for variant in variants %}
+<a href="{{ variant.url }}">
+    <li>
+        <div class="image__wrapper">
+            <div class="image">
+                {% if variant.images.0  %}
+                    <img src="{{ variant.images.0.xs }}" alt="">
+                {% else %}
+                    <img class="no-image" src="{% static 'img/no_image.jpg' %}" alt="">
+                {% endif %}
+            </div>
+        </div>
+        <div class="info">
+            <p class="h6 title">{{ variant.human }} {{ variant.code }}{% if variant.value %}, {{ variant.value }} мл.{% endif %}</p>
+            <p class="h6 price">{{ variant.price }} грн.</p>
+        </div>
+    </li>
+</a>
+{% endfor %}
+

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/user/user__password__restore.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    {% trans 'Востановление пароля' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="content form__outer password__restore">
+    <div class="form__wrapper">
+        <h1 class="h4">Востановление пароля</h1>
+        <p class="helptext">Для востановления пароля, введите Ваш email. После чего мы отправим Вам ссылку дял вода новго пароля.</p>
+        <form class="form validate" action="{% url 'user:restore_password' %}" method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить ссылку</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'js/form/validation.js' %}"></script>
+<script>
+   document.querySelector('input[name="email"]').focus()
+</script>
+{% endblock %}

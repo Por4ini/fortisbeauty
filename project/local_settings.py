@@ -1,0 +1,24 @@
+DEBUG = True
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'trlrj4o6&g7l65**kdyk6(3$&^)(tp$n5swib$ej%yc075-p+a'
+# NEW POST KEY
+NEW_POST_KEY = 'b71158ead01d7cfaa683c7a317911937'
+
+
+# GMAIL_ADRESS = 'office.fortisbeauty@gmail.com'
+# GMAIL_PASSWORD = 'rubashova28081992'
+
+GMAIL_ADRESS = 'rostislav444@gmail.com'
+GMAIL_PASSWORD = 'rideordie24'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'fortisbeauty',
+        'USER' : 'rostislav',
+        'PASSWORD' : 'streetride24',
+        'HOST' : '127.0.0.1',
+        'PORT' : '5432',
+    }
+}

@@ -1,0 +1,39 @@
+{% load static %}<div class="heading">
+    <p class="h3">Фильтры</p>
+    <label for="show_filter" class="close">
+        <img src="{% static 'img/close.png' %}" alt="x">
+    </label>
+</div>
+
+<div class="block">
+    <div class="title">Тип</div>
+    <div class="data links">
+        <li>
+            <a class="{% if selected_category == None %}active{% endif %}" href="{{ selected_brand.url }}">
+                <span>Все</span>
+            </a>
+        </li>
+        {% for item in types %}
+            <li>
+                <a class="{% if item.slug == selected_category.slug %}active{% endif %}" href="{{ item.url }}">
+                    <span>{{ item.name }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- PRICERANGE -->
+{% if max_price > min_price %}
+<div class="block price {% if min_price == max_price %}deactivated{% endif %}">
+    <div class="title">Цена</div>
+    <div class="data">
+        {% include 'shop/catalogue/catalogue__pricerange.html' %}
+    </div>
+</div>
+{% endif %}
+{% for attr in attributes %}
+    <!-- ATTRIBUTES {{ attr.slug|upper }} -->
+    {% include 'shop/catalogue/catalogue__filter_block.html' with type="attr" title=attr.name items=attr.value %}
+{% endfor %}

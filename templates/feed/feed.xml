@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+	<channel>
+		<title>FortisBeauty</title>
+		<link>https://fortisbeauty.com.ua/</link>
+		<description>This is a feed for https://fortisbeauty.com.ua/</description>
+        {% for product in products %}
+            {% for variant in product.variant.all %}
+                <item>
+                    <g:id>{{ variant.code }}</g:id>
+                    <g:brand>{{ product.brand.name }}</g:brand>
+                    <g:title>{{ product.name }}</g:title>
+                    <g:description>
+                        {% autoescape on %}{{ product.description }}{% endautoescape %}
+                        {{ product.prescription }}
+                        {{ product.application }}
+                        {{ product.composition }}
+                    </g:description>
+                    <g:link>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:link>
+                    <g:url>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:url>
+                    <g:image_link>{{ request.scheme }}://{{ current_site }}{{ product.get_image.image_thmb.s.path }}</g:image_link>
+                    <g:gender>unisex</g:gender>
+                    <g:condition>New</g:condition>
+                    <g:availability>in stock</g:availability>
+                    <g:price>{{ variant.price }} UAH</g:price>
+                    <g:shipping>
+                        <g:country>UA</g:country>
+                        <g:service>Standard</g:service>
+                        <g:price>50 UAH</g:price>
+                    </g:shipping>
+                    <g:google_product_category>{{ product.category.taxonomy.name }}</g:google_product_category>
+                    <g:product_type>{{ product.category.get_tree_name }}</g:product_type>
+                </item>
+             {% endfor %}
+        {% endfor %}
+	</channel>
+</rss>

@@ -1,0 +1,51 @@
+{% extends './profile.html' %}
+{% load static %}
+{% block profile %}
+<div class="user__orders">
+    <p class="title1">Мои заказы</p>
+    <ul class="orders">
+        <li class="heading_wrapper">
+            <div class="heading main">
+                <p>Статус заказа</p>
+                <p>Тип доставки</p>
+                <p>Сумма</p>
+                <p class="date">Время заказа</p>
+            </div>
+           
+            {% for order in orders %}
+                <li class="order">
+                    <div class="heading">
+                        <p>{{ order.status }}</p>
+                        <p>{{ order.pay_type }}</p>
+                        <p>{{ order.total }} грн</p>
+                        <p class="date">{{ order.created }}</p>
+                    </div>
+                    
+                    <ul class="products">
+                        <p class="bold title">Товары в заказе</p>
+                        {% for product in order.products %}
+                            <li class="product">
+                                <div class="image">
+                                    <a href="{{ product.url }}">
+                                        <img src="{{ product.variant.images.0.s }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <a href="{{ product.variant.brand_url }}" class="brand">{{ product.variant.brand }}</a>
+                                    <p class="name">{{ product.variant.name }}</p>
+                                    <p class="quantity">{{ product.quantity }} шт. x {{ product.price }} грн.</p>
+                                </div>
+                                <p class="total">{{ product.total }} грн.</p>
+                            </li>
+                        {% endfor %}
+                        <div>
+                            <a class="button" href="{% url 'order:repeat' id=order.id %}">Повторить</a>
+                        </div>
+                        
+                    </ul>
+                </li>
+            {% endfor %}
+    </ul>
+    
+</div>
+{% endblock %}

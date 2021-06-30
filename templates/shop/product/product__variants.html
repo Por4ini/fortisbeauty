@@ -1,0 +1,19 @@
+{% if product.variant.all|length > 1 %}
+ <div class="variants mb16 block">
+     <ul class="block">
+         {% for var in product.variant.all %}
+             {% if var.value != None %}
+             <a href="{% url 'shop:product' var.parent.brand.slug var.parent.slug var.parent.pk var.pk %}">
+                 <li {% if var.pk == variant.pk %}style="border-color: var(--clr-1)"{% endif %}>
+                     <img src="{{ var.images.all.0.image_xs.url }}" alt="{{ var.value }} {{ var.parent.unit.translate.unit }}">
+                     <p>
+                         <span>{{ var.value }} {{ var.parent.unit.translate.unit }}</span>
+                         <span class="grey h6">{{ var.price }} {% trans 'грн' %}.</span>
+                     </p>
+                 </li>
+             </a>
+             {% endif %}
+         {% endfor %}
+     </ul>
+ </div>
+{% endif %}

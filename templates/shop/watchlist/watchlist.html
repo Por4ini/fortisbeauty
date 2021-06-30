@@ -1,0 +1,37 @@
+{% load static %}
+{% load i18n %}
+
+{% if watchlist|length > 0 %}
+    <div class="content watchlist">
+        <!-- PRODUCTS WATCHLIST -->
+        <div class="products-div">
+            <!-- Swiper -->
+            <div class="home-product-top-div ">
+                <div class="heading">
+                    <p class="medium h1 pt16 pb16">{% trans 'Просмотренные товары' %}</p>
+                </div>
+                <div class="swiper-buttons pb32">
+                    <!-- PREV -->
+                    <div class="pagination-button-div watchlist_products_prev">
+                        <img src="{% static 'img/icons/arrow-prev.png' %}" alt="<">
+                    </div>
+                    <!-- NEXT -->
+                    <div class="pagination-button-div watchlist_products_next">
+                        <img src="{% static 'img/icons/arrow-next.png' %}" alt=">">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-container watchlist-container">
+                <div class="swiper-wrapper watchlist-wrapper pb24 ">
+                    {% for product in watchlist %}
+                        <div class="swiper-slide products-list">
+                            {% include 'shop/watchlist/watchlist__product.html' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+{% endif %}

@@ -1,0 +1,44 @@
+{% load static %}
+{% load i18n %}
+<!-- LINKS -->
+
+<!-- HTML -->
+<div class="popup__outer" id="quiz">
+    <div class="popup__conteiner">
+        <div class="popup__wrapper">
+        <div onclick="Close('quiz')" class="close">
+            <img src="{% static 'img/icons/close.png' %}" alt="X">
+        </div>
+        <!-- Slider main container -->
+        <form id="quiz_form" action="{% url 'opt:get_analitics' %}" method="POST">
+            {% csrf_token %}
+            <div class="swiper-container" id="quiz_swiper">
+                <!-- Additional required wrapper -->
+                <p class="center medium h3 mb24">Получи разбо от команды Fortis Beauty</p>
+                <p class="center pb24">Шаг <span id="current_slide">1</span>/<span id="total_slides"></span></p>
+                <div class="swiper-wrapper">
+                    <!-- SLIDE 1 -->
+                    {% include './quiz_slide_1.html' %}
+                    <!-- SLIDE 2 -->
+                    {% include './quiz_slide_2.html' %}
+                    <!-- SLIDE 3 -->
+                    {% include './quiz_slide_3.html' %}
+                    <!-- SLIDE 4 -->
+                    {% include './quiz_slide_4.html' %}
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                {% include 'opt/salons/elements/quiz_navigation.html' %}
+               
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'opt/salons/elements/quiz_js.html' %}
+

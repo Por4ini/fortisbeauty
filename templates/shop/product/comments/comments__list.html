@@ -1,0 +1,78 @@
+{% load static %}{% load mptt_tags %}
+    {% if comments|length %}
+         <ul class="comments">
+              {% for comment in comments %}
+               {% if comment_product %}
+                    <li>
+                         <a href="{{ comment.product.get_absolute_url }}">{{ comment.product.name }}</a>
+                    </li>
+               {% endif %}
+                   
+               <li class="comment">
+                    <div class="heading">
+                         <div class="image_wrapper">
+                              <div class="image">
+                              
+                              </div>
+                         </div>
+                         <div class="info">
+                              <span>
+                                   <span class="name">{{ comment.user.first_name }} {{ comment.user.last_name }}</span>
+                              </span>
+                              <div class="line">
+                                   {% if comment.type == 'COMMENT' %}
+                                        <ul class="rate">
+                                             {% for star in comment.get_rate %}
+                                                  <li>
+                                                       {% if star == 1 %}
+                                                            <img width=12 height=12 right="4px" src="{% static 'img/icons/star.png' %}" alt="*">
+                                                       {% else %}
+                                                            <img width=12 height=12 right="4px" src="{% static 'img/icons/star-0.png' %}" alt="-">
+                                                       {% endif %}
+                                                  </li>
+                                             {% endfor %}
+                                        </ul>
+                                   {% endif %}
+                                   <span class="date">{{ comment.date}}</span>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="data">
+                         <p class="text">{{ comment.text }}</p>
+                         {% if comment.advantages %}
+                              <span class="label">Преимущества</span>
+                              <p class="text">{{ comment.advantages }}</p>
+                         {% endif %}
+                         {% if comment.disadvantages %}
+                              <span class="label">Недоставки</span>
+                              <p class="text">{{ comment.disadvantages }}</p>
+                         {% endif %}
+                    </div>
+                    <div class="actions">
+                         <a class="reply reply_comment" href="{% url 'shop:comment_reply_form' comment.pk %}">Ответить</a>
+                    </div>
+                    {% if comment.replys.all|length %}
+                    <ul class="replys">
+                         {% recursetree comment.replys.all %}
+                              <li class="reply">
+                                   {% include "shop/product/comments/comment_reply.html" with reply=node comment=comment %}
+                                   {% if not node.is_leaf_node %}
+                                        <ul class="children">
+                                             {{ children }}
+                                        </ul>
+                                   {% endif %}
+                              </li>
+                         {% endrecursetree %}
+                    </ul>
+                    {% endif %}
+               </li>
+          
+          {% endfor %}
+     </ul>
+    {% else %}
+         <ul class="comments">
+              <li>
+                   <span>Пока нету комментариев</span>
+              </li>
+         </ul>
+    {% endif %}

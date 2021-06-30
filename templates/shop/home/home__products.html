@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+{% if products|length %}
+<div class="content">
+    <!-- PRODUCTS NEWEST -->
+    <div class="home__products">
+        <!-- Swiper -->
+        <div class="home__products__heading">
+            <span class="title">{{ heading }}</span>
+            <div class="buttons">
+                <!-- PREV -->
+                <div class="button_prev">
+                    <img src="{% static 'img/icons/arrow-prev.png' %}" alt="<">
+                </div>
+                <!-- NEXT -->
+                <div class="button_next">
+                    <img src="{% static 'img/icons/arrow-next.png' %}" alt=">">
+                </div>
+            </div>
+        </div>
+        <div class="home__products__list">
+            <div class="swiper-container home__products__list__swiper">
+                <div class="swiper-wrapper">
+                    {% for product in products %}
+                        <div class="swiper-slide slide">
+                            {% include 'shop/catalogue/catalogue__product.html' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+

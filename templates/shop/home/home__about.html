@@ -1,0 +1,23 @@
+{% load static %}
+<div class="home-about">
+    <div class="content">
+        <img src="{% static 'img/logo.png' %}" alt="" class="logo">
+        <p class="description">{{ slogan.text|safe }}</p>
+    </div>
+</div>
+
+<div class="home-advantages">
+    <div class="content">
+        <p class="title1 center">Преимущества работы с нами</p>
+        <ul>
+            {% for advantage in our_advantages %}
+                <li>
+                    <p class="name">{{ advantage.title }}</p>
+                    <p class="description">
+                        {{ advantage.text }}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

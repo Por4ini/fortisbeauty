@@ -1,0 +1,17 @@
+{% load static %}
+{% load i18n %}
+<div id="fast-call-outer">
+    <div id="fast-call">
+        <p class="close" style="cursor: pointer; position: absolute; right: 48px; top:60px;" onclick="fClose('fast-call-outer')"><img src="{% static 'img/icons/close.png' %}" alt="X" width="16px"></p>
+        <p class="h3 medium pd-right-16">
+            {% trans 'Заполните форму и мы вскоре Вам позвоним' %}
+        </p>
+        <form action="" class="form" id="fast-call-form">
+            <input  type="text"   name="first_name" value="" placeholder="{% trans 'Ваше имя' %}">
+            <input  type="text"   id="fast-call-phone" name="phone"  value="" placeholder="{% trans 'Номер телефона' %}">
+            <button type="submit" name="button">
+                {% trans 'Запросить звонок' %}
+            </button>
+        </form>
+    </div>
+</div>

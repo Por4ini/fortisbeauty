@@ -1,0 +1,10 @@
+{% load static %}{% for select in selected %}
+<a href="{{ select.url }}" class="filter-param">
+    <li>
+        <span>{{ select.name }}</span>
+        <span class="remove">
+            <img src="{% static 'img/icons/svg/Close.svg' %}" alt="x">
+        </span>
+    </li>
+</a>
+{% endfor %}

@@ -1,0 +1,19 @@
+.delivery {
+    display: flex;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+.delivery > div {
+    width: 100%;
+    max-width: 720px;
+    
+}
+.delivery p {
+    line-height: 1.75;
+}
+
+
+.delivery h1 {
+    padding: 48px 0 24px 0;
+}

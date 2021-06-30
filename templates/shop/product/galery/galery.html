@@ -1,0 +1,22 @@
+{% load static %}<div class="product__galery swiper-container-gallery">
+    <div class="swiper-wrapper">
+        {% if variant.images|length %}
+            {% for image in variant.images %}
+                <figure class="swiper-slide slide">
+                    <a href="{{ image.l }}" itemprop="contentUrl" data-size="{{ image.w }}x{{ image.h }}">
+                        <img class="lazy" src="{{ image.xs }}" data-src="{{ image.l }}" alt="{{ product.name }}" />
+                    </a>
+                </figure>
+            {% endfor %}
+        {% else %}
+            <figure class="swiper-slide slide">
+                <a href="{% static 'img/no_image.png' %}" itemprop="contentUrl" data-size="800x800">
+                    <img src="{% static 'img/no_image.png' %}" alt="{{ product.name }}" />
+                </a>
+            </figure>
+        {% endif %}
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>

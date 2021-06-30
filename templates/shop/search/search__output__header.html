@@ -1,0 +1,53 @@
+{% load static %}
+{% load i18n %}
+{% if products %}
+<ul class="products">
+    {% for product in products %}
+        <li>
+            <a href="{{ product.get_absolute_url }}">
+                <img class="image" src="
+                    {% if product.images.all.0 %}
+                        {{ product.images.all.0.image_xs.url }}
+                    {% else %}
+                        {% static 'img/icons/no_image_s.jpg' %}
+                    {% endif %}
+                    " alt="{{ product.parent.name }}">
+            </a>
+            <div>
+                <a href="{{ product.get_absolute_url }}">
+                    <p class="h4 semibold">{{ product.parent.human }} </p>
+                </a>
+                <a href="{{ product.get_absolute_url }}">
+                    <p>{{ product.parent.name }} {{ product.value }} {{ product.type.unit }}</p>
+                </a>
+                <p>Цена: {{ product.price }} грн.</p>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if brands %}
+    <ul class="brands pt24">
+        <span class="h3 medium mt24 pb24">{% trans 'Бренды' %}</span>
+        {% for item in brands %}
+            <a href="{% url 'shop:catalogue' brand=item.slug %}">
+                <li>{{ item.name }}</li>
+            </a>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if categories %}
+<ul class="categories pt24">
+    <span class="h3 medium mt24 pb24">{% trans 'Категории' %}</span>
+    {% for item in categories %}
+        <a href="{% url 'shop:catalogue' category=item.slug %}">
+            <li class="pr8">{{ item.name_catalogue }}</li>
+        </a>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if products|length == 0 and brands|length == 0 and categories|length == 0 %}
+   <p class="grey h4 pt8 pb24">{% trans 'Ничего не найдено' %}</p> 
+{% endif %}

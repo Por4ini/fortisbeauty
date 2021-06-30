@@ -1,0 +1,31 @@
+<div class="block">
+    <div class="title">{{ title }}</div>
+    <ul class="data">
+        {% for item in items %}
+            <li>
+                <a href="{{ item.url }}">
+                    <label for="{{ type }}-{{ item.id }}">
+                        <p>
+                            <input 
+                                type="checkbox" 
+                                class="filter-param" 
+                                id="{{ type }}-{{ item.id }}"
+                                data-href="{{ item.url }}"
+                                data-group="{{ type }}"  
+                                data-value="{{ item.slug }}" 
+                                {% if item.selected %}
+                                    checked=true
+                                {% endif %}
+                            >
+                            <span class="checkbox"></span>
+                            <span class="name">{{ item.name }}</span>
+                            {% if item.count %}
+                                <span class="qty filterd">({{ item.count }})</span> 
+                            {% endif %}
+                        </p>
+                    </label>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,188 @@
+{% load static %}{% load i18n %}{% load mptt_tags %}{% get_current_language as LANGUAGE_CODE %}<header>
+    <div class="header__block-extra">
+        <div class="content">
+            <!-- Pages -->
+            <ul class="header__pages">
+                <a href="{% url 'pages:contacts' %}">
+                    <li>{% trans 'Контакты' %}</li>
+                </a>
+                <a href="{% url 'pages:payment-and-delivery' %}">
+                    <li>{% trans 'Доставка и оплата' %}</li>
+                </a>
+                <a href="{% url 'pages:about' %}">
+                    <li>{% trans 'О нас' %}</li>
+                </a>
+                <a href="{% url 'blog:list' %}">
+                    <li>{% trans 'Блог' %}</li>
+                </a>
+            </ul>
+            <!-- Languages -->
+            <ul class="header__languages">
+                <!-- RU -->
+                <li>
+                    {% if LANGUAGE_CODE == 'ru' %}
+                        <span>ru</span>
+                    {% else %}
+                        <form action="{% url 'set_language' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="language" value="ru">
+                            <button type="submit">ru</button>
+                        </form>
+                    {% endif %}
+                </li>
+                <!-- UK -->
+                <li>
+                    {% if LANGUAGE_CODE == 'uk' %}
+                        <span>uk</span>
+                    {% else %}
+                        <form action="{% url 'set_language' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="language"  value="uk">
+                            <button type="submit">uk</button>
+                        </form>
+                    {% endif %}
+                </li>
+                <!-- EN -->
+                <li>
+                    {% if LANGUAGE_CODE == 'en' %}
+                        <span>en</span>
+                    {% else %}
+                        <form action="{% url 'set_language' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="language"  value="en">
+                            <button type="submit">en</button>
+                        </form>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Main -->
+    <div class="header__block-main">
+        <div class="content">
+            
+            <!-- Logo -->
+            <a class="header__logo__wrapper" href="{% url 'shop:home' %}">
+                <img class="header__logo"  src="{% static 'img/logo.png' %}" alt="FortisBeauty">
+            </a>
+
+            <div class="burger" onclick="SidebarOpen('sidebar_menu')">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            
+            <!-- Search -->
+            <div class="header__search">
+                <input type="search" name="search" id="search" placeholder="{% trans 'Поиск товаров' %}">
+            </div>
+            <div class="header__actions">
+                <!-- Phone -->
+                <div class="header__phone">
+                    <input id="header__show_phone" type="checkbox" data-for=".header__phone-numbers" class="hidden showhide__button">
+                    <label for="header__show_phone" header__phone="header__phone-button">
+                        <img src="{% static 'img/icons/svg/Phone.svg' %}" alt="{% trans 'Телефон' %}">
+                        <span>{% trans 'Позвоанить' %}</span>
+                        <img src="{% static 'img/icons/down.png' %}" class="arr-down" alt="down">
+                    </label>
+                    <div class="header__phone-numbers">
+                        <ul>
+                            {% for phone in phones %}
+                                <a href="tel:{{ phone.phone }}">
+                                    <li>{{ phone.phone }}</li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                        <button class="button button__recall">{% trans 'Перезвоните мне' %}</button>
+                    </div>
+                </div>
+                <!-- Account -->
+                <div class="header__account">
+                    <a href="{% url 'user:profile' %}">
+                        <img src="{% static 'img/icons/user/Avatar.svg' %}" alt="Пользоввтель" class="ico">
+                    </a>
+                    <div class="header__account-data">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'user:profile' %}">{% trans 'Личный кабинет' %}</a>    
+                        {% else %}
+                            <a href="{% url 'user:login' %}">{% trans 'Вход' %}</a>
+                            <span class="slash">/</span>
+                            <a href="{% url 'user:registration' %}">{% trans 'Регистрация' %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Whishlist -->
+                <div class="header__wishlist" onclick="SidebarOpen('sidebar_wishlist')">
+                    <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="{% trans 'Список желаний' %}">
+                    <span class="header__qty header__wishlist-qty">0</span>
+                </div>
+                <!-- Cart -->
+                <div class="header__cart" onclick="SidebarOpen('sidebar_cart')">
+                    <img src="{% static 'img/icons/svg/Basket_2.svg' %}" alt="{% trans 'Корзина' %}">
+                    <span class="header__qty header__cart-qty cart__quantity">0</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Nav -->
+    <div class="header__block-nav">
+        <div class="content">
+            <nav>
+                <ul>
+                    <a href="/opt">
+                        <li>
+                            <img src="{% static 'img/icons/svg/Delivery.svg' %}" alt="Opt">
+                            <span>{% trans 'Опт' %}</span>
+                        </li>
+                    </a>
+                    {% for category in tree %}
+                        <a href="{{ category.url }}">
+                            <li>{{ category.name }}</li>
+                        </a>
+                    {% endfor %}
+
+                    <a href="{% url 'shop:catalogue' discount='yes' %}">
+                        <li>{% trans 'Акции' %}</li>
+                    </a>
+                    <a href="{% url 'shop:brands_all' %}">
+                        <li>{% trans 'Бренды' %}</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+<div class="search__output">
+    <div class="content">
+        <ul class="search__output-products"></ul>
+        <div class="more">
+            <ul class="search__output-brands"></ul>
+            <ul class="search__output-category"></ul>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+const header = document.querySelector('header')
+const main =   document.querySelector('main')
+
+if (window.matchMedia("(max-width: 960px)").matches) {
+    window.addEventListener('scroll', function(e) {
+        if (window.scrollY < 50) {
+            header.style.top = -window.scrollY + 'px'
+        } else {
+            header.style.top = -50 + 'px'
+        }
+    });
+} else {
+  /* the viewport is less than 400 pixels wide */
+}
+
+</script>

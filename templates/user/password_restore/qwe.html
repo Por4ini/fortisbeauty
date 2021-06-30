@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+
+{% block title %}{% trans 'Password reset' %}{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/user/user__password__restore.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if validlink %}
+        <div class="content form__outer password__restore">
+            <div class="form__wrapper">
+                <h1 class="h4">{% trans 'Enter new password' %}</h1>
+                <p class="helptext">{% trans "Please enter your new password twice so we can verify you typed it in correctly." %}</p>
+                <form class="form validate" action="" method='POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="fields">
+                        {{ form.new_password1.errors }}
+                        <p>
+                            <label for="id_password">Пароль:</label> 
+                            <input class="form-control" name="new_password"  data-type="password" type="password" id="id_password" value="">
+                        </p>
+                        {{ form.new_password2.errors }}
+                        <p>
+                            <label for="id_password2">Повторите пароль:</label> 
+                            <input class="form-control" name="new_password2"  data-type="password2" data-parent="id_password" type="password" id="id_password2" value="">
+                        </p>
+                    </div>
+                    <button type="submit">Отправить ссылку</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+    <div class="content">
+        <h1>{% trans 'Password reset unsuccessful' %}</h1>
+        <p>{% trans "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset." %}</p>
+    </div>
+    {% endif %}
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/form/validation.js' %}"></script>
+<script>
+   document.querySelector('input[name="new_password"]').focus()
+</script>
+{% endblock %}

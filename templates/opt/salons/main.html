@@ -1,0 +1,70 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as lang %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предложение для салонов красоты</title>
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap&subset=cyrillic" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/fonts.css' %}">
+    <link rel="alternate"  href="{% static 'css/main/elements/popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/opt/salons/salons.css' %}">
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-2.2.4.min.js"></script> -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- SWIPER -->
+    <link rel="stylesheet" href="{% static 'libs/swiper/css/swiper.css' %}">
+    <!-- SELECTIZE -->
+    <link href="{% static 'libs/TagAutocomple/selectize.bootstrap3.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{% static 'libs/icheck/skins/flat/blue.css' %}">
+    <!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    <!--Plugin JavaScript file-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+</head>
+<body>
+    <div class="header_opt">
+        <div class="content">
+            <a class="logo" href="{% url 'shop:home' %}">
+                <img src="{% static 'img/logo_distr.png' %}" alt="FortisBeauty" class="logo" href="{% url 'shop:home' %}" class="logo-img" >
+            </a>
+            <p class="slogan h3 medium">Оптовая продажа професиональной косметики в Украине</p>
+            <ul class="phones">
+                <a href="tel:+380639923451"><li class="h5">+38 (063) 992 34 51</li></a>
+            </ul>
+        </div>
+        
+    </div>
+    <div class="content pt24 pb24">
+       
+        <p class="heading1 h2 medium center">
+            Узнай как зарабатывать <span>на 1.000$ - 10.000$ больше</span> в своем бизнесе <span>сегодня</span>, используя <span>професиональную косметику</span> на основе 9 летнего опыта Fortis Beauty и 27 парнеров.
+        </p>
+        <img class="main_image mt24" src="{% static 'img/sahmpoo.gif' %}" alt="">
+        <a href="{% url 'opt:opt_offer_quiz' %}">
+            <button class="mt24 openquiz"><img class="ico" src="{% static 'img/icons/opt/doc.png' %}" alt="">Получить комерческое предложение</button>
+        </a>
+        <p class="h2 medium center mt24">Пройди опрос за 30 секунд - получи комерческое предложение и консультацию менеджера в подарок.</p>
+        <div class="extra">
+            <div><img src="{% static 'img/icons/opt/bottle.png' %}" alt=""><p>Бесплатный набор пробников  всех брендов</p></div>
+            <div><img src="{% static 'img/icons/opt/3.png' %}" alt=""><p>Fortis Beauty - официальный партнер в Украине таких Брендов Moroccanoil 
+                Genosys Orising Labiosthetique Global Keratin Dermologica Kenue Elemis Lanbelle Ph-formula</p></div>
+            <div><img src="{% static 'img/icons/opt/star.png' %}" alt=""><p>Fortis Beauty - лидер рынка професионалдьной косметики более 9 лет</p></div>
+            <div><img src="{% static 'img/icons/opt/money.png' %}" alt=""><p>Гарантируем Ваш результат своими деньгами.</p></div>
+            
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+

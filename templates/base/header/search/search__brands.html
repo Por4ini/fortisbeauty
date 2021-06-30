@@ -1,0 +1,6 @@
+<li class="bold">Бренды</li>
+{% for brand in brands %}
+<a href="{{ brand.url }}">
+    <li>{{ brand.name }}</li>
+</a>
+{% endfor %}

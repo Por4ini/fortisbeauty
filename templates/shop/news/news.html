@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}NEWS{% endblock %}
+{% block content %}
+<div class="content news">
+	<h1 class="medium h1">Новости компании "Fortis Beuty"</h1>
+	<div class="news-list">
+		{% for news_post in news %}
+		<div class="news-post">
+			<div class="time">
+				<p class="date">{{ news_post.upload_date|date:'D, H:i' }}<span>&nbsp;-&nbsp;</span></p>
+				<p class="date">{{ news_post.upload_date|date:'d M Y' }}</p>
+			</div>
+			<div class="image">
+				<div style="background: url({{ news_post.image_medium.url }}); background-size: cover; background-position: center;  width: 100% ">
+					<p style="padding-bottom: 80%"></p>
+				</div>
+			</div>
+			<div class="text">
+				<p class="heading h2 medium">
+					{% if lang == 'ru' %}{{ news_post.title_ru }}
+                    {% elif lang == 'uk' %}{{ news_post.title_uk }}
+                    {% elif lang == 'en' %}{{ news_post.title_en }}
+                    {% endif %}
+				</p>
+				<p class="main_text">
+					{% if lang == 'ru' %}{{ news_post.short_text_ru }}
+					{% elif lang == 'uk' %}{{ news_post.short_text_uk }}
+					{% elif lang == 'en' %}{{ news_post.short_text_en }}
+					{% endif %}
+				</p>
+				<a class="more" href="{{ news_post.get_absolute_url }}">
+					{% if lang == 'ru' %}Узнать больше
+					{% elif lang == 'uk' %}Дізнатися більше
+					{% elif lang == 'en' %}Read more
+					{% endif %}
+					
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+</div>
+
+
+{% endblock %}

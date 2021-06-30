@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__sort.css' %}">
+<div class="sidebar sort" id="sidebar_sort">
+    <!-- TITLE -->
+    <div class="title">
+        <link rel="stylesheet" href="{% static 'css/shop/cart/sidebar__sort.css' %}">
+        <p class="h3 pl32">Сортировка</p>
+        <img class="close" onclick="SidebarClose('sidebar_sort')" src="{% static 'img/icons/close.png' %}" alt="X" >
+    </div>
+    <!-- MAIN -->
+    <div class="main" id='catalogue__sort'>
+        {% include 'shop/catalogue/catalogue__sort.html' %}
+    </div>
+    <!-- ACTIONS -->
+    <div class="actions"></div>
+</div>
+<div class="sidebar-outer" id="sidebar_sort_outer" data-id="sidebar_sort"></div>
+
+
+
+

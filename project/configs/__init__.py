@@ -1,0 +1,1 @@
+from .configs__ckeditor import *

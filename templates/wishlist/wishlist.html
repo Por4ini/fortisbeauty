@@ -1,0 +1,10 @@
+{% load static %}<div class="sidebar wishlist right" id="sidebar_wishlist">
+    <div class="title">
+        <span class="h4">Список желаний</span>
+        <img class="close" onclick="SidebarClose('sidebar_wishlist')" src="{% static 'img/icons/close.png' %}" alt="X" >
+    </div>
+    <div class="main">
+        <ul class="wishlist__products"></ul>
+    </div>
+</div>
+<div class="sidebar-outer" id="sidebar_outer" data-id="sidebar_cart"></div>

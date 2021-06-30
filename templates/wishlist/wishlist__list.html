@@ -1,0 +1,34 @@
+{% load static %}{% load i18n %}{% if request.user.is_authenticated %}
+{% if wishlist|length > 0 %}
+        {% for item in wishlist %}
+            <li class="wishlist__product">
+                <a class="image__wrapper" href="{{ item.variant.url }}">
+                    <span class="image">
+                        <img class="product_image" src="{% if item.variant.image %}{{ item.variant.image }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="img">
+                    </span> 
+                </a>
+                <div class="info">
+                    <a href="{{ item.variant.url }}" class="name">{{ item.variant.name }}</a>
+                    <span class="price">
+                        <span>{{ item.variant.price }} грн.</span>
+                        <button class="buy" data-id="{{ item.variant.id }}" onclick="WishlistToCart(this)">Купить</button>
+                    </span>
+                    <img class="remove" onclick="RemoveFromWishlist('{{ item.variant.id }}')" src="{% static 'img/icons/svg/Garbage.svg' %}" alt="remove">
+                </div>    
+            </li>
+        {% endfor %}
+    {% else %}
+        <li>{% trans 'Список желаний пока пуст. Добавьте что-то)' %}</li>
+    {% endif %}
+{% else %}
+    <li class="center">
+        <span class="h5">
+            {% trans 'Добавлять товары в список желаний могут только зарегестрированные пользователи.' %}
+        </span>    
+        <a class="button" href="{% url 'user:registration' %}">
+        {% trans 'Регистрация' %}  
+        </a>
+    </li>
+{% endif %}
+
+

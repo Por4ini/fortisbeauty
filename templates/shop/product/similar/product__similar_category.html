@@ -1,0 +1,52 @@
+{% load static %}
+{% load i18n %}
+<!-- LINKS -->
+{% block links %}
+    <link rel="stylesheet" href="{% static 'libs/swiper/css/swiper.min.css' %}">
+{% endblock %}
+
+<div class="products-list block">
+    <div class="title ">
+        <p class="h2 medium mb48">{% trans 'Другие товары категори' %} {{ product.category.name }}</p>
+        <!-- Swiper -->
+        <!-- <div class="product__pagination-button-outer">
+            <div class="pagination-button-div"><div class="swiper-button-prev prev2"></div></div>
+            <div class="pagination-button-div"><div class="swiper-button-next next2"></div></div>
+        </div> -->
+    </div>
+    <div class="swiper-container products-list similar-category">
+        <div class="swiper-wrapper pb24">
+            {% for product in product.category.product.all %}
+                <div class="swiper-slide">
+                    {% include 'shop/catalogue/catalogue__product.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% block js %}
+<script async src="{% static 'js/shop/catalogue/catalogue__product_variant.js' %}"></script>
+<script type="application/javascript" src="{% static 'libs/swiper/js/swiper.min.js' %}"></script>
+<script>
+    var SimilarCategories = new Swiper('.similar-category', {
+        slidesPerView: 6,
+        spaceBetween: 32,
+        slidesPerGroup: 6,
+        observer : true,
+        observeParents: true,
+        observeSlideChildren: true,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        breakpointsInverse: true,
+        breakpoints: {
+            0    : { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 8 },
+            640  : { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 8 },
+            960  : { slidesPerView: 3, slidesPerGroup: 3, },
+            1380 : { slidesPerView: 4, slidesPerGroup: 4, },
+            1540 : { slidesPerView: 5, slidesPerGroup: 5, },
+        },
+        navigation: { nextEl: '.next1', prevEl: '.prev1', },
+    });
+</script>
+{% endblock %}

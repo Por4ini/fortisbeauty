@@ -1,0 +1,33 @@
+{% extends 'base.html' %}{% load static %}{% load i18n %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/shop/brands.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="content">
+        <!-- BREADCRUMBS -->
+        <ul class="breadcrumbs">
+            <li><a href="/">Главная</a></li>
+            <li><span class="slash">/</span>Список брендов</li>
+        </ul>
+    </div>
+
+    <div class="content brands">
+        <div class="title1">Бренды</div>
+        <ul class="brands__list">
+            {% for brand in brands %}
+                <a href="{{ brand.url|safe }}">
+                    <li>
+                        <div class="image">
+                            <img src="{{ brand.image }}" alt="">
+                        </div>
+                        <span class="name">{{ brand.name }}</span>
+                    </li>
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

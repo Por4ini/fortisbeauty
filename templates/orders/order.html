@@ -1,0 +1,169 @@
+{% extends 'base.html' %}{% load static %}{% load i18n %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/order/order.css' %}">
+    <link rel="stylesheet" href="{% static 'css/order/products__list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/order/order__form.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content order__wrapper">
+        <div class="order">
+            <h1 class="title1">Ваш заказ</h1>
+            <ul class="products__list">
+                {% include 'orders/order__products.html' with cart_data=cart_data %}
+            </ul>
+            <span class="order__total">
+                <span>Сумма заказ:</span>
+                <span class="order__total__num"></span>
+                <span>грн.</span>
+            </span>
+        </div>
+        <div>
+            <div class="order__form">
+                {% include 'orders/order__form.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    
+
+
+    <script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+
+    <script type="text/javascript"> 	
+      
+
+        var wayforpay = new Wayforpay(); 	
+
+
+        function Pay(reqData) { 		
+            wayforpay.run(reqData, 			
+                function (response) {
+                    console.log('Order payment approved');	
+                }, 			
+                function (response) {
+                    console.log('Order payment declined');			
+                }, 			
+                function (response) {
+                    console.log('Order payment pending or in processing');	
+                } 		
+            ); 	
+        }
+
+
+        function OrderSubmit(form) {
+            const formData = new FormData(form)
+            var object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+
+            if (object['pay_type'] == "card") {
+                fetch('{% url "order:payment" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken' : csrf.value
+                    },
+                    body: JSON.stringify(object),
+                })
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json)
+                    json.data && Pay(json.data)
+                })
+            } else {
+                form.submit()
+            }
+            
+        }
+    </script>
+
+
+    
+    <script>
+        var orderForm = document.querySelector('#order__form')
+       
+
+
+        var forms = {
+            newpost : undefined,
+            curier : undefined,
+        }
+        const deliveryTypeLinks = document.querySelectorAll('.delivery-types__link') 
+        const deliveryTypeWrapper = document.querySelector('.delivery_type_wrapper')
+
+    
+        function curierTplUpdate(select) {
+            fetch("{% url 'order:order_api' 'curier' %}", {
+                method : 'POST',
+                headers : {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRFToken": csrf.value,
+                },
+                body : JSON.stringify({change_adress : select.value})
+            })
+            .then(res => res.json())
+            .then(json => {
+                if (json.html) {
+                    deliveryTypeWrapper.innerHTML = json.html
+                    userChosenAdressChange()
+                    FormValidation()
+                }
+            })
+        
+        }
+
+
+        function userChosenAdressChange() {
+            let select = document.querySelector('.user_chosen_adress') 
+            if (select) {
+                select.onchange = () => {
+                    curierTplUpdate(select)
+                }
+            }
+           
+        } userChosenAdressChange()
+
+
+        
+        for (let link of deliveryTypeLinks) {
+            link.onclick = (e) => {
+                e.preventDefault()
+
+                let form_name = link.dataset.form
+                if (forms[form_name] == undefined) {
+                    fetch(link.dataset.api, {
+                        method : 'POST',
+                        headers : {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
+                            "X-Requested-With": "XMLHttpRequest",
+                            "X-CSRFToken": csrf.value,
+                        },
+                        body : JSON.stringify({})
+                    })
+                    .then(res => res.json())
+                    .then(json => {
+                        deliveryTypeWrapper.innerHTML = json['html']
+                        let form = document.querySelector('#order__form')
+                        formInputsValidate(form)
+                        if (form_name == 'curier') { 
+                            userChosenAdressChange() 
+                        }
+                    })
+                }
+                let input = document.getElementById(link.dataset.id)
+                input.checked = true
+            }
+        }
+    </script>
+    <script src="{% static 'js/form/validation.js' %}"></script>
+{% endblock %}

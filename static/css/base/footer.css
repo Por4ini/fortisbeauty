@@ -1,0 +1,91 @@
+footer {
+    position: relative;
+    display: block;
+    padding: 32px 0;
+    background-color: whitesmoke;
+    margin-top: 48px;
+  }
+  footer .logo {
+      height: 48px;
+      max-width: 100%;
+      margin-bottom: 24px;
+  }
+  footer .title {
+      position: relative;
+      display: block;
+      margin-bottom: 24px;
+      font-size: var(--h4);
+      font-weight: 600;
+      color: #333;
+  }
+  footer ul {
+      margin-bottom: 24px;
+  }
+  footer ul.phones {
+      position: relative;
+      display: grid;
+      grid-gap: 8px;
+  }
+  
+  footer * {
+      color: #333;
+  }
+  footer .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+  }
+  footer .content > * {
+      position: relative;
+      display: block;
+  }
+  footer .content > * > {
+      margin-bottom: 32px;
+  }
+  footer ul.socials {
+      display: flex;
+  }
+  footer ul.socials li  img {
+      width: 48px;
+      height: 48px;
+      margin-right: 24px;
+  }
+  
+  .pay_methods img {
+      height: 48px;
+      max-width: 520px;
+      object-fit: contain;
+      object-position: center;
+  }
+  @media(max-width: 1200px) {
+      footer .content {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+      }
+  }
+  
+  @media(max-width: 960px) {
+      footer .content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 16px;
+      }
+      footer .links {
+          /* padding-top: 72px; */
+      }
+      footer .payment {
+          grid-column-start: 1;
+          grid-column-end: -1;
+      }
+  }
+  @media(max-width: 480px) {
+    footer .content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 16px;
+    }
+}
+
+
+  .pay_methods img {
+      max-width: 100%;
+  }

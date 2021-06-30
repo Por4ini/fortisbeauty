@@ -1,0 +1,122 @@
+
+/* CART STYLE */
+.sidebar.cart .main ul {
+    display: grid;
+    grid-gap: 16px;
+}
+.sidebar.cart .main ul li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 24px;
+    grid-gap: 8px;
+}
+
+.cart__image .wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-top: 100%;
+}
+.cart__image .wrapper img {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    top: 0;
+}
+
+.cart__item .title {
+    position: relative;
+    display: block;
+    width: 100%;
+    font-weight: 500;
+    max-width: calc(100% - 24px);
+}
+.counter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.sidebar.cart .counter {
+    margin-top: 12px;
+}
+
+.cart__price {
+    position: relative;
+    display: block;
+    margin-top: 12px;
+}
+.cart__price * {
+    font-weight: 500;
+}
+.cart__price .price {
+    color: grey;
+}
+
+
+.counter input {
+    display: block;
+    border: 2px solid var(--clr-1);
+    height: 28px;
+    border-radius: 4px;
+    text-align: center;
+    margin: 0 4px;
+    padding: 0;
+    width: 64px;
+}
+.counter button {
+    background-color: var(--clr-2);
+    border-radius: 4px;
+    border: none;
+    width: 32px;
+    height: 32px;
+    color: white;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.counter button:hover {
+    background-color: var(--clr-3);
+}
+
+.sidebar.cart .main ul li .remove {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+.sidebar.cart .main ul li .remove img {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar.cart .main ul li .remove:hover {
+    opacity: 1;
+}
+
+.sidebar.cart .actions button {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: var(--clr-2);
+    border-radius: 4px;
+    border: none;
+    color: white;
+    margin-top: 16px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.sidebar.cart .actions button:hover {
+    background-color: var(--clr-3);
+}

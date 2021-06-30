@@ -1,0 +1,28 @@
+.registration__partner {
+    position: relative;
+    display: block;
+    margin: 0 auto 64px auto;
+    max-width: 1200px;
+}
+
+.form {
+    margin-top: 48px;
+}
+.title {
+    margin: 24px 0;
+    font-size: var(--h4);
+    font-weight: 500;
+}
+.fields.business__formset,
+.fields.personal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+}
+.fields.business__formset > p:nth-child(3) {
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
+.fields > p {
+    margin-bottom: 0 !important;
+}

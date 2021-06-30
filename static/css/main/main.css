@@ -1,0 +1,125 @@
+body {
+    max-width: 100vw;
+    position: relative;
+    min-width: 320px;
+	margin: auto;
+    overflow-x: hidden;
+    line-height: 1.75;
+}
+main {
+    padding-top: 48px;
+    min-height: calc(100vh - 360px);
+    overflow: hidden;
+    max-width: 100vw;
+    margin-bottom: 80px;
+}
+
+
+.content {
+	position: relative;
+    width: calc(100% - 128px);
+	margin: 0 auto;
+}
+
+@media (max-width: 960px) {
+    .content {
+        position: relative;
+        width: calc(100% - 32px);
+        margin: 0 auto;
+    }
+    main {
+        padding-top: 80px;
+        min-height: calc(100vh - 360px);
+    }
+} 
+@media (max-width: 640px) {
+    .content {
+        position: relative;
+        width: calc(100% - 24px);
+        margin: 0 auto;
+    }
+    main {
+        padding-top: 80px;
+        min-height: calc(100vh - 360px);
+    }
+} 
+.block   {display: block;margin-bottom: 24px;}
+.inloneblock {display: inline-block;}
+.grid    {display: grid;}
+.none    {display: none;}
+.pointer {cursor: pointer;}
+.left {float: left;}
+.right {float: right;}
+
+.center {
+    text-align: center;
+}
+p.hidden,
+.hidden {
+    display: none;
+}
+
+.divcenter {
+    position: relative;
+    display: block;
+    width: auto;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.list-2-col { display: grid; grid-template-columns: repeat(2, 1fr);}
+.list-3-col { display: grid; grid-template-columns: repeat(3, 1fr);}
+.list-4-col { display: grid; grid-template-columns: repeat(4, 1fr);}
+
+.g-gap-16 { grid-gap: var(--px16); }
+.g-gap-24 { grid-gap: var(--px24); }
+.g-gap-32 { grid-gap: var(--px32); }
+
+
+
+
+
+.pagination-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.pagination-button-div:hover {
+    background-color: var(--clr-1) !important;
+}
+
+.pagination-button-div img {
+    widows: var(--px24);
+    height: var(--px24);
+}
+
+.swiper-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.text_columns_2 {
+    columns: 2;
+    column-gap: 24px;
+}
+@media(max-width: 960px) {
+    .swiper-buttons {
+        display: none;
+    }
+    .text_columns_2 {
+        columns: 1;
+    }
+    main {
+        padding-top: 128px;
+    }
+}
+
+p:empty  {
+    display: none !important;
+}
+.watchlist {
+    overflow: hidden
+}

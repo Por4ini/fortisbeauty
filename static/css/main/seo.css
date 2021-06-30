@@ -1,0 +1,24 @@
+.seo_text_outer  .wrapper {
+    background-color: whitesmoke;
+    padding: 40px 0;
+}
+.seo_text_outer  .wrapper * {
+    color: rgb(63, 63, 63);
+}
+.seo_text_outer .content {
+    position: relative;
+    display: block;
+    height: auto;
+    max-height: 320px;
+    overflow-y: auto;
+}
+.seo_text_outer .content::-webkit-scrollbar {
+    width: 2px;
+    background-color: whitesmoke;
+}
+
+
+.seo_text_outer .content::-webkit-scrollbar-thumb {
+    background-color: var(--clr-1);
+    outline: 1px solid var(--clr-1);
+}

@@ -1,0 +1,10 @@
+{% load i18n %}<form action="{% if not url %}{% url 'user:login' %}{% else %}{{ url }}{% endif %}" class="form" method="POST">
+    {% csrf_token %}
+    <div class="fields">
+        {{ form.as_p }}
+    </div>
+    <button type="submit">Войти</button>
+  
+    <a class="password__reset" href="{% url 'user:restore_password' %}">{% trans 'Забыли пароль' %}?</a>
+    <a class="password__reset" href="{% url 'user:registration' %}">{% trans 'Регистрация' %}</a>
+</form>

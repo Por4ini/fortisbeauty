@@ -1,0 +1,37 @@
+{% load static %}
+<div class="heading">
+    <p class="h3">Фильтры</p>
+    <label for="show_filter" class="close">
+        <img src="{% static 'img/icons/svg/Close.svg' %}" alt="x">
+    </label>
+</div>
+{% if tree_categories|length %}
+    <div class="block">
+        <div class="title">Категории</div>
+        <ul class="data links">
+            {% for c in tree_categories %}
+                <li>
+                    <a href="{{ c.url }}">
+                        <span class="name">{{ c.name }} </span>
+                        <span class="qty">({{ c.product__count }})</span>  
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+<!-- BRANDS -->
+{% include './catalogue__filter_block.html' with type="brand" title="Бренды" items=brands %}
+<!-- PRICERANGE -->
+{% if max_price > min_price %}
+<div class="block price {% if min_price == max_price %}deactivated{% endif %}">
+    <div class="title">Цена</div>
+    <div class="data">
+        {% include 'shop/catalogue/catalogue__pricerange.html' %}
+    </div>
+</div>
+{% endif %}
+{% for attr in attributes %}
+    <!-- ATTRIBUTES {{ attr.slug|upper }} -->
+    {% include './catalogue__filter_block.html' with type="attr" title=attr.name items=attr.value %}
+{% endfor %}

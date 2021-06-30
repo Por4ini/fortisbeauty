@@ -1,0 +1,10 @@
+<p class="title">Товары той же серии ({{ serie }})</p>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {% for product in products %}
+            <div class="swiper-slide slide">
+                {% include 'shop/catalogue/catalogue__product.html' %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

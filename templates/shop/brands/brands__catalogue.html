@@ -1,0 +1,328 @@
+{% extends 'base.html' %}{% load i18n %}{% load static %}
+{% block title %}{% trans 'Каталог' %}{% endblock %}
+
+<!-- META DESCRIPTION-->
+{% block meta_description %}{% trans 'Интерент магазин медицинских товаров' %}{% endblock %}
+
+<!-- LINKS -->
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__pricerange.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__pagination.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__categories.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop/catalogue/brand_catalogue.css' %}">
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+<div class="content">
+    <!-- BREADCRUMBS -->
+    <ul class="breadcrumbs">
+        <li><a href="/">Главная</a></li>
+        <li><span class="slash">/</span><a href="{% url 'shop:brands' %}">Бренды</a></li>
+        <li><span class="slash">/</span><a href="{{ selected_brand.url }}">{{ selected_brand.name }}</a></li>
+        {% if category %}
+            <li><span class="slash">/</span>{{ category.name }}</li>
+        {% endif %}
+        
+    </ul>
+
+    <div class="catalogue">
+        <!-- heading -->
+        <div>
+            <div class="heading">
+                <h1>
+                    <span class="h1">{{ selected_brand.name }}</span>
+                    {% if selected_category %}
+                        <span class="slash">/</span>
+                        <span class="h1">{{ selected_category.name }}</span>
+                    {% endif %}
+                </h1>
+                <div class="count h1">{{ total_products }}</div>
+            </div>
+            {% if selected_brand.description %}
+                <div class="brand_description">
+                    <div class="image">
+                        <img src="{{ selected_brand.image }}" alt="">
+                    </div>
+                    <div class="info richtext">
+                        {{ selected_brand.description|safe }}
+                    </div>
+                </div>
+            {% endif %}
+                
+        
+        <!-- Categories -->
+      
+        <ul class="catalogue__categories">
+            {% for c in tree_categories %}
+                <a href="{{ c.url }}">
+                    <li>{{ c.name }}</li>
+                </a>
+            {% endfor %}
+        </ul>
+
+       
+      
+ 
+        <!-- main -->
+        <div class="wrapper">
+            <input type="checkbox" id="show_filter">
+            <div class="filters__wrapper">
+                <div class="filters">
+                    {% include 'shop/brands/brands__filters.html' %}
+                </div>
+            </div>
+            <label for="show_filter" class="filters__overlay"></label>
+            <div class="products">
+                
+                <div class="catalogue__filter-menu">
+                    <label for="show_filter" class="catalogue__filter-menu__button">
+                        <img src="{% static 'img/icons/filter.png' %}" alt="Фильтр">
+                        <span>Фильтры</span> 
+                    </label>
+                    <div class="sort">
+                        <select data-changed=false name="sort" class="catalogue__filter-menu__select">
+                            <option value="new" selected=true>По рейтингу</option>
+                            <option value="new">Новинки</option>
+                            <option value="popular">Популярные</option>
+                            <option value="price_asc">Возрастанию цены</option>
+                            <option value="price_dsc">Убыванию цены</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="products__list">
+                    <ul class="products">
+                        {% for product in products %}
+                            {% include 'shop/catalogue/catalogue__product.html' %}
+                        {% endfor %}
+                    </ul>
+           
+                    <div class="more">
+                        <button data-href="{{ pages.more }}" class="{% if pages.current == pages.total %}disabled{% endif %} load-more btn-md">
+                            Покать еще
+                        </button>
+                    </div>
+                    
+                    <div class="pagination">
+                        {{ pagination }}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+
+
+{% block last %}
+    {% if category.description|length %}
+        <!-- SEO TEXT -->
+        <div class="seo_text">
+            <div class="content">
+                <p class="title1">{{ category.name }}</p>
+                <div class="richtext">
+                    {{ category.description|safe }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block js %}
+<script async src="{% static 'js/shop/catalogue/pricerange.js' %}"></script>
+<script>
+    const curent_url = "{% url 'shop:brands' selected_brand.slug %}"
+    var pageCurrent = parseInt('{{ pages.current }}')
+    var pageTotal =   parseInt('{{ pages.total }}')
+
+
+    const productsList = document.querySelector('.products__list')
+    const filters =      document.querySelector('.filters')
+    const pagination =   document.querySelector('.pagination')
+    const sortSelect =  document.querySelector('select[name="sort"]') 
+
+    var priceRangeDiv = document.querySelector('.price-slider')
+    var filterParams =  document.querySelectorAll('.filter-param')
+    var moreButton = document.querySelector('button.load-more')
+
+
+    const attr_queue = [
+        'brand','page','price','sort','atributes'
+    ]
+    
+    
+    function setPriceRange() {
+        priceRangeDiv = document.querySelector('.price-slider')
+        priceRangeDiv.dataset.changed = true
+        let from = priceRangeDiv.querySelector('.from')
+        let to = priceRangeDiv.querySelector('.to')
+
+        priceRangeDiv.dataset.from = priceRangeDiv.querySelector('.from').value
+        priceRangeDiv.dataset.to =   priceRangeDiv.querySelector('.to').value
+
+    }
+
+
+    function getQueryParams() {
+        priceRangeDiv = document.querySelector('.price-slider')
+        filterParams =  document.querySelectorAll('.filter-param')
+        let queryParams = {}
+        if (priceRangeDiv) {
+            let from = priceRangeDiv.querySelector('.range_from') 
+            let to =   priceRangeDiv.querySelector('.range_to') 
+            if (from.value != from.min || to.value != to.max) {
+                queryParams['price'] = [from.value, to.value]
+            }
+        }
+      
+
+        for (let input of filterParams) {
+            if (input.checked) {
+                let group = input.dataset.group
+                let value = input.dataset.value
+                if(queryParams[group] == undefined) {
+                    queryParams[group] = [value]
+                } else {
+                    queryParams[group].push(value)
+                }
+            }
+        }
+        return queryParams
+    }
+
+
+    function createUrlParams(queryParams) {
+        let params = ''
+        for (let group in queryParams) {
+            params += group + '=' + queryParams[group].join(',') + '/'
+        }
+        return params
+    } 
+
+    function UpdateCatalogue(data) {
+        productsList.querySelector('.products').innerHTML = data['products']
+        console.log(data);
+        pagination.innerHTML = data['pagination']
+
+        filters.innerHTML = data['attributes']
+        // if (data['more']) {
+        //     moreButton.classList.remove('disabled')
+        // } else {
+        //     moreButton.classList.add('disabled')
+        // }
+        // moreButton.dataset.href = data['more']
+        initCatalogueFunctions()
+        PriceRange()
+    }
+
+    function CreateCatalogueURL(params) {
+        let url = null
+        // Filter params
+        if (params.length > 0) {
+            url = curent_url + '/' + params
+        } else {
+            url = curent_url
+        }
+        // Sort
+        let sort = sortSelect.querySelector('option:checked')
+        if (sort.value != 'new') {
+            url += '/sort=' + sort.value + '/'
+        }
+        url = url.replace('//','/')
+        return url
+    }
+
+
+    function cataloguePostRequest(url) {
+        fetch(url, {
+            method:"POST",
+            headers : {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRFToken": csrf.value,
+            },
+            body : JSON.stringify({}) 
+        })
+        .then(res => res.json())
+        .then(json => {
+            window.history.replaceState('','', url);
+            UpdateCatalogue(json)
+            setPriceRange()
+        })
+    }
+
+
+    function FiltersOnClick() {
+        for (let input of document.querySelectorAll('.filter-param, select[name="sort"]')) {
+            input.onchange = () => {
+                cataloguePostRequest(input.dataset.href)
+            }
+        }
+        for (let input of document.querySelectorAll('.price_range')) {
+            input.onchange = () => {
+                let str = "price=min_price,max_price/"
+                let href = priceRangeDiv.dataset.href
+                let from = priceRangeDiv.querySelector('.range_from') 
+                let to =   priceRangeDiv.querySelector('.range_to') 
+
+                if (from.value != from.min || to.value != to.max) {
+                    href = href.replace('min_price', from.value)
+                    href = href.replace('max_price', to.value)
+                } else {
+                    href = href.replace(str,'')
+                }
+                cataloguePostRequest(href)
+            }
+        }
+            
+    }
+
+    function LoadMore(data) {
+        productsList.querySelector('.products').innerHTML += data['products']
+        pagination.innerHTML = data['pagination']
+        filters.innerHTML = data['attributes']
+        if (data['more']) {
+            moreButton.classList.remove('disabled')
+            moreButton.dataset.href = data['more']
+        } else {
+            moreButton.classList.add('disabled')
+        }
+        
+        
+        initCatalogueFunctions()
+    }
+
+    moreButton.onclick = () => {
+        let queryParams = getQueryParams()
+        let params = createUrlParams(queryParams)
+        let url = moreButton.dataset.href
+        if (url) {
+            window.history.replaceState('','', url);
+            XHR('POST',url,{}, LoadMore)
+        }
+        
+    }
+
+    function initCatalogueFunctions() {
+        for (let link of document.querySelectorAll('.pagiantion_link')) {
+            link.onclick = (e) => {
+                e.preventDefault()
+                window.history.replaceState('','', link.href);
+                XHR('POST', link.href, {}, UpdateCatalogue) 
+            }
+        }
+        FiltersOnClick()
+        lazy()
+    } 
+    initCatalogueFunctions()
+    
+
+</script>
+{% endblock %}
