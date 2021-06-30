@@ -41,6 +41,11 @@ class OrderProductInline(admin.StackedInline):
         ('Товар',           {'fields': ('get_image','variant','quantity','price','total')}),
     )
 
+
+@admin.register(PaymentResponses)
+class PaymentResponsesAdmin(admin.ModelAdmin):
+    pass
+
    
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):

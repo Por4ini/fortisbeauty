@@ -122,7 +122,7 @@ class OrderDeliveryCurier(models.Model):
 
 
 class PaymentResponses(models.Model):
-    response = models.TextField()
+    response = models.JSONField(default=dict)
 
     class Meta:
         verbose_name = _("Подтверждение оплты")

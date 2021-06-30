@@ -115,6 +115,31 @@ class CreateOrder():
         )
         order.save()
         self.order = order
+
+
+        if user.is_authenticated:
+            changed = False
+
+            fields = [
+                ('name', 'first_name'),
+                ('surname', 'last_name'),
+                ('patronymic', 'father_name'),
+                ('phone', 'phone'),
+                ('email', 'email')
+            ]
+
+            for field in fields:
+
+                if getattr(user, field[1]) in [None, '']:
+                    print(field[0], field[1])
+                    setattr(user, field[1], getattr(order,field[0]))
+                    changed = True
+
+            if changed:
+                user.save()
+
+
+
         self.add_products(order)
         self.save_delivery(order)
         self.send_to_telegram(order)

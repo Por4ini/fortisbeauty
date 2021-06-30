@@ -20,7 +20,7 @@
     var pay = function () { 		
         wayforpay.run(reqData, 			
         function (response) {
-            // on approved				 			
+            window.location.href = `{% url 'order:success' %}`		 			
         }, 			
         function (response) {
             // on declined 			

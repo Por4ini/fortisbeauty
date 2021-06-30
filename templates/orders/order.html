@@ -43,7 +43,7 @@
         function Pay(reqData) { 		
             wayforpay.run(reqData, 			
                 function (response) {
-                    console.log('Order payment approved');	
+                    window.location.href = `{% url 'order:success' %}`		 		
                 }, 			
                 function (response) {
                     console.log('Order payment declined');			

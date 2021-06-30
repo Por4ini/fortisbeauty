@@ -70,8 +70,7 @@ class VariantAdmin(admin.ModelAdmin):
                 try:
                     image_path = image.image_thmb['xs']['path']
                 except:
-                
-                    print(image.image_thmb)
+                    image_path = ''
 
                 url = '<img width="120" heigh="120" src="{url}">'.format(url=image_path)
                 return mark_safe(url)

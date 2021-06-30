@@ -1,10 +1,12 @@
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from apps.shop.cart import Cart
 from apps.order.models import PaymentResponses
 from apps.order.functions.create import CreateOrder
+import json
 import time
 import hmac
 
@@ -20,8 +22,8 @@ class OrderPay(APIView):
             'merchantTransactionType' : 'AUTO',
             'merchantSignature' : '',
             'language' : 'AUTO',
-            'returnUrl' : 'http://fortisbeauty.com.ua/' + reverse('order:success'),
-            'serviceUrl' : 'http://fortisbeauty.com.ua/' + reverse('order:payment_response'),
+            'returnUrl' : 'http://fortisbeauty.com.ua' + reverse('order:payment_response'),
+            'serviceUrl' : 'http://fortisbeauty.com.ua' + reverse('order:payment_response'),
             'orderReference' : int(time.time()) - 1622730000,
             'orderDate' : int(time.time()),
             'amount' : cart_data['total'],
@@ -73,7 +75,8 @@ class OrderPay(APIView):
 @csrf_exempt
 def payment_response(request):
     if request.method == "POST":
-        resp = PaymentResponses(text=request.POST())
+        resp = PaymentResponses(response=dict(request.POST.lists()))
         resp.save()
-    return Response({})
+        HttpResponse(status=200)
+    return HttpResponse(status=404)
 

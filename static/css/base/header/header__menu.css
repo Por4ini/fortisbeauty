@@ -1,7 +1,7 @@
 .sidebar.menu {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: auto;
 }
 .sidebar.menu .menu__header {
     
