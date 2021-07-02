@@ -11,7 +11,7 @@ import json
 
 def categories_tree(request=None):
     tree = cache.get('tree_categories')
-    tree = None
+ 
     if tree is None:
         categories_qs = Categories.objects.filter(level=0).prefetch_related('children')
         tree = CategoryTreeSerializer(categories_qs, many=True).data

@@ -9,8 +9,8 @@ NEW_POST_KEY = 'b71158ead01d7cfaa683c7a317911937'
 # GMAIL_ADRESS = 'office.fortisbeauty@gmail.com'
 # GMAIL_PASSWORD = 'rubashova28081992'
 
-GMAIL_ADRESS = 'rostislav444@gmail.com'
-GMAIL_PASSWORD = 'rideordie24'
+GMAIL_ADRESS = 'office.fortisbeauty@gmail.com'
+GMAIL_PASSWORD = 'tmdjkcajjnssduvu'
 
 DATABASES = {
     'default': {

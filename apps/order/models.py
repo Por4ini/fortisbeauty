@@ -61,8 +61,8 @@ class OrderProduct(models.Model):
     parent =    models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name=_("Продукт"), related_name='products')
     variant =   models.ForeignKey('shop.Variant', on_delete=models.CASCADE, verbose_name=_("Продукт"))
     quantity =  models.PositiveIntegerField(default=1, verbose_name=_("Количество"))
-    price =     models.PositiveIntegerField(default=0, verbose_name=_("Розничная"))
-    price_ua =  models.PositiveIntegerField(default=0, verbose_name=_("Розничная, грн."))
+    price =     models.PositiveIntegerField(default=0, verbose_name=_("Цена"))
+    price_ua =  models.PositiveIntegerField(default=0, verbose_name=_("Цена, грн."))
     total =     models.PositiveIntegerField(default=0, verbose_name=_("Всего"))
     total_ua =  models.PositiveIntegerField(default=0, verbose_name=_("Всего, грн."))
 
