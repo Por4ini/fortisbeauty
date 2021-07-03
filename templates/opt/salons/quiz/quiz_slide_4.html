@@ -1,41 +1,15 @@
 <div class="swiper-slide">
     <!-- CLIENT difficulties -->
-    <div class="quiz_block" data-value="difficulties">
+    <div class="quiz_block" data-value="business_difficuties">
         <p class="h2">4. Ваши трудности в бизнесе</p>
-        <input type="hidden" name="difficulties_hidden" id="difficulties_hidden" value="">
+       
         <div class="inputs">
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Наличие Товара" name="" id="difficulties_1">
-                <label for="difficulties_1">Наличие Товара</label>
-            </p>
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Высокая цена" name="" id="difficulties_2">
-                <label for="difficulties_2">Высокая цена</label>
-            </p>
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Низкое качество" name="" id="difficulties_3">
-                <label for="difficulties_3">Низкое качество</label>
-            </p>
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Долгая доставка" name="" id="difficulties_4">
-                <label for="difficulties_4">Долгая доставка </label>
-            </p>
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Нету обучения" name="" id="difficulties_5">
-                <label for="difficulties_5">Нету обучения</label>
-            </p>
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Нету менеджера" name="" id="difficulties_6">
-                <label for="difficulties_6">Нету менеджера</label>
-            </p>
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Документо оборот" name="" id="difficulties_7">
-                <label for="difficulties_7">Документо оборот</label>
-            </p>
-            <p>
-                <input class="difficulties" type="checkbox" data-value="Минимальный заказ" name="" id="difficulties_8">
-                <label for="difficulties_8">Минимальный заказ</label>
-            </p>
+            {% for difficutie in business_difficuties %}
+                <p>
+                    <input class="difficulties" type="checkbox" data-id="{{ difficutie.id }}" data-value="{{ difficutie.name }}" data-value="{{ difficutie.name }}" name="" id="difficultie__{{ difficutie.slug }}">
+                    <label for="difficultie__{{ difficutie.slug }}">{{ difficutie.name }}</label>
+                </p>
+            {% endfor %}
         </div>
         <input class="selectize-input" type="text" name="difficulties_custom" id="difficulties_custom" placeholder="Свой вариант">
     </div>

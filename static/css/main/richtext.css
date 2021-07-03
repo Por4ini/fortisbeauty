@@ -48,7 +48,8 @@
 }
 
 .richtext img {
-    width: 100%;
+    width: 100% !important;
+    height: auto !important;
     margin: 24px 0;
     border-radius: 4px;
 }

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'clearcache',
     'ckeditor',
+    'ckeditor_uploader',
     'compressor',
     'rest_framework',
     'mptt',

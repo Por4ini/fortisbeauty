@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext, ugettext_lazy as _
-from apps.user.models import CustomUser, PartnerBusinesTypes
+from apps.user.models import CustomUser
 
 
 class UserRegistrationForm(UserCreationForm):

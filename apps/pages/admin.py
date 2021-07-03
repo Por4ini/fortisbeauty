@@ -1,5 +1,12 @@
 from django.contrib import admin
-from apps.pages.models import *
+from apps.pages.models import (
+    Page,
+    PageContacts,
+    PageAbout,
+    PagePayment,
+    PageDelivery,
+    PageTermsOfUse
+)
 from singlemodeladmin import SingleModelAdmin
 
 
@@ -13,9 +20,22 @@ class PageAboutAdmin(SingleModelAdmin):
     pass
 
 
-@admin.register(PagePaymentAndDelivery)
-class PagePaymentAndDeliveryAdmin(SingleModelAdmin):
+@admin.register(PagePayment)
+class PagePaymentAdmin(SingleModelAdmin):
     pass
+
+
+@admin.register(PageDelivery)
+class PageDeliveryAdmin(SingleModelAdmin):
+    pass
+
+
+@admin.register(PageTermsOfUse)
+class PageTermsOfUseAdmin(SingleModelAdmin):
+    pass
+
+
+
 
 
 # class PageInline(admin.TabularInline):

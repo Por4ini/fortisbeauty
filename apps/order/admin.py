@@ -54,6 +54,7 @@ class OrderAdmin(admin.ModelAdmin):
     ]
 
     list_display = [
+        'created',
         'status',
         'pay_type',
         'name',
@@ -68,7 +69,7 @@ class OrderAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Статус заказа',     {'fields': ('status',)}),
         ('Способ оплыты',     {'fields': ('pay_type',)}),
-        ('Способ доставки',   {'fields': ('delivery_type',)}),
+        ('Способ доставки',   {'fields': ('delivery_type','delivery_cost')}),
         ('Клиент',            {'fields': ('user','name','surname','patronymic',)}),
         ('Контакты',          {'fields': ('phone','email',)}),
         ('Опт',               {'fields': ('whoosale',)}),

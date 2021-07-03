@@ -33,14 +33,8 @@ class CustomUserManager(BaseUserManager):
 
 
 
-class PartnerBusinesTypes(NameSlug):
-    def __str__(self):
-        return self.name
 
-    class Meta:
-        ordering = ['name']
-        verbose_name = 'Вид бизнеса'
-        verbose_name_plural = 'Виды бизнеса'
+
     
 
 class CustomUser(AbstractBaseUser):
@@ -158,7 +152,7 @@ class UserCompany(models.Model):
 
     position =      models.CharField(max_length=500, verbose_name='Должность', blank=True, null=True)
     company =       models.CharField(max_length=500, verbose_name='Организация', blank=True, null=True)
-    business_type = models.ManyToManyField(PartnerBusinesTypes, verbose_name='Тип бизнеса', blank=True)
+    business_type = models.ManyToManyField('opt.BusinessTypes', verbose_name='Тип бизнеса', blank=True)
 
 
     email =         models.EmailField(blank=False, null=True, unique=True, max_length=500, verbose_name=_("Корпоративный E-mail"))

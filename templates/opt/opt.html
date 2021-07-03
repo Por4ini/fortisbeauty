@@ -8,6 +8,7 @@
 
 {% block links %}
     <link rel="stylesheet" href="{% static 'css/opt/opt.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/forms.css' %}">
 {% endblock %}
 
 
@@ -38,6 +39,7 @@
         {% endif %}
     {% else %}
         <a class="button" href="{% url 'user:registration_business' %}">{% trans 'Зарегестрироватся как оптовый покупатель' %}</a>
+        <a class="button" href="{% url 'opt:opt_offer_quiz' %}">{% trans 'Полная регистрация' %}</a>
     {% endif %}
 </div>
 {% endblock %}

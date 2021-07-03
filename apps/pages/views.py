@@ -2,7 +2,14 @@ from django.shortcuts import render
 from django.utils import translation
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
-from apps.pages.models import PageContacts, PagePaymentAndDelivery, PageAbout, PageGroup, Page
+from apps.pages.models import (
+    Page,
+    PageContacts,
+    PageAbout,
+    PagePayment,
+    PageDelivery,
+    PageTermsOfUse
+)
 from apps.main.forms import MessagesForm
 from apps.core.functions import send_telegeram
 
@@ -21,12 +28,22 @@ def page_about(request):
     })
 
 
-def page_payment_and_delivery(request):
+def page_payment(request):
     return render(request, 'pages/page.html', {
-        'page' : PagePaymentAndDelivery.objects.first(),
+        'page' : PagePayment.objects.first(),
     })
 
 
+def page_delivery(request):
+    return render(request, 'pages/page.html', {
+        'page' : PageDelivery.objects.first(),
+    })
+
+
+def page_terms_of_use(request):
+    return render(request, 'pages/page.html', {
+        'page' : PageTermsOfUse.objects.first(),
+    })
 
 
 

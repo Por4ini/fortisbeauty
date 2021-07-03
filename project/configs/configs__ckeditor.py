@@ -1,4 +1,4 @@
-CKEDITOR_UPLOAD_PATH = "media/uploads/"
+
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -68,3 +68,4 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+CKEDITOR_UPLOAD_PATH = "media/uploads/"

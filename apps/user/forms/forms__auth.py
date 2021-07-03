@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.utils.translation import ugettext, ugettext_lazy as _
-from apps.user.models import CustomUser, PartnerBusinesTypes
-
+from apps.user.models import CustomUser
+from apps.opt.models import BusinessTypes
 
 
 class LoginForm(AuthenticationForm):
@@ -14,7 +14,7 @@ class UserForm(UserCreationForm):
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput)
     business_type = forms.ModelMultipleChoiceField(
-        queryset=PartnerBusinesTypes.objects.all(), 
+        queryset=BusinessTypes.objects.all(), 
         widget=forms.CheckboxSelectMultiple, 
         required=True
     )

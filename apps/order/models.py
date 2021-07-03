@@ -34,7 +34,8 @@ class Order(models.Model):
     status_old =  models.CharField(max_length=255, editable=False, blank=True, null=True, choices=ORDER_STATUS, verbose_name=_("Статус заказа"))
     status =      models.CharField(max_length=255, choices=ORDER_STATUS, verbose_name=_("Статус заказа"))
     pay_type =    models.CharField(max_length=255, choices=PAY_TYPE, verbose_name=_("Способ оплаты"))
-    delivery_type =    models.CharField(max_length=255, choices=DELIVWERTY_TYPE, verbose_name=_("Способ доставки"))
+    delivery_type =  models.CharField(max_length=255, choices=DELIVWERTY_TYPE, verbose_name=_("Способ доставки"))
+    delivery_cost =  models.CharField(max_length=255, verbose_name=_("Стоисомть доставки"), default=0)
     user =        models.ForeignKey('user.CustomUser', blank=True, on_delete=models.SET_NULL, null=True, verbose_name=_("Пользователь"), related_name="orders")
     name =        models.CharField(max_length=50, blank=True, verbose_name=_("Имя"))
     surname =     models.CharField(max_length=50, blank=True, verbose_name=_("Фамилия"))
@@ -55,6 +56,17 @@ class Order(models.Model):
         for product in self.products.all():
             total += product.total
         return total
+
+    def save(self):
+        if self.delivery_type == 'newpost':
+            self.delivery_cost = 'По тарифам перевозчика'
+        elif self.delivery_type == 'curier':
+            if get_total() < 2000:
+                self.delivery_cost = '70 грн.'
+            else:
+                self.delivery_cost = 'бесплатно'
+        
+        super(Order, self).save()
 
 
 class OrderProduct(models.Model):

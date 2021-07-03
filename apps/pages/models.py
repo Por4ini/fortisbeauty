@@ -35,18 +35,40 @@ class PageAbout(Translation):
 
 
 
-class PagePaymentAndDelivery(Translation):
-    title = models.CharField(max_length=255, default=_("Доставка и оплата"), verbose_name=_("Заголовок"))
+class PagePayment(Translation):
+    title = models.CharField(max_length=255, default=_("Оплата"), verbose_name=_("Заголовок"))
     text =  RichTextField(null=True, blank=True, verbose_name=_("Текст"))
 
     class Meta:
-        verbose_name = _("Страница: Доставка и оплата")
-        verbose_name_plural = _("Страница: Доставка и оплата")
+        verbose_name = _("Страница: Оплата")
+        verbose_name_plural = _("Страница: Оплата")
     
     def __str__(self):
         return self.title
 
 
+class PageDelivery(Translation):
+    title = models.CharField(max_length=255, default=_("Доставка"), verbose_name=_("Заголовок"))
+    text =  RichTextField(null=True, blank=True, verbose_name=_("Текст"))
+
+    class Meta:
+        verbose_name = _("Страница: Доставка")
+        verbose_name_plural = _("Страница: Доставка ")
+    
+    def __str__(self):
+        return self.title
+
+
+class PageTermsOfUse(Translation):
+    title = models.CharField(max_length=255, default=_("Доставка"), verbose_name=_("Заголовок"))
+    text =  RichTextField(null=True, blank=True, verbose_name=_("Текст"))
+
+    class Meta:
+        verbose_name = _("Страница: Условия использования")
+        verbose_name_plural = _("Страница: Условия использования ")
+    
+    def __str__(self):
+        return self.title
 
 
 class PageGroup(Translation, NameSlug):

@@ -4,6 +4,14 @@ import cv2
 
 import urllib.request
 import urllib.parse
+import random, string
+
+
+
+def random_password(length=8):
+    letters_and_digits = string.ascii_letters + string.digits
+    password = ''.join((random.choice(letters_and_digits) for i in range(length)))
+    return password
 
 
 def imageFromVideo(videoPath, imagePath):

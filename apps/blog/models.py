@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.timezone import now
 from apps.core.models import Translation, NameSlug, Images
 
@@ -8,7 +8,7 @@ from apps.core.models import Translation, NameSlug, Images
 
 class BlogPost(Translation, NameSlug, Images):
     image = models.FileField(max_length=1024, blank=False, verbose_name="Фото")
-    text =  RichTextField(verbose_name='Текст', blank=True, null=True)
+    text =  RichTextUploadingField(verbose_name='Текст', blank=True, null=True)
     date =  models.DateTimeField(default=now, verbose_name="Время")
 
     class Meta:

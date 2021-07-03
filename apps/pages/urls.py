@@ -10,7 +10,10 @@ urlpatterns = [
     path('about/',                views.page_about,     name='about'),
     path('contacts/',             views.ContactFormView.as_view(), name='contacts'),
     path('contacts/successs/',    TemplateView.as_view(template_name="pages/success.html")),
-    path('payment-and-delivery/', views.page_payment_and_delivery, name='payment-and-delivery'),
+    path('delivery/',             views.page_payment, name='payment'),
+    path('payment/',              views.page_delivery, name='delivery'),
+    path('terms-of-use/',         views.page_terms_of_use, name='terms_of_use'),
+
     path('<slug>/', views.PageDetailView.as_view(),     name='page')
 
    

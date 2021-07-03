@@ -35,10 +35,7 @@
     <script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
 
     <script type="text/javascript"> 	
-      
-
         var wayforpay = new Wayforpay(); 	
-
 
         function Pay(reqData) { 		
             wayforpay.run(reqData, 			
@@ -74,7 +71,6 @@
                 })
                 .then(res => res.json())
                 .then(json => {
-                    console.log(json)
                     json.data && Pay(json.data)
                 })
             } else {
@@ -88,14 +84,11 @@
     
     <script>
         var orderForm = document.querySelector('#order__form')
-       
-
-
         var forms = {
             newpost : undefined,
             curier : undefined,
         }
-        const deliveryTypeLinks = document.querySelectorAll('.delivery-types__link') 
+        const deliveryTypeLinks =   document.querySelectorAll('.delivery-types__link') 
         const deliveryTypeWrapper = document.querySelector('.delivery_type_wrapper')
 
     
@@ -133,9 +126,50 @@
         } userChosenAdressChange()
 
 
+        function calculateDelivery(deliveryType) {
+            if (!deliveryType) {
+                let deliveryTypeInput =  document.querySelector('input[name="delivery"]:checked')
+                if (deliveryTypeInput) {
+                    deliveryType = deliveryTypeInput.value
+                }
+
+            }
+
+            
+            if (deliveryType) {
+                const deliveryPrice =   document.querySelector('.delivery_price')
+                const orderTotalPrice = document.querySelector('.order_total_price')
+
+                let orderTotal = document.querySelector('.order__total__num').innerHTML
+                orderTotal ? orderTotal = parseInt(orderTotal) :  orderTotal = 0
+
+               
+                
+                if (deliveryType == 'newpost') {
+                    orderTotalPrice.innerHTML = orderTotal
+                    deliveryPrice.innerHTML =  'По тарифам переозчика'
+                } else {
+                    if (orderTotal < 2000) {
+                        deliveryPrice.innerHTML =  70 + 'грн.'
+                        orderTotalPrice.innerHTML = orderTotal + 70
+                    } else {
+                        deliveryPrice.innerHTML =  'Бесплатно'
+                        orderTotalPrice.innerHTML = orderTotal
+                    } 
+
+                }
+            }
+        }
+
+        
+
+
         
         for (let link of deliveryTypeLinks) {
             link.onclick = (e) => {
+                calculateDelivery(link.dataset.value)
+
+                
                 e.preventDefault()
 
                 let form_name = link.dataset.form

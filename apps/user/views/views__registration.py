@@ -157,12 +157,16 @@ class PartnerRegistration(CreateView):
         return result
   
 
-
+# http://127.0.0.1:8000/activate/MTQ/ap81n2-34d9fb345fec365f1bfac995cde22a12/
 
 def activate(request, uidb64, token):
+
+   
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
         user = CustomUser.objects.get(pk=uid)
+        user.is_active = True
+        user.save()
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and default_token_generator.check_token(user, token):

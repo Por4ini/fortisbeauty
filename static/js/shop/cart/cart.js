@@ -25,6 +25,10 @@ function cartUpdater(data) {
         }
     }
     Counter()
+    try {
+        calculateDelivery()
+    } catch {}
+    
 }
 
 

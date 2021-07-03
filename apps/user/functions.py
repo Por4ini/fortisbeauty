@@ -5,7 +5,9 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.text import slugify
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes, force_text
+from apps.core.functions import random_password
 from apps.user.tokens import account_activation_token
 from unidecode import unidecode
 import re
@@ -20,6 +22,37 @@ def send_activation_email(request, user):
         'uid':    urlsafe_base64_encode(force_bytes(user.pk)).decode("utf-8") ,
         'token':  account_activation_token.make_token(user),
     })
+    email = send_mail(
+        subject=mail_subject, 
+        message='',
+        from_email='office.fortisbeauty@gmail.com', 
+        recipient_list=[user.email], 
+        html_message=message, 
+        fail_silently=False
+    )
+    return email
+
+
+
+def send_activation_email_with_password(request, user):
+    password = random_password()
+
+    user.set_password(password)
+    user.save()
+
+    print('password', password, user.pk)
+
+    current_site = get_current_site(request)
+    mail_subject = 'Активация Вашего аккаунта FortisBeauty'
+    message = render_to_string('user/email/acc_activation_email.html', {
+        'user':   user,
+        'domain': current_site.domain,
+        'uid':    urlsafe_base64_encode(force_bytes(user.pk)),
+        'token':  default_token_generator.make_token(user),
+        'password': password,
+    })
+
+    print(message)
     email = send_mail(
         subject=mail_subject, 
         message='',

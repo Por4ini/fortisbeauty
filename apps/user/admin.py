@@ -4,9 +4,6 @@ from apps.user.models import *
 
 
 
-@admin.register(PartnerBusinesTypes)
-class PartnerBusinesTypesAdmin(admin.ModelAdmin):
-    fields = ['name']
 
 
 @admin.register(CustomUser)

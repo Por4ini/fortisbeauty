@@ -1,31 +1,89 @@
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from apps.opt.models import Quiz
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from apps.core.functions import send_telegeram
+from apps.user.models import CustomUser, UserCompany
+from apps.opt.models import BusinessTypes, BusinessPositions, BusinessDifficulties
+from apps.user.functions import send_activation_email_with_password
 import urllib.request
 import urllib.parse
+import json
+from django.contrib.auth.tokens import default_token_generator   
 
 
 
 
-def salons(request):
-    args = {}
-    if request.method == 'POST':
-        data = dict(request.POST)
-        request.session['user'] = data
+class SalonsView(APIView):
+    def get(self, request):
+        return render(request, 'opt/salons/quiz/base.html', {
+            'business_types': BusinessTypes.objects.all(),
+            'business_positions': BusinessPositions.objects.all(),
+            'business_difficuties': BusinessDifficulties.objects.all()
+        })
+
+
+    def create_user(self, request, user, data, business_position=''):
+        # Create user
+        user = CustomUser(
+            first_name = data['form']['name'],
+            email = data['form']['email'],
+            phone = data['form']['phone'],
+            want_be_whoosaler = True
+        )
+        user.save()
+
+        # Create user cimpany
+        company = UserCompany(
+            parent = user,
+            position = business_position,
+        )
+        company.save()
+
+        # Add business types
+        for bt in data['business_type']['values']:
+            obj = BusinessTypes.objects.get(id=int(bt['id']))
+            company.business_type.add(obj)
+
+        # Send email with activation link
+        send_activation_email_with_password(request, user)
+        return user
+
+
+
+    def post(self, request):
+        data = request.data
+
+        business_types =       ', '.join([item['value'] for item in data['business_type']['values']] + [data['business_type']['custom']])
+        business_position =    ', '.join([item['value'] for item in data['business_position']['values']] + [data['business_position']['custom']])
+        business_difficuties = ', '.join([item['value'] for item in data['business_difficuties']['values']] + [data['business_difficuties']['custom']])
+
+        user = CustomUser.objects.filter(email=data['form']['email']).first()
+        if not user:
+            user = self.create_user(request, user, data, business_position)
         
         msg = [
-            "ОПТ. Получить КП. \n"
-            "1. Тип бизнеса: "    + data["business_type_hidden"][0] + ', ' + data["business_type_custom"][0],
-            "2. Должность: "      + data["position_hidden"][0] + ', ' + data["position_custom"][0],
-            "3. Месячный доход: " + data["month_income"][0],
-            "4. Трудности: "      + data["difficulties_hidden"][0] + ', ' + data["difficulties_custom"][0],
-            "Имя: " + data["name"][0], "телефон: " + data["phone"][0], "Email: " + data["email"][0], 
+            "ОПТ. Получить КП. \n",
+            "Имя: " + data['form']["name"], 
+            "Телефон: " + data['form']["phone"], 
+            "Email: " +  data['form']["email"], 
+            "1. Тип бизнеса: "    + business_types,
+            "2. Должность: "      + business_position,
+            "3. Месячный доход: " + data["income"],
+            "4. Трудности: "      + business_difficuties,
         ]
+
         send_telegeram(msg)
-        return HttpResponseRedirect(reverse('opt:get_analitics', args={}))
-    return render(request, 'opt/salons/quiz/quiz__base.html',args)
+        return Response({'success': True})
+            
+
+
+
+
 
 def get_analitics(request):
     args = {}
@@ -52,34 +110,3 @@ def get_analitics(request):
     return render(request, 'opt/salons/get_analysis.html',args)
 
 
-
-def salonsTwo(request):
-    args = {}
-    if request.method == 'POST':
-        data = request.POST
-
-        quiz = Quiz(
-            business = data['business_type_hidden'],
-            business_custom = data['business_type_custom'],
-            brand_work =   data['brand_work_hidden'],
-            brand_i_want = data['brand_i_want_hidden'],
-            budjet_clien = data['budget_hidden'],
-            budjet_month = data['month_budjet_hidden'],
-            gift = data['gift_hidden'],
-            gift_custom = data['gift_custom'],
-            name = data['name'],
-            phone = data['phone'],
-            email = data['email']
-        )
-        quiz.save()
-
-        text = "Опт - Салон \n" 
-        text += f"Имя: {data['name']}\n" 
-        text += f"Телефон: {data['phone']}" 
-
-        msg = urllib.parse.quote(text)
-        url = "https://api.telegram.org/bot817785032:AAG-Q3s8wRhyZbkoJScSPvE2XDrCVlgZKKA/sendMessage?chat_id=-1001490724377&text=" + msg
-        contents = urllib.request.urlopen(url).read()
-
-        return HttpResponseRedirect(reverse('opt:success', args={}))
-    return render(request, 'opt/salons/salons.html', args)

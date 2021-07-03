@@ -24,7 +24,6 @@ class CreateOrderView(View):
             ]
 
             for field in fields:
-
                 if getattr(user, field[1]) in [None, '']:
                     print(field[0], field[1])
                     setattr(user, field[1], getattr(order,field[0]))

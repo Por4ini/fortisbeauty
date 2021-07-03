@@ -3,7 +3,7 @@ media
 projectenv
 static_root
 ckeditor
-local_settings
+local_settings.py
 *.sqlite3
 tmp/
 

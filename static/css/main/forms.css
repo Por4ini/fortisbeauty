@@ -62,7 +62,7 @@
     font-size: var(--h5);
     padding: 12px 12px;
     width: calc(100% - 26px);
-    border: 2px solid var(--clr-1) ;
+    border: 2px solid whitesmoke ;
     border-radius: 4px;
 }
 .form input::placeholder {
@@ -82,7 +82,7 @@
     resize: vertical;
 }
 .form .color-alert {
-    font-size: var(--px12) !important;
+    font-size: 8px !important;
 }
 
 

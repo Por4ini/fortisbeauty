@@ -1,10 +1,11 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+from apps.core.models import NameSlug
 
 
 
 class WhoosaleText(models.Model):
-    text = RichTextField(verbose_name="Текст")
+    text = RichTextUploadingField(verbose_name="Текст")
 
     class Meta:
         verbose_name = 'Текст для оптовго покупателя'
@@ -12,19 +13,33 @@ class WhoosaleText(models.Model):
 
 
 
-class Quiz(models.Model):
-    user =         models.ForeignKey('user.CustomUser', blank=True, on_delete=models.SET_NULL, null=True, verbose_name='Пользователь')
-    business =     models.CharField(blank=True, max_length=255, verbose_name="Тип бизнеса")
-    business_custom = models.CharField(blank=True, max_length=255, verbose_name="Тип бизнеса (свой вариант)")
-    brand_work =   models.CharField(blank=True, max_length=255, verbose_name="Бренды с которыми работаю")
-    brand_i_want = models.CharField(blank=True, max_length=255, verbose_name="Бренды с которыми хочу работать")
-    budjet_clien = models.CharField(blank=True, max_length=255, verbose_name="Бюджет клиента")
-    budjet_month = models.CharField(blank=True, max_length=255, verbose_name="Бюджет на закупку")
-    gift =         models.CharField(blank=True, max_length=255, verbose_name="Подарок")
-    gift_custom =  models.CharField(blank=True, max_length=255, verbose_name="Подарок (свой вариант)")
-    name =         models.CharField(blank=True, max_length=255, verbose_name="Имя")
-    phone =        models.CharField(blank=True, max_length=255, verbose_name="Телефон")
-    email =        models.EmailField(blank=True, verbose_name="Email")
-    
+class BusinessTypes(NameSlug):
     def __str__(self):
-        return self.name + ' ' + self.phone
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Quiz: Вид бизнеса'
+        verbose_name_plural = 'Quiz: Виды бизнеса'
+
+
+
+class BusinessPositions(NameSlug):
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Quiz: Должность'
+        verbose_name_plural = 'Quiz: Должности'
+
+
+
+class BusinessDifficulties(NameSlug):
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Quiz: Трудности'
+        verbose_name_plural = 'Quiz: Трудности'

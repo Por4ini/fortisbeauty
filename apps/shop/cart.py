@@ -42,13 +42,25 @@ class Cart(object):
 
 
     def add(self, data, update=False):
+        id = int(data['id'])
+        variant = Variant.objects.get(id=id)
         number = self.get_number(int(data['id']))
+
         quantity = data.get('quantity')
+        if quantity != None:
+            if self.real_stock and int(quantity) > variant.stock:
+                quantity = variant.stock
+        
+    
         if number is not None:
             if quantity:
                 self.cart[number]['quantity'] = int(quantity)
             else:
-                self.cart[number]['quantity'] += 1  
+                cur_qty = self.cart[number]['quantity']
+                if self.real_stock and cur_qty >= variant.stock:
+                    self.cart[number]['quantity'] = variant.stock
+                else:
+                    self.cart[number]['quantity'] += 1
         else:
             self.cart.append({'id':data['id'], 'quantity': quantity if quantity else 1})
         self.save()
@@ -81,10 +93,6 @@ class Cart(object):
             variant = variants.get(pk=item['id'])
             variant = CartVartinatSerializer(variant, context={'whoosale': self.whoosale}).data 
             variant['quantity'] = int(item['quantity'])
-
-            
-            if self.real_stock and variant['quantity'] > variant['stock']:
-                variant['quantity'] = variant['stock']
 
             variant['total'] = int(variant['price']) * int(item['quantity'])
             total += variant['total']
