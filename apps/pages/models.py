@@ -60,7 +60,7 @@ class PageDelivery(Translation):
 
 
 class PageTermsOfUse(Translation):
-    title = models.CharField(max_length=255, default=_("Доставка"), verbose_name=_("Заголовок"))
+    title = models.CharField(max_length=255, default=_("Условия использования"), verbose_name=_("Заголовок"))
     text =  RichTextField(null=True, blank=True, verbose_name=_("Текст"))
 
     class Meta:

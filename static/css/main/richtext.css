@@ -6,7 +6,13 @@
 }
 
 .richtext * {
+    line-height: 1.75;
     color: inherit;
+}
+.richtext br,
+.richtext p {
+    display: block;
+    margin-bottom: 16px;
 }
 .richtext h1, .richtext .h1,
 .richtext h2, .richtext .h2,

@@ -74,20 +74,31 @@
             </a>
         </li>
         <li>
-            <a class="item" href="{% url 'pages:payment-and-delivery' %}">
-                {% trans 'Доставка и оплата' %}
-            </a>
-        </li>
-        <li>
             <a class="item" href="{% url 'pages:about' %}">
                 {% trans 'О нас' %}
             </a>
         </li>
         <li>
-            <a class="item" href="/blog">
+            <a class="item" href="{% url 'blog:list' %}">
                 {% trans 'Блог' %}
             </a>
         </li>
+        <li>
+            <a class="item" href="{% url 'pages:delivery' %}">
+                {% trans 'Доставка' %}
+            </a>
+        </li>
+        <li>
+            <a class="item" href="{% url 'pages:payment' %}">
+                {% trans 'Оплата' %}
+            </a>
+        </li>
+        <li>
+            <a class="item" href="{% url 'pages:terms_of_use' %}">
+                {% trans 'Условия использования' %}
+            </a>
+        </li>
+       
         
        
     

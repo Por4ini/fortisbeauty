@@ -1,9 +1,9 @@
 from django.apps import apps
-from workers import task
+from celery import shared_task
 
 
 
-@task()
+@shared_task
 def load_products_worker(id):
     LoadProductsFromTable = apps.get_model('productloader', 'LoadProductsFromTable')
     obj = LoadProductsFromTable.objects.get(id=id)
@@ -11,7 +11,7 @@ def load_products_worker(id):
 
 
 
-@task()
+@shared_task
 def load_products_images_worker(id):
     LoadProductsImages = apps.get_model('productloader', 'LoadProductsImages')
     obj = LoadProductsImages.objects.get(id=id)

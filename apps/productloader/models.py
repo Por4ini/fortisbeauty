@@ -87,7 +87,7 @@ class LoadProductsImages(models.Model):
                 image_code = str(f).split('.')[0]
                 file_path =  settings.MEDIA_ROOT + self.path + '/' + f
                 variant = Variant.objects.filter(code=image_code).first()
-                print(os.path.exists(file_path))
+       
                 if variant:
                     if VariantImages.objects.filter(parent=variant).count() == 0:
                         try:
@@ -110,7 +110,7 @@ class LoadProductsImages(models.Model):
 
     def save(self):
         super(LoadProductsImages, self).save()
-        load_products_images_worker(self.id)
+        load_products_images_worker.delay(self.id)
         
 
     def delete(self):
@@ -267,5 +267,5 @@ class LoadProductsFromTable(models.Model):
 
     def save(self, *args, **kwargs):
         super(LoadProductsFromTable, self).save()
-        load_products_worker(self.id)
+        load_products_worker.delay(self.id)
     

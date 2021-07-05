@@ -49,6 +49,7 @@ table {
 }
 li {
 	display: block;
+	margin-bottom: 4px;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

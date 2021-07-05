@@ -6,14 +6,20 @@
                 <a href="{% url 'pages:contacts' %}">
                     <li>{% trans 'Контакты' %}</li>
                 </a>
-                <a href="{% url 'pages:payment-and-delivery' %}">
-                    <li>{% trans 'Доставка и оплата' %}</li>
-                </a>
                 <a href="{% url 'pages:about' %}">
                     <li>{% trans 'О нас' %}</li>
                 </a>
                 <a href="{% url 'blog:list' %}">
                     <li>{% trans 'Блог' %}</li>
+                </a>
+                <a href="{% url 'pages:delivery' %}">
+                    <li>{% trans 'Доставка' %}</li>
+                </a>
+                <a href="{% url 'pages:payment' %}">
+                    <li>{% trans 'Оплата' %}</li>
+                </a>
+                <a href="{% url 'pages:terms_of_use' %}">
+                    <li>{% trans 'Условия использования' %}</li>
                 </a>
             </ul>
             <!-- Languages -->

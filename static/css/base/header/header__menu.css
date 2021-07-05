@@ -1,10 +1,10 @@
 .sidebar.menu {
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .sidebar.menu .menu__header {
-    
     display: grid;
     grid-template-columns: 1fr auto; 
     grid-gap: 20px;
@@ -16,7 +16,6 @@
     border-radius: 4px;
     border: 2px solid var(--clr-1);
 }
-
 .sidebar.menu .menu__header .header__wishlist, 
 .sidebar.menu .menu__header .header__account {
     display: flex !important;
@@ -31,7 +30,6 @@
 #sidebar_menu > div > div.header__wishlist .header__qty {
     margin-left: 20px;
 }
-
 .sidebar.menu .menu__header .header__account-data {
     display: flex !important;
     justify-content: flex-start;
@@ -41,22 +39,19 @@
     padding-left: 16px;
     overflow-y: hidden;
 }
-
-
 .sidebar.menu .logo img {
     width: 100%;
     height: 40px;
     object-fit: contain;
     object-position: left center;
 }
-
-
 .sidebar.menu > ul {
     display: block;
     flex-direction: column;
-    min-height: 100vh;
+    /* min-height: calc(100vh - 138px); */
     border-top: 1px solid rgb(235, 235, 235);
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .sidebar.menu::-webkit-scrollbar,
 .sidebar.menu ul::-webkit-scrollbar {
@@ -72,20 +67,15 @@
     background-color: var(--clr-1);
     border-radius: 5px;
 }
-.sidebar.menu > ul li {
-    
-display: block;
-    
-height: auto;
-    
-border-bottom: 1px solid rgb(235, 235, 235);
+.sidebar.menu > ul li {    
+    display: block;
+    height: auto;
+    border-bottom: 1px solid rgb(235, 235, 235);
 }
 .sidebar.menu > ul a {
     font-weight: 400;
 }
-
 .sidebar.menu .item {
-    
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -93,25 +83,21 @@ border-bottom: 1px solid rgb(235, 235, 235);
     cursor: pointer;
 }
 .sidebar.menu .item img {
-    
     display: block;
     width: 20px;
     height: 20px;
     margin-right: 12px;
 }
-
 .sidebar.menu .item:hover {
     background-color: whitesmoke;
 }
 .sidebar.menu .group-title {
     color: #ff2261;
-    
     display: block;
     padding: 20px 24px 20px 24px;
     font-weight: 600;
 }
 
-/* TREEE */
 .sidebar.menu .tree {
     background-color: #def9ff;
 }
@@ -120,20 +106,13 @@ border-bottom: 1px solid rgb(235, 235, 235);
     overflow-y: hidden;
 }
 .sidebar.menu .tree ul > li {
-    /* transition: height 0.2s ease-in-out; */
     border-color: var(--clr-1);
     background-color:  #def9ff;
 }
-
-
-
-.sidebar.menu .tree ul > li > .title {
-    
-display: flex;
-    
-width: 100%;
-    
-position: relative;
+.sidebar.menu .tree ul > li > .title {  
+    display: flex;
+    width: 100%;
+    position: relative;
 }
 .sidebar.menu .tree ul > li > .title.back,
 .sidebar.menu .tree ul > li > .title a {
@@ -169,8 +148,6 @@ position: relative;
     background-color: rgb(248 233 249);
     color: black;
 }
-
-
 .sidebar.menu .tree ul li ul {
     position: absolute;
     top: 0;
@@ -187,8 +164,6 @@ position: relative;
     right: 0;
     width: 100%;
 }
-
-
 .group-title__wrapper.catalogue {
     border-color: var(--clr-1) !important;
 }

@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from apps.sync1c.models import RequestData1C, RequestData1CSettings
 from braces.views import CsrfExemptMixin
-from .tsaks import update_products
+from .tasks import update_products
 
 
 

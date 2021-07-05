@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'mptt',
     'django_mptt_admin',
     'django_elasticsearch_dsl',
-    'workers',
+
 
     'apps.core.apps.CoreConfig',
     'apps.blog.apps.BlogConfig',
