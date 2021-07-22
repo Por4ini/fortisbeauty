@@ -1,5 +1,8 @@
 .opt {
-    margin-bottom: 48px;
+    position: relative;
+    display: block;
+    max-width: 960px;
+    margin: 0 auto 48px auto;
 }
 .opt .button {
     margin-top: 64px;

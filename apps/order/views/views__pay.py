@@ -22,8 +22,8 @@ class OrderPay(APIView):
             'merchantTransactionType' : 'AUTO',
             'merchantSignature' : '',
             'language' : 'AUTO',
-            'returnUrl' : 'http://fortisbeauty.com.ua' + reverse('order:payment_response'),
-            'serviceUrl' : 'http://fortisbeauty.com.ua' + reverse('order:payment_response'),
+            'returnUrl' : 'https://fortisbeauty.com.ua' + reverse('order:payment_response'),
+            'serviceUrl' : 'https://fortisbeauty.com.ua' + reverse('order:payment_response'),
             'orderReference' : int(time.time()) - 1622730000,
             'orderDate' : int(time.time()),
             'amount' : cart_data['total'],
@@ -74,6 +74,9 @@ class OrderPay(APIView):
 
 @csrf_exempt
 def payment_response(request):
+    resp = PaymentResponses(response='response')
+    resp.save()
+
     if request.method == "POST":
         resp = PaymentResponses(response=dict(request.POST.lists()))
         resp.save()

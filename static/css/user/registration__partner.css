@@ -26,3 +26,9 @@
 .fields > p {
     margin-bottom: 0 !important;
 }
+
+
+.fields.business__formset input[type="checkbox"] {
+    float: left;
+    width: 24px
+}

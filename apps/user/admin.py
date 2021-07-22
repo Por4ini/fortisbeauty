@@ -4,6 +4,11 @@ from apps.user.models import *
 
 
 
+class UserCompanyInline(admin.StackedInline):
+    model=UserCompany
+    extra=0
+
+
 
 
 @admin.register(CustomUser)
@@ -24,5 +29,8 @@ class CustomUserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ['-want_be_whoosaler','-is_whoosaler','-created']
     filter_horizontal = ()
+    inlines = [
+        UserCompanyInline
+    ]
 
 

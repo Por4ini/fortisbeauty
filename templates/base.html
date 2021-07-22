@@ -19,28 +19,30 @@
     <!-- CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/base/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base/header/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base/header/header__menu.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/ui.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/colors.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/fonts.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/forms.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/elements/popup.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/richtext.css' %}">
-    <link rel="stylesheet" href="{% static 'css/home/home__products.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base/header/hedaer__search.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__product.css' %}">
-    <link rel="stylesheet" href="{% static 'css/shop/cart.css' %}">
-    <link rel="stylesheet" href="{% static 'css/shop/wishlist.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/seo.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main/sidebar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/home/home__products.css' %}">
-    <link rel="stylesheet" href="{% static 'libs/swiper/css/swiper.css' %}">
-    <link rel="stylesheet" href="{% static 'libs/modaal/css/modaal.css' %}">
+    {% compress css file base %}{% endcompress %}
+        <link rel="stylesheet" href="{% static 'css/base/reset.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base/header/header.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base/header/header__menu.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/ui.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/colors.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/forms.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/elements/popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/richtext.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/home__products.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base/header/hedaer__search.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/shop/catalogue/catalogue__product.css' %}">
+        <link rel="stylesheet" href="{% static 'css/shop/cart.css' %}">
+        <link rel="stylesheet" href="{% static 'css/shop/wishlist.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/seo.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main/sidebar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/home__products.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/swiper/css/swiper.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/modaal/css/modaal.css' %}">
+    
     {% block links %}{% endblock %}
 </head>
 <body>
@@ -70,7 +72,7 @@
 {% include 'wishlist/wishlist.html' %}
 
 <!-- POPUPS -->
-{% include 'base/header/header__geo__popup.html' %}
+
 {% include 'base/components/popup.html' %}
 
 <!-- Recall form -->

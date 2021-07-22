@@ -160,6 +160,10 @@ class UserCompany(models.Model):
     director =      models.CharField(max_length=500, blank=True, editable=True, verbose_name=_("ФИО Директора"))
     adress =        models.CharField(max_length=500, blank=True, editable=True, verbose_name=_("Юридический адрес"))
 
+    class Meta:
+        verbose_name = 'Компания'
+        verbose_name_plural = 'Компания'
+
 
 
 class UserSubscripton(models.Model):

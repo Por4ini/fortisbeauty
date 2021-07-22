@@ -97,6 +97,7 @@
                         <ul>
                             {% for phone in phones %}
                                 <a href="tel:{{ phone.phone }}">
+                                    <span>{{ phone.name }}</span><br>
                                     <li>{{ phone.phone }}</li>
                                 </a>
                             {% endfor %}

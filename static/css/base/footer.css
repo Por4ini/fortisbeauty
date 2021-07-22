@@ -44,6 +44,9 @@ footer {
   footer ul.socials {
       display: flex;
   }
+  footer ul.socials li {
+      margin-bottom: 8px;
+  }
   footer ul.socials li  img {
       width: 48px;
       height: 48px;

@@ -68,9 +68,11 @@ class SalonsView(APIView):
         
         msg = [
             "ОПТ. Получить КП. \n",
-            "Имя: " + data['form']["name"], 
-            "Телефон: " + data['form']["phone"], 
-            "Email: " +  data['form']["email"], 
+            "Имя: " +         data['form']["name"], 
+            "Телефон: " +     data['form']["phone"], 
+            "Email: " +       data['form']["email"], 
+            "Сайт: " +        data['form']["site"], 
+            "Instagram: " +   data['form']["instagram"], 
             "1. Тип бизнеса: "    + business_types,
             "2. Должность: "      + business_position,
             "3. Месячный доход: " + data["income"],

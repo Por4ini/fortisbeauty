@@ -53,6 +53,9 @@ class LoadProductsImages(models.Model):
     log_skiped =     models.TextField(default='', blank=True, verbose_name='Уже существуют')
     log_loaded =     models.TextField(default='', blank=True, verbose_name='Загружено')
     log_error =      models.TextField(default='', blank=True, verbose_name='Ошибка файла')
+    log_photo =      models.TextField(default='', blank=True, verbose_name='Товары без фото')
+
+
 
 
     class Meta:
@@ -80,6 +83,7 @@ class LoadProductsImages(models.Model):
 
 
     def write_images(self):
+        self.log_photo = '/'
         self.log_loaded = ''
         self.log_skiped = ''
         for root, dirs, files in os.walk(settings.MEDIA_ROOT + self.path):
@@ -101,6 +105,9 @@ class LoadProductsImages(models.Model):
                             self.log_error += image_code + '\n'
                     else:
                         self.log_skiped += image_code + '\n'
+        self.log_photo = '\n'.join(Variant.objects.filter(
+            images__isnull=True
+        ).values_list('code', flat=True).distinct())
 
     def run_worker(self):
         self.extract_rar()
@@ -111,12 +118,15 @@ class LoadProductsImages(models.Model):
     def save(self):
         super(LoadProductsImages, self).save()
         load_products_images_worker.delay(self.id)
+
         
 
     def delete(self):
-        path = settings.MEDIA_ROOT + self.path
-        if os.path.exists(path):
-            shutil.rmtree(path)
+        try:
+            path = settings.MEDIA_ROOT + self.path
+            if os.path.exists(path):
+                shutil.rmtree(path)
+        except: pass
         super(LoadProductsImages, self).delete()
         
 

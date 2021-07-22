@@ -26,12 +26,15 @@
                 <p class="title title2">{% trans 'Контактная информация' %}</p>
                 <p class="text">{% trans 'Заполните форму и наша команда свяжется с Вами в течении 20 мин.' %}</p>
                 <ul>
-                    <li>
-                        <img src="{% static 'img/icons/svg/Phone.svg' %}" alt="">
-                        <span>
-                            <a href="tel:{{ phones.0.phone }}">{{ phones.0.phone }}</a>
-                        </span>
-                    </li>
+                    {% for phone in phones %}
+                        <li>
+                            <img src="{% static 'img/icons/svg/Phone.svg' %}" alt="">
+                            <span>
+                                <span>{{ phone.name }}</span><br>
+                                <a href="tel:{{ phone.phone_nums }}">{{ phone.phone }}</a>
+                            </span>
+                        </li>
+                    {% endfor %}
                     <li>
                         <img src="{% static 'img/icons/svg/The_envelope.svg' %}" alt="">
                         <span>

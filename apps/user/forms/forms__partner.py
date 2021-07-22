@@ -2,6 +2,8 @@ from django import forms
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from apps.user.models import CustomUser, UserCompany
+from apps.opt.models import BusinessTypes
+
 
 class BusinessUserForm(UserCreationForm):
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
@@ -78,7 +80,7 @@ class BusinessUserForm(UserCreationForm):
     def save(self, commit=True):
         user = super(BusinessUserForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        user.is_whoosaler = True
+        user.want_be_whoosaler = True
         if commit:
             user.save()
         return user
@@ -86,6 +88,12 @@ class BusinessUserForm(UserCreationForm):
 
 
 class UserCompanyForm(forms.ModelForm):
+    business_type = forms.ModelMultipleChoiceField(
+        queryset = BusinessTypes.objects.all(),
+        widget = forms.CheckboxSelectMultiple,
+        required=True
+    )
+
     class Meta:
         model = UserCompany
         fields = [
@@ -107,6 +115,8 @@ class UserCompanyForm(forms.ModelForm):
         self.fields['position'].widget.attrs['data-type'] =   'text'
         self.fields['position'].widget.attrs['data-empty'] =  'Введите Вашу должность'
         self.fields['position'].widget.attrs['placeholder'] = 'Должность *'
+
+        self.fields['business_type'].label = 'Ваш тип бизнеса'
 
 
 

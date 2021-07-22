@@ -86,13 +86,16 @@ class ModelImages(models.Model):
     def get_image_io(self, file, ext):
         if ext in ['gif','mp4']:
             image_io = io.BytesIO(file.read())
+            image_io.seek(0)
+            return image_io
         else:
             image_io = io.BytesIO()
             img_convert, img_format = self.ext_convert(ext)
             image = PIL.Image.open(file).convert(img_convert)
             image.save(image_io, format=img_format)
             image.close()
-        return image_io
+            return image_io
+        return None
 
     def img_size_path(self, key, path, ext):
         if key == 'l': 
@@ -105,15 +108,14 @@ class ModelImages(models.Model):
         base_path = self.dir_path() + self.human_name(field_name)
         prev_w, prev_h = (0,0)
         prev_path = None
-        for key, size in self.IMAGES_SIZES.items():
-            path = self.img_size_path(key, base_path , ext)
-            image = PIL.Image.open(image_io)
-            w, h = image.size
-            if key == 'l':
-                setattr(getattr(self, field_name), 'name', path)
-            if key == 'l' and ext in ['gif']:
-                default_storage.save(settings.MEDIA_ROOT + path, image_io)
-            else:
+
+        if ext in ['jpg','jpeg','png']:
+            for key, size in self.IMAGES_SIZES.items():
+                path = self.img_size_path(key, base_path , ext)
+                image = PIL.Image.open(image_io)
+                w, h = image.size
+                if key == 'l':
+                    setattr(getattr(self, field_name), 'name', path)
                 img_convert, img_format = self.ext_convert(ext)
                 image = image.convert(img_convert)
                 if key == 'l' or size <= prev_w:
@@ -123,12 +125,24 @@ class ModelImages(models.Model):
                 else:
                     path = prev_path
                     w,h = (prev_w, prev_h)
-            thmbs[key] = {
-                'url':path, 'path': settings.MEDIA_URL + path,
-                'w':w, 'h':h, 'ext':ext
-            }
-            prev_w, prev_h = (w,h)
-            prev_path = path
+
+                thmbs[key] = {
+                    'url':path, 'path': settings.MEDIA_URL + path,
+                    'w':w, 'h':h, 'ext':ext
+                }
+                prev_w, prev_h = (w,h)
+                prev_path = path
+        elif ext == 'gif':
+            main_path = f'{base_path}.{ext}'
+            path = settings.MEDIA_ROOT + main_path
+            default_storage.save(path, image_io)
+            setattr(getattr(self, field_name), 'name', main_path)
+            for key, size in self.IMAGES_SIZES.items():
+                thmbs[key] = {
+                    'url':path, 'path': settings.MEDIA_URL + main_path,
+                    'w':400, 'h':400, 'ext':ext
+                }
+                
         return thmbs
 
     def get_thmbs(self, field):
@@ -138,6 +152,16 @@ class ModelImages(models.Model):
             thmbs = json.dumps(json.loads(thmbs.replace("'",'"')), indent=4)
         return thmbs, thmbs_name
 
+    
+    def get_old_image(self, thmbs):
+        try:    
+            old_image = thmbs['l']['url']
+        except: 
+            old_image = None
+        return old_image
+
+    
+
     def save(self):
         for field in self._meta.get_fields():
             if field.get_internal_type() == 'FileField':
@@ -145,23 +169,19 @@ class ModelImages(models.Model):
                
                 try: 
                     file = image_field.file
-                except: 
-                    continue
-               
-
-                color = middle_color(file)
+                except:  continue
             
                 thmbs, thmbs_name = self.get_thmbs(field)
-                try:    old_image = thmbs['l']['url']
-                except: old_image = None
+                old_image = self.get_old_image(thmbs)
+
                 if image_field.name is not None and image_field.name != old_image:
                     ext = image_field.name.split('.')[-1].lower()
-                    image_io  = self.get_image_io(file, ext)
+
+                    image_io = self.get_image_io(file, ext)
                     self.delete_old()
                     image_field.delete(save=False)
                     super(ModelImages, self).save()
                     thmbs = self.make_thumbs(field.name, image_io, ext)
-                    thmbs['color'] = color
                     setattr(self, thmbs_name, thmbs)
        
         super(ModelImages, self).save()

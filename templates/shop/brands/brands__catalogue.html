@@ -20,7 +20,7 @@
     <!-- BREADCRUMBS -->
     <ul class="breadcrumbs">
         <li><a href="/">Главная</a></li>
-        <li><span class="slash">/</span><a href="{% url 'shop:brands' %}">Бренды</a></li>
+        <li><span class="slash">/</span><a href="/brands/">Бренды</a></li>
         <li><span class="slash">/</span><a href="{{ selected_brand.url }}">{{ selected_brand.name }}</a></li>
         {% if category %}
             <li><span class="slash">/</span>{{ category.name }}</li>

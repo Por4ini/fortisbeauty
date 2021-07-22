@@ -75,7 +75,10 @@ INSTALLED_APPS = [
 
 
 SITE_ID = 1
-COMPRESS_ENABLED = True
+
+
+COMPRESS_ENABLED = False
+COMPRESS_OFFLINE = False
 
 AUTHENTICATION_BACKENDS = [
     'project.auth.UserAuthentication',
@@ -187,7 +190,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
-COMPRESS_ENABLED = False
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOGIN_URL = "/login"

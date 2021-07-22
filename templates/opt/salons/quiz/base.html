@@ -162,7 +162,11 @@
             body: JSON.stringify(formValues)
         })
         .then(res => res.json())
-        .then(json => console.log(json))
+        .then(json => {
+            if (json.success) {
+                document.location.href = `{% url 'opt:success' %}`
+            }
+        })
     })
 
 </script>
