@@ -1,8 +1,12 @@
 from django.db import models
 from django.utils import timezone 
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.safestring import mark_safe
+from pygments import highlight
+from pygments.formatters.html import HtmlFormatter
+from pygments.lexers.data import JsonLexer
 import uuid
-
+import json
 
 
 
@@ -31,6 +35,7 @@ class Order(models.Model):
 
 
     id =          models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    reference =   models.PositiveIntegerField(null=True, blank=True)
     status_old =  models.CharField(max_length=255, editable=False, blank=True, null=True, choices=ORDER_STATUS, verbose_name=_("Статус заказа"))
     status =      models.CharField(max_length=255, choices=ORDER_STATUS, verbose_name=_("Статус заказа"))
     pay_type =    models.CharField(max_length=255, choices=PAY_TYPE, verbose_name=_("Способ оплаты"))
@@ -139,3 +144,23 @@ class PaymentResponses(models.Model):
     class Meta:
         verbose_name = _("Подтверждение оплты")
         verbose_name_plural = _("Подтверждения оплт")
+
+    def detail_json_formatted(self):
+        data = json.dumps(self.response, indent=2)
+        formatter = HtmlFormatter(style='colorful')
+        response = highlight(data, JsonLexer(), formatter)
+        style = "<style>" + formatter.get_style_defs() + "</style><br/>"
+        return mark_safe(style + response)
+
+    detail_json_formatted.short_description = 'Details Formatted'
+
+    def save(self):
+        for key in self.response.keys():
+            if type(key) == str:
+                self.response = json.loads(key)
+            break
+
+        if self.response.get('orderReference'):
+            reference = int(self.response['orderReference'])
+            Order.objects.filter(reference=reference).update(payed=True)
+        super(PaymentResponses, self).save()

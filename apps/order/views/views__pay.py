@@ -63,6 +63,8 @@ class OrderPay(APIView):
         order = CreateOrder(data=request.data, user=request.user, cart=cart)
         order = order.create_order()
         data = self.get_request_data(request.data, cart.data(), order.id)
+        order.reference = int(data['orderReference'])
+        order.save()
         sign = self.sign(data)
         data['merchantSignature'] = hmac.new(
             "d4501f69fdf17e81127e9a36f2cade9651439818".encode('utf-8'), 

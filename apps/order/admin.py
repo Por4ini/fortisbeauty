@@ -44,7 +44,11 @@ class OrderProductInline(admin.StackedInline):
 
 @admin.register(PaymentResponses)
 class PaymentResponsesAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = [
+        ('JSON', {'fields': ['detail_json_formatted']}),
+    ]
+    readonly_fields = ('detail_json_formatted',)
+
 
    
 @admin.register(Order)
