@@ -141,14 +141,8 @@
         const serieProducts = document.querySelector('.serie__products')
         const commentFomtFetchUrl =   `{% url "shop:product_comment_form" product_id=product.id comment_type="COMMENT" %}`
         const questionsFomtFetchUrl = `{% url "shop:product_comment_form" product_id=product.id comment_type="QUESTION" %}`
-        
         const productQuantityInput = document.querySelector('.product_quantity')
-
-
-
-        
     </script>
-    
     <script async>
         fetch('{% url "shop:fetch_serie" product.id %}', {method : 'GET'})
         .then(res => res.json())
@@ -159,10 +153,6 @@
                 new LazyLoad({container: serieProducts});
             }
         })
-
-
     </script>
     <script src="{% static 'js/shop/Home/home_products.js' %}"></script>
-   
-    
 {% endblock %}

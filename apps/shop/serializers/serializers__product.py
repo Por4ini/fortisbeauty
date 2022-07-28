@@ -3,7 +3,6 @@ from apps.shop.models import Brand, Categories, Product, Unit, Variant, VariantI
 from apps.shop.serializers.serializers__brand import BrandLiteSerializer
 
 
-
 class ProductCategorySerializer(serializers.ModelSerializer):
     url = serializers.CharField(source='get_absolute_url')
 
@@ -14,15 +13,13 @@ class ProductCategorySerializer(serializers.ModelSerializer):
         ]
 
 
-
-
 class ProductrPageVariantImagesSerializer(serializers.ModelSerializer):
-    l =     serializers.CharField(source="image_thmb.l.path",  allow_blank=True, read_only=True)
-    s =     serializers.CharField(source="image_thmb.s.path",  allow_blank=True, read_only=True)
-    xs =    serializers.CharField(source="image_thmb.xs.path", allow_blank=True, read_only=True)
-    h =     serializers.CharField(source="image_thmb.l.h",     allow_blank=True, read_only=True)
-    w =     serializers.CharField(source="image_thmb.l.w",     allow_blank=True, read_only=True)
-    color = serializers.CharField(source="image_thmb.color",   allow_blank=True, read_only=True)
+    l = serializers.CharField(source="image_thmb.l.path", allow_blank=True, read_only=True)
+    s = serializers.CharField(source="image_thmb.s.path", allow_blank=True, read_only=True)
+    xs = serializers.CharField(source="image_thmb.xs.path", allow_blank=True, read_only=True)
+    h = serializers.CharField(source="image_thmb.l.h", allow_blank=True, read_only=True)
+    w = serializers.CharField(source="image_thmb.l.w", allow_blank=True, read_only=True)
+    color = serializers.CharField(source="image_thmb.color", allow_blank=True, read_only=True)
     
 
     class Meta:
@@ -47,12 +44,6 @@ class ProductPageVariantsSerializer(serializers.ModelSerializer):
         if self.context.get('is_whoosaler'):
             return obj.whoosale_price
         return None
-
-
-
-
-
-
 
 
 class UnitSerializer(serializers.ModelSerializer):

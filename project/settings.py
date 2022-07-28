@@ -1,4 +1,6 @@
 from django.conf import global_settings
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 from .local_settings import *
 from .configs import *
 import os
@@ -32,7 +34,11 @@ STATICFILE_DIR  = os.path.join(BASE_DIR, 'static')
 
 
 
-ALLOWED_HOSTS = ['fortisbeauty.com.ua', 'www.fortisbeauty.com.ua', '127.0.0.1', '81.91.178.223']
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    '185.233.36.187',
+    'fortisbeauty.store'
+]
 
 APPEND_SLASH = True
 # Application definition
@@ -248,3 +254,18 @@ def create_filename(filename):
 
 
 
+sentry_sdk.init(
+    dsn="https://6bb432ceb5bb4d749ddb1da802c35666@o362395.ingest.sentry.io/6593804",
+    integrations=[
+        DjangoIntegration(),
+    ],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)

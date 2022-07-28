@@ -126,7 +126,7 @@ class Catalogue(View):
         self.set_context()
         return render(request, 'shop/catalogue/catalogue.html', self.get_context(request))
 
-
+    # For ajax requests
     def post(self, request, **kwargs):
         self.context = {
             **self.context,
