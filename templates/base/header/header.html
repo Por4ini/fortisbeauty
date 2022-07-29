@@ -24,18 +24,6 @@
             </ul>
             <!-- Languages -->
             <ul class="header__languages">
-                <!-- RU -->
-                <li>
-                    {% if LANGUAGE_CODE == 'ru' %}
-                        <span>ru</span>
-                    {% else %}
-                        <form action="{% url 'set_language' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="language" value="ru">
-                            <button type="submit">ru</button>
-                        </form>
-                    {% endif %}
-                </li>
                 <!-- UK -->
                 <li>
                     {% if LANGUAGE_CODE == 'uk' %}

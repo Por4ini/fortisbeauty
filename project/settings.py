@@ -1,6 +1,6 @@
 from django.conf import global_settings
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+# import sentry_sdk
+# from sentry_sdk.integrations.django import DjangoIntegration
 from .local_settings import *
 from .configs import *
 import os
@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     'apps.order.apps.OrderConfig',
     'apps.main.apps.MainConfig',
     'apps.pages.apps.PagesConfig',
-    'apps.search.apps.SearchConfig',
+    # 'apps.search.apps.SearchConfig',
     'apps.filters.apps.FiltersConfig',
     'apps.opt.apps.OptConfig',
     'apps.wishlist.apps.WishlistConfig',
@@ -156,11 +156,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'uk'
 LANGUAGES = (
-    ('en', ('ENG')),
-    ('ru', ('РУС')),
     ('uk', ('УКР')),
+    ('en', ('ENG')),
 )
 
 TIME_ZONE = 'Europe/Kiev'
@@ -254,18 +253,18 @@ def create_filename(filename):
 
 
 
-sentry_sdk.init(
-    dsn="https://6bb432ceb5bb4d749ddb1da802c35666@o362395.ingest.sentry.io/6593804",
-    integrations=[
-        DjangoIntegration(),
-    ],
+# sentry_sdk.init(
+#     dsn="https://6bb432ceb5bb4d749ddb1da802c35666@o362395.ingest.sentry.io/6593804",
+#     integrations=[
+#         DjangoIntegration(),
+#     ],
 
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
+#     # Set traces_sample_rate to 1.0 to capture 100%
+#     # of transactions for performance monitoring.
+#     # We recommend adjusting this value in production.
+#     traces_sample_rate=1.0,
 
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
+#     # If you wish to associate users to errors (assuming you are using
+#     # django.contrib.auth) you may enable sending PII data.
+#     send_default_pii=True
+# )

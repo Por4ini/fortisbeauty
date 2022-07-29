@@ -277,5 +277,5 @@ class LoadProductsFromTable(models.Model):
 
     def save(self, *args, **kwargs):
         super(LoadProductsFromTable, self).save()
-        load_products_worker.delay(self.id)
+        load_products_worker(self.id)
     

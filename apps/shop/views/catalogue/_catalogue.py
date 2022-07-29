@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q, Count, F
 from django.template.loader import render_to_string
 from django.views.generic import View
 from django.http import JsonResponse
+from apps.shop.models import Categories
 from apps.shop.models import Brand, Product, Variant
 from apps.shop.serializers.serializers__category import CategorySerializer
 from apps.shop.serializers.serializers__brand import BrandSerializer, BrandDetailSerializer
@@ -41,7 +42,6 @@ class Catalogue(View):
     attrvalues = []
     attrkeys = []
 
-    from .set_category import set_category
     from .set_brands import set_brands
     from .set_attrs import get_attrs, get_selected_attrs, filter_products_attrs
     from .set_pagination import set_pagination
@@ -91,9 +91,53 @@ class Catalogue(View):
         context['selected'] = self.selected
         return context
 
+    def set_category(self):
+        category_slug = self.context['kwargs'].get('category')
+        
+    
+        if category_slug:
+            categories = [c for c in category_slug.split('/') if len(c) > 0]
+            category_slug = categories[-1]
+            parent_category_slug = None
+            if len(categories) > 1:
+                parent_category_slug = categories[-2]
+            self.category = Categories.objects.filter(
+                slug=category_slug,
+                parent__slug=parent_category_slug, 
+            ).first()
+            
+            if self.category:
+                self.ancestors = self.category.get_ancestors()
+                self.products = self.products.filter(
+                    category__in=self.category.get_descendants(include_self=True)
+                )
+                self.variants = self.variants.filter(parent__in=self.products)
+                self.base_products = self.products
+                
+                if self.category.description:
+                    self.text = self.category.description
+
+    
+                
+        self.categories = Categories.objects.filter(parent=self.category).annotate(
+            product__count_lvl_1=Count('product__variant'), 
+            product__count_lvl_2=Count('children__product__variant'), 
+            product__count_lvl_3=Count('children__children__product__variant')
+        ).annotate(
+            product__count=F('product__count_lvl_1') + F('product__count_lvl_2') + F('product__count_lvl_3')
+        )
+    
+        if self.context['kwargs'].get('discount') == 'yes':
+            self.categories = self.categories.filter(
+                Q(product__variant__discount_price__gte=1) |
+                Q(children__product__variant__discount_price__gte=1) |
+                Q(children__children__product__variant__discount_price__gte=1) |
+                Q(children__children__children__product__variant__discount_price__gte=1)
+            ).distinct()
+  
+
 
     def set_products(self):
-       
         self.products = Product.objects.all()
         self.variants = Variant.objects.filter(parent__in=self.products)
         if 'discount' in self.context['kwargs']:

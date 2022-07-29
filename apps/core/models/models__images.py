@@ -41,6 +41,8 @@ class ModelImages(models.Model):
     def dir_path(self):
         path = ""
         root = settings.MEDIA_ROOT
+        if not os.path.isdir(root):
+            os.mkdir(root)
         for level in [self._meta.app_label, self._meta.model_name]:
             path += level + '/'
             if not os.path.isdir(root + path): 
@@ -81,7 +83,7 @@ class ModelImages(models.Model):
         if ext == 'png': 
             return "RGBA","PNG"
         else: 
-            return "RGB","JPEG"   
+            return "RGB", ext
 
     def get_image_io(self, file, ext):
         if ext in ['gif','mp4']:
@@ -109,7 +111,7 @@ class ModelImages(models.Model):
         prev_w, prev_h = (0,0)
         prev_path = None
 
-        if ext in ['jpg','jpeg','png']:
+        if ext in ['jpg','jpeg','png','webp']:
             for key, size in self.IMAGES_SIZES.items():
                 path = self.img_size_path(key, base_path , ext)
                 image = PIL.Image.open(image_io)

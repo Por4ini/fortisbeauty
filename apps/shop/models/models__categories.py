@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.core.cache import cache
 from django.db.models import signals
 from django.dispatch import receiver
+from django.contrib.postgres.fields import ArrayField
 from mptt.models import MPTTModel
 from apps.core.models import NameSlug, Images, Seo
 from apps.shop.models.models__product import VariantImages
@@ -110,27 +111,20 @@ class Categories(MPTTModel, NameSlug, Images, Seo):
             'category': self.get_tree(), 
         })
 
-    @property
-    def udapte_descendants(self):
-        for category in Categories.objects.all():
-            category.children_category.all().delete()
-            for c in category.get_descendants(include_self=True):
-                obj = CategoryChildRel(parent=category, relation=c)
-                obj.save()
-        cache.delete('tree_categories')
-        cache.delete(self.get_absolute_url())
-        return True
+    # @property
+    # def udapte_descendants(self):
+    #     for category in Categories.objects.all():
+    #         category.children_category.all().delete()
+    #         for c in category.get_descendants(include_self=True):
+    #             obj = CategoryChildRel(parent=category, relation=c)
+    #             obj.save()
+    #     cache.delete('tree_categories')
+    #     cache.delete(self.get_absolute_url())
+    #     return True
 
     def save(self, *args, **kwargs):
         super(MPTTModel, self).save(*args, **kwargs)
 
 
 
-
- 
-
-@receiver(signals.post_save, sender=Categories)
-def create_customer(sender, instance, created, **kwargs):
-
-    print(instance.udapte_descendants)
-    # instance.udapte_descendants()
+        

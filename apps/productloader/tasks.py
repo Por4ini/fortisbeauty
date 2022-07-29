@@ -5,6 +5,7 @@ from celery import shared_task
 
 @shared_task
 def load_products_worker(id):
+    print(id)
     LoadProductsFromTable = apps.get_model('productloader', 'LoadProductsFromTable')
     obj = LoadProductsFromTable.objects.get(id=id)
     obj.run_worker()
