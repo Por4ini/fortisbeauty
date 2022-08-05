@@ -4,10 +4,10 @@
             <!-- Pages -->
             <ul class="header__pages">
                 <a href="{% url 'pages:contacts' %}">
-                    <li>{% trans 'Контакты' %}</li>
+                    <li>{% trans 'Контакти' %}</li>
                 </a>
                 <a href="{% url 'pages:about' %}">
-                    <li>{% trans 'О нас' %}</li>
+                    <li>{% trans 'Про нас' %}</li>
                 </a>
                 <a href="{% url 'blog:list' %}">
                     <li>{% trans 'Блог' %}</li>
@@ -19,7 +19,7 @@
                     <li>{% trans 'Оплата' %}</li>
                 </a>
                 <a href="{% url 'pages:terms_of_use' %}">
-                    <li>{% trans 'Условия использования' %}</li>
+                    <li>{% trans 'Умови використання' %}</li>
                 </a>
             </ul>
             <!-- Languages -->
@@ -70,7 +70,7 @@
             
             <!-- Search -->
             <div class="header__search">
-                <input type="search" name="search" id="search" placeholder="{% trans 'Поиск товаров' %}">
+                <input type="search" name="search" id="search" placeholder="{% trans 'Пошук товарів' %}">
             </div>
             <div class="header__actions">
                 <!-- Phone -->
@@ -78,7 +78,7 @@
                     <input id="header__show_phone" type="checkbox" data-for=".header__phone-numbers" class="hidden showhide__button">
                     <label for="header__show_phone" header__phone="header__phone-button">
                         <img src="{% static 'img/icons/svg/Phone.svg' %}" alt="{% trans 'Телефон' %}">
-                        <span>{% trans 'Позвоанить' %}</span>
+                        <span>{% trans 'Подзвонити' %}</span>
                         <img src="{% static 'img/icons/down.png' %}" class="arr-down" alt="down">
                     </label>
                     <div class="header__phone-numbers">
@@ -90,27 +90,27 @@
                                 </a>
                             {% endfor %}
                         </ul>
-                        <button class="button button__recall">{% trans 'Перезвоните мне' %}</button>
+                        <button class="button button__recall">{% trans 'Передзвоніть мені' %}</button>
                     </div>
                 </div>
                 <!-- Account -->
                 <div class="header__account">
                     <a href="{% url 'user:profile' %}">
-                        <img src="{% static 'img/icons/user/Avatar.svg' %}" alt="Пользоввтель" class="ico">
+                        <img src="{% static 'img/icons/user/Avatar.svg' %}" alt="Користувач" class="ico">
                     </a>
                     <div class="header__account-data">
                         {% if request.user.is_authenticated %}
-                            <a href="{% url 'user:profile' %}">{% trans 'Личный кабинет' %}</a>    
+                            <a href="{% url 'user:profile' %}">{% trans 'Особистий кабінет' %}</a>    
                         {% else %}
-                            <a href="{% url 'user:login' %}">{% trans 'Вход' %}</a>
+                            <a href="{% url 'user:login' %}">{% trans 'Вхід' %}</a>
                             <span class="slash">/</span>
-                            <a href="{% url 'user:registration' %}">{% trans 'Регистрация' %}</a>
+                            <a href="{% url 'user:registration' %}">{% trans 'Реєстрація' %}</a>
                         {% endif %}
                     </div>
                 </div>
                 <!-- Whishlist -->
                 <div class="header__wishlist" onclick="SidebarOpen('sidebar_wishlist')">
-                    <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="{% trans 'Список желаний' %}">
+                    <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="{% trans 'Список побажань' %}">
                     <span class="header__qty header__wishlist-qty">0</span>
                 </div>
                 <!-- Cart -->
@@ -140,10 +140,10 @@
                     {% endfor %}
 
                     <a href="{% url 'shop:catalogue' discount='yes' %}">
-                        <li>{% trans 'Акции' %}</li>
+                        <li>{% trans 'Акції' %}</li>
                     </a>
                     <a href="{% url 'shop:brands_all' %}">
-                        <li>{% trans 'Бренды' %}</li>
+                        <li>{% trans 'Бренди' %}</li>
                     </a>
                 </ul>
             </nav>

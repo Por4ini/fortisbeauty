@@ -28,7 +28,7 @@
 {% endif %}
 {% if brands %}
     <ul class="brands pt24">
-        <span class="h3 medium mt24 pb24">{% trans 'Бренды' %}</span>
+        <span class="h3 medium mt24 pb24">{% trans 'Бренди' %}</span>
         {% for item in brands %}
             <a href="{% url 'shop:catalogue' brand=item.slug %}">
                 <li>{{ item.name }}</li>
@@ -39,7 +39,7 @@
 
 {% if categories %}
 <ul class="categories pt24">
-    <span class="h3 medium mt24 pb24">{% trans 'Категории' %}</span>
+    <span class="h3 medium mt24 pb24">{% trans 'Категорії' %}</span>
     {% for item in categories %}
         <a href="{% url 'shop:catalogue' category=item.slug %}">
             <li class="pr8">{{ item.name_catalogue }}</li>
@@ -49,5 +49,5 @@
 {% endif %}
 
 {% if products|length == 0 and brands|length == 0 and categories|length == 0 %}
-   <p class="grey h4 pt8 pb24">{% trans 'Ничего не найдено' %}</p> 
+   <p class="grey h4 pt8 pb24">{% trans 'Нічого не знайдено' %}</p> 
 {% endif %}

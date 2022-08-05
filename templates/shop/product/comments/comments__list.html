@@ -40,16 +40,16 @@
                     <div class="data">
                          <p class="text">{{ comment.text }}</p>
                          {% if comment.advantages %}
-                              <span class="label">Преимущества</span>
+                              <span class="label">Переваги</span>
                               <p class="text">{{ comment.advantages }}</p>
                          {% endif %}
                          {% if comment.disadvantages %}
-                              <span class="label">Недоставки</span>
+                              <span class="label">Недоліки</span>
                               <p class="text">{{ comment.disadvantages }}</p>
                          {% endif %}
                     </div>
                     <div class="actions">
-                         <a class="reply reply_comment" href="{% url 'shop:comment_reply_form' comment.pk %}">Ответить</a>
+                         <a class="reply reply_comment" href="{% url 'shop:comment_reply_form' comment.pk %}">Відповісти</a>
                     </div>
                     {% if comment.replys.all|length %}
                     <ul class="replys">
@@ -72,7 +72,7 @@
     {% else %}
          <ul class="comments">
               <li>
-                   <span>Пока нету комментариев</span>
+                   <span>Поки що немає коментарів</span>
               </li>
          </ul>
     {% endif %}

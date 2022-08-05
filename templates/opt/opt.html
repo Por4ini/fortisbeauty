@@ -2,7 +2,7 @@
 
 
 {% block title %}
-{% trans 'Предложение оптовому покупателю' %}
+{% trans 'Пропозиція оптовому покупцю' %}
 {% endblock %}
 
 
@@ -15,7 +15,7 @@
 {% block content %}
 <div class="content">
     <div class="breadcrumbs">
-        <a href="/">{% trans 'Главная' %}</a>
+        <a href="/">{% trans 'Головна' %}</a>
         <span class="slash">/</span>
         <p>Опт</p>
     </div>
@@ -23,7 +23,7 @@
    
 
 <div class="content opt">
-    <h1>{% trans 'Предложение оптовым клиентам' %}</h1>
+    <h1>{% trans 'Пропозиція оптовому покупцю' %}</h1>
     <div class="richtext">
         {{ text.text|safe }}
     </div>
@@ -34,12 +34,12 @@
             <form action="{% url 'opt:opt' %}" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="button">Хочу покупать оптом</button>
+                <button class="button">Хочу купляти оптом</button>
             </form>
         {% endif %}
     {% else %}
-        <a class="button" href="{% url 'user:registration_business' %}">{% trans 'Зарегестрироватся как оптовый покупатель' %}</a>
-        <a class="button" href="{% url 'opt:opt_offer_quiz' %}">{% trans 'Полная регистрация' %}</a>
+        <a class="button" href="{% url 'user:registration_business' %}">{% trans 'Зареєструватись як оптовий покупець' %}</a>
+        <a class="button" href="{% url 'opt:opt_offer_quiz' %}">{% trans 'Повна реєстрація' %}</a>
     {% endif %}
 </div>
 {% endblock %}

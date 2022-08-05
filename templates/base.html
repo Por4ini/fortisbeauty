@@ -5,11 +5,11 @@
     <meta name="viewport" content="initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
-    <title>FortisBeauty - {% block title %}Ваш лучший потставщик косметики{% endblock %}</title>
+    <title>FortisBeauty - {% block title %}Ваш кращий постачальник косметики{% endblock %}</title>
     <!-- OPENGRAPH -->
     {% block og %}
         <meta property="og:title"        content="Fortis Beauty" />
-        <meta property="og:description"  content="Интренет магазин проффесиональной косметологической продукции" />
+        <meta property="og:description"  content="Інтернет магазин професійної косметологічної продукції" />
         <meta property="og:type"         content="shop"/>
         <meta property="og:url"          content="https://fortisbeauty.com.ua/{{ request.path }}" />
         <meta property="og:image:width"  content="480" />
@@ -82,7 +82,7 @@
         <div class="fields">
             <input type="text" name="phone" placeholder="+38 000 000 00 00">
         </div>
-        <button type="submit">{% trans 'Отправить запрос' %}</button>
+        <button type="submit">{% trans 'Відправити запит' %}</button>
     </form>    
 </div>
 
@@ -183,7 +183,7 @@
 
                 // if (!json.products && !json.categories && !json.brands) {
                 //     outputProducts.innerHTML = `
-                //         <p>По Вашему запросу ничего не найдено</p>
+                //         <p>По вашому запиту нічого не знайдено</p>
                 //     `
                 // }
             })
@@ -198,7 +198,7 @@ function lazy() {
 });
 } lazy()
 document.querySelector('.button__recall').onclick = () => {
-    popupHeading.innerHTML = 'Введите свой номер и мы перезвоним Вам в ближайшнн время'
+    popupHeading.innerHTML = 'Введіть свій номер і ми передзвонемо Вам найближчим часом'
     popupContent.innerHTML = document.querySelector('.form__recall').innerHTML
     openPopUp()
 }

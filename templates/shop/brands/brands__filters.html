@@ -1,5 +1,5 @@
 {% load static %}<div class="heading">
-    <p class="h3">Фильтры</p>
+    <p class="h3">Фільтри</p>
     <label for="show_filter" class="close">
         <img src="{% static 'img/close.png' %}" alt="x">
     </label>
@@ -10,7 +10,7 @@
     <div class="data links">
         <li>
             <a class="{% if selected_category == None %}active{% endif %}" href="{{ selected_brand.url }}">
-                <span>Все</span>
+                <span>Всі</span>
             </a>
         </li>
         {% for item in types %}

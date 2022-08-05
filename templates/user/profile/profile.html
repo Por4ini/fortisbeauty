@@ -14,10 +14,10 @@
     <div class="content">
         <div class="breadcrumbs">
             <a href="/">
-                <span>Главная</span>
+                <span>Головна</span>
             </a>
             <span class="slash">/</span>
-            <span>Кабинет пользователя</sapn>
+            <span>Кабінет користувача</sapn>
         </div>    
     </div>
     <div class="content">
@@ -28,7 +28,7 @@
                   <li>
                       <img src="{% static 'img/icons/svg/Avatar.svg' %}" alt="*">
                       <p>
-                          <span>Личная информация</span>
+                          <span>Особиста інформація</span>
                           <span class="email">{{ request.user.email }}</span>
                       </p>
                     </li>
@@ -36,39 +36,39 @@
                 <a href="{% url 'user:user_orders' %}">
                     <li>
                       <img src="{% static 'img/icons/svg/Basket.svg' %}" alt="*">
-                      <p>Мои заказы</p>
+                      <p>Мої замовлення</p>
                     </li>
                 </a>
                 <a href="{% url 'user:user_wishlist' %}">
                     <li>
                         <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="*">
-                        <p>Список желаний</p>
+                        <p>Список бажань</p>
                     </li>
                 </a>
                 {% if request.user.is_whoosaler %}
                 <a href="{% url 'user:user_company' %}">
                     <li>
                         <img src="{% static 'img/icons/svg/Page.svg' %}" alt="*">
-                        <p>Информация о компании</p>
+                        <p>Інформація про компанію</p>
                     </li>
                 </a>
                 {% endif %}
                 <a href="{% url 'user:user_comments' %}">
                   <li>
                       <img src="{% static 'img/icons/svg/Comment.svg' %}" alt="*">
-                      <p>Мои отзывы</p>
+                      <p>Мої відгуки</p>
                     </li>
                 </a>
                 <a href="{% url 'user:user_questions' %}">
                     <li>
                         <img src="{% static 'img/icons/svg/Comment.svg' %}" alt="*">
-                        <p>Мои вопросы</p>
+                        <p>Мої питання</p>
                       </li>
                   </a>
                 <a href="{% url 'user:user_logout' %}">
                     <li>
                         <img src="{% static 'img/icons/svg/Forward_2.svg' %}" alt="*">
-                        <p>Выйти</p>
+                        <p>Вийти</p>
                     </li>
                 </a>
             </ul>

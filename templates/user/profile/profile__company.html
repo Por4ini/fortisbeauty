@@ -3,17 +3,17 @@
 {% block profile %}
 
 <div class="company__info forms">
-    <p class="title1">Информация о компании</p>
+    <p class="title1">Інформація про компанію</p>
     <ul>
         <!-- Realprice -->
         <li class="block user__company-info">
             <input class="edit" type="checkbox" id="user__company-info_edit">
             <div class="heading">
-                <p class="title2">Хочу покупать по рекльному прайсу</p>
+                <p class="title2">Хочу купувати за рекламним прайсом</p>
                 <label for="user__company-info_edit">
                     <img src="{% static 'img/icons/edit.png' %}" alt="">
-                    <span class="unchecked">Редактировать</span>
-                    <span class="checked">Отменить</span>
+                    <span class="unchecked">Редагувати</span>
+                    <span class="checked">Відмінити</span>
                 </label>
             </div>
             <form action="{% url 'user:user_company' %}?real_price=change" method="POST" class="form">
@@ -34,7 +34,7 @@
                     {% endfor %}
                 </div>
                
-                <button type="submit">Обновить</button>
+                <button type="submit">Обновити</button>
             </form>
         </li>
 
@@ -42,11 +42,11 @@
         <li class="block user__company-info">
             <input class="edit" type="checkbox" id="user__company-info_edit">
             <div class="heading">
-                <p class="title2">Компания</p>
+                <p class="title2">Компанія</p>
                 <label for="user__company-info_edit">
                     <img src="{% static 'img/icons/edit.png' %}" alt="">
-                    <span class="unchecked">Редактировать</span>
-                    <span class="checked">Отменить</span>
+                    <span class="unchecked">Редагувати</span>
+                    <span class="checked">Відмінити</span>
                 </label>
             </div>
             <form action="{% url 'user:user_company' %}" method="POST" class="form">
@@ -72,7 +72,7 @@
                     {% endfor %}
                 </div>
                 {% endfor %}
-                <button type="submit">Обновить</button>
+                <button type="submit">Обновити</button>
             </form>
         </li>
     </ul>

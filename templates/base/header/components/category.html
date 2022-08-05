@@ -8,7 +8,7 @@
     {% if category.children %}
         <ul class="children">
             <li>
-                <span class="title back">< Назад к {{ category.name }}</span>
+                <span class="title back">< Назад до {{ category.name }}</span>
             </li>
             {% for children in category.children %}
                 {% with category=children %}

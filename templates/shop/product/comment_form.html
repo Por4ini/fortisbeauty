@@ -2,13 +2,13 @@
 
 <form class="form pd-bottom-24" action="{% url 'shop:product' product.pk product.slug %}" method="POST" id="createComment">
     <select name="rate" required>
-        <option value="5" {% if review.stars == 5 %}selected="selected"{% endif %}>{% trans 'Отчично' %}</option>
-        <option value="4" {% if review.stars == 4 %}selected="selected"{% endif %}>{% trans 'Хорошо' %}</option>
-        <option value="3" {% if review.stars == 3 %}selected="selected"{% endif %}>{% trans 'Не очень' %}</option>
-        <option value="2" {% if review.stars == 2 %}selected="selected"{% endif %}>{% trans 'Плохо' %}</option>
-        <option value="1" {% if review.stars == 1 %}selected="selected"{% endif %}>{% trans 'Ужасно' %}</option>
+        <option value="5" {% if review.stars == 5 %}selected="selected"{% endif %}>{% trans 'Відмінно' %}</option>
+        <option value="4" {% if review.stars == 4 %}selected="selected"{% endif %}>{% trans 'добре' %}</option>
+        <option value="3" {% if review.stars == 3 %}selected="selected"{% endif %}>{% trans 'Не дуже' %}</option>
+        <option value="2" {% if review.stars == 2 %}selected="selected"{% endif %}>{% trans 'Погано' %}</option>
+        <option value="1" {% if review.stars == 1 %}selected="selected"{% endif %}>{% trans 'Жахливо' %}</option>
     </select>
-    <textarea   rows="10" cols="45"  name="text"  placeholder="Текст комментария" data-alert="Вы ничего не написали" required>{{ review.text }}</textarea>
+    <textarea   rows="10" cols="45"  name="text"  placeholder="Текст комментария" data-alert="Ви нічого не написали" required>{{ review.text }}</textarea>
     <input type="hidden" name="comment_id" value="{{ review.pk }}">
-    <button type="submit">{% trans 'Отпарвить' %}</button>
+    <button type="submit">{% trans 'Відправити' %}</button>
 </form>

@@ -7,11 +7,11 @@
         <li class="block user__personal-info">
             <input class="edit" type="checkbox" id="user__personal-info_edit">
             <div class="heading">
-                <p class="title2">Личные данные</p>
+                <p class="title2">Особисті дані</p>
                 <label for="user__personal-info_edit">
                     <img src="{% static 'img/icons/edit.png' %}" alt="">
-                    <span class="unchecked">Редактировать</span>
-                    <span class="checked">Отменить</span>
+                    <span class="unchecked">Редагувати</span>
+                    <span class="checked">Відмінити</span>
                 </label>
             </div>
             <form class="form" action="{% url 'user:profile'%}?form=main" method="POST">
@@ -25,18 +25,18 @@
                         </div>
                     {% endfor %}
                 </div>
-                <button type="submit">Обновить</button>
+                <button type="submit">Обновити</button>
             </form>
         </li>
         <!-- CONTACTS -->
         <li class="block user__contacts">
             <input class="edit" type="checkbox" id="user__contacts_edit">
             <div class="heading">
-                <p class="title2">Контакты</p>
+                <p class="title2">Контакти</p>
                 <label for="user__contacts_edit">
                     <img src="{% static 'img/icons/edit.png' %}" alt="">
-                    <span class="unchecked">Редактировать</span>
-                    <span class="checked">Отменить</span>
+                    <span class="unchecked">Редагувати</span>
+                    <span class="checked">Відмінити</span>
                 </label>
             </div>
             <form class="form" action="{% url 'user:profile'%}?form=contacts" method="POST">
@@ -50,7 +50,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <button type="submit">Обновить</button>
+                <button type="submit">Обновити</button>
             </form>
         </li>
         <!-- ADRESS -->
@@ -60,15 +60,15 @@
                 <p class="title2">Адреса доставки</p>
                 <label for="user__adress_edit">
                     <img src="{% static 'img/icons/edit.png' %}" alt="">
-                    <span class="unchecked">Редактировать</span>
-                    <span class="checked">Отменить</span>
+                    <span class="unchecked">Редагувати</span>
+                    <span class="checked">Відмінити</span>
                 </label>
             </div>
             <form action="{% url 'user:profile'%}?form=adress_chosen" method="POST" class="form select_adress">
                 {% csrf_token %}
                 <!-- MANAGEMENT FORM -->
                 {{ forms.adress_chosen.management_form }}
-                <p class="title">Приоритетный адрес</p>
+                <p class="title">Пріоритетна адреса</p>
                 <!-- END MANAGEMENT FORM -->
                 {% for form in forms.adress_chosen %}
                     <div class="hidden">
@@ -86,7 +86,7 @@
                             {{ form.adress.errors }}
                             <p>{{ form.adress }}</p>
                         </div>
-                        <button type="submit">Обновить</button>
+                        <button type="submit">Обновити</button>
                     </div>
                 {% endfor %}
                 
@@ -127,13 +127,13 @@
                     {% endfor %}
                     
                 </div>
-                <button type="submit">Обновить</button>
+                <button type="submit">Обновити</button>
                
             
                 
             </form>
         </li>
-        <a href="{% url 'user:user_password_change' %}">Изменить пароль</a>
+        <a href="{% url 'user:user_password_change' %}">Змінити пароль</a>
     </ul>
 </div>
 {% endblock %}

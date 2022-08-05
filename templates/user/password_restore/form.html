@@ -8,19 +8,19 @@
 
 
 {% block title %}
-    {% trans 'Востановление пароля' %}
+    {% trans 'Відновлення пароля' %}
 {% endblock %}
 
 
 {% block content %}
 <div class="content form__outer password__restore">
     <div class="form__wrapper">
-        <h1 class="h4">Востановление пароля</h1>
-        <p class="helptext">Для востановления пароля, введите Ваш email. После чего мы отправим Вам ссылку дял вода новго пароля.</p>
+        <h1 class="h4">Відновлення пароля</h1>
+        <p class="helptext">Для відновлення пароля, введіть Ваш e-mail. Після чого ми відправимо Вам посилання для води нового пароля.</p>
         <form class="form validate" action="{% url 'user:restore_password' %}" method='POST' enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Отправить ссылку</button>
+            <button type="submit">Відправити посилання</button>
         </form>
     </div>
 </div>

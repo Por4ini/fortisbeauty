@@ -4,11 +4,11 @@
 <input type="radio" name="description__type" id="description__type__properties">
 
 <div class="select__buttons">
-     <label for="description__type__text">Описание</label>
-     <label for="description__type__properties">Харктеристики</label>
+     <label for="description__type__text">Опис</label>
+     <label for="description__type__properties">Характеристики</label>
 </div>
 <div class="select__block products__description hidden">
-    <span class="heading1">Описание {{ product.human }}</span>
+    <span class="heading1">Описання {{ product.human }}</span>
     <ul>
         <!-- description -->
         {% if product.description|length > 0 %}
@@ -21,21 +21,21 @@
         <!-- PRESCRIPTION -->
         {% if product.prescription|length > 0 %}
             <li>
-                <span class="title">{% trans 'Назначение' %}</span>
+                <span class="title">{% trans 'Призначення' %}</span>
                 <span class="pt16">{{ product.prescription }}</span>
             </li>
         {% endif %}
         <!-- APPLICATION -->
             {% if product.application|length > 0 %}
             <li>
-                <span class="title">{% trans 'Способ примения' %}</span>
+                <span class="title">{% trans 'Спосіб застосування' %}</span>
                 <span class="pt16">{{ product.application }}</span>
             </li>
         {% endif %}
         <!-- COMPOSITION -->
         {% if product.composition|length > 0 %}
             <li>
-                <span class="title">{% trans 'Состав' %}</span>
+                <span class="title">{% trans 'Склад' %}</span>
                 <span class="pt16">{{ product.composition }}</span>
             </li>
         {% endif %}
@@ -46,7 +46,7 @@
     <table>
         <tbody>
             <tr>
-                <td>Категория:</td>
+                <td>Категорія:</td>
                 <td>
                     <a href="{{ product.category.url }}">{{ product.category.name }}</a>
                 </td>
@@ -59,7 +59,7 @@
             </tr>
             {% if product.serie %}
                 <tr>
-                    <td>Серия:</td>
+                    <td>Серія:</td>
                     <td>
                         <span>{{ product.serie }}</span>
                     </td>

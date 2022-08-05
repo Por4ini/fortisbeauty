@@ -1,6 +1,6 @@
 <div class="total">
-    <span>Всего: {% if cart.total %}{{ cart.total }}{% else %}0{% endif %} грн.</span>
+    <span>Всього: {% if cart.total %}{{ cart.total }}{% else %}0{% endif %} грн.</span>
 </div>
 <a href="{% url 'order:order' %}">
-    <button class="confirm">Оформить заказ</button>
+    <button class="confirm">Оформити замовлення</button>
 </a>

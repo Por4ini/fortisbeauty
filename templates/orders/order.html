@@ -9,12 +9,12 @@
 {% block content %}
     <div class="content order__wrapper">
         <div class="order">
-            <h1 class="title1">Ваш заказ</h1>
+            <h1 class="title1">Ваше замовлення</h1>
             <ul class="products__list">
                 {% include 'orders/order__products.html' with cart_data=cart_data %}
             </ul>
             <span class="order__total">
-                <span>Сумма заказ:</span>
+                <span>Сума замовлення:</span>
                 <span class="order__total__num"></span>
                 <span>грн.</span>
             </span>
@@ -147,13 +147,13 @@
                 
                 if (deliveryType == 'newpost') {
                     orderTotalPrice.innerHTML = orderTotal
-                    deliveryPrice.innerHTML =  'По тарифам переозчика'
+                    deliveryPrice.innerHTML =  'По тарифам перевізника'
                 } else {
                     if (orderTotal < 2000) {
                         deliveryPrice.innerHTML =  70 + 'грн.'
                         orderTotalPrice.innerHTML = orderTotal + 70
                     } else {
-                        deliveryPrice.innerHTML =  'Бесплатно'
+                        deliveryPrice.innerHTML =  'Безплатно'
                         orderTotalPrice.innerHTML = orderTotal
                     } 
 

@@ -1,13 +1,13 @@
 {% load static %}
 <div class="heading">
-    <p class="h3">Фильтры</p>
+    <p class="h3">Фільтри</p>
     <label for="show_filter" class="close">
         <img src="{% static 'img/icons/svg/Close.svg' %}" alt="x">
     </label>
 </div>
 {% if tree_categories|length %}
     <div class="block">
-        <div class="title">Категории</div>
+        <div class="title">Категорії</div>
         <ul class="data links">
             {% for c in tree_categories %}
                 <li>
@@ -21,11 +21,11 @@
     </div>
 {% endif %}
 <!-- BRANDS -->
-{% include './catalogue__filter_block.html' with type="brand" title="Бренды" items=brands %}
+{% include './catalogue__filter_block.html' with type="brand" title="Бренди" items=brands %}
 <!-- PRICERANGE -->
 {% if max_price > min_price %}
 <div class="block price {% if min_price == max_price %}deactivated{% endif %}">
-    <div class="title">Цена</div>
+    <div class="title">Ціна</div>
     <div class="data">
         {% include 'shop/catalogue/catalogue__pricerange.html' %}
     </div>

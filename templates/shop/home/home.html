@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 <!-- TITLE -->
-{% block title %}{% trans 'Главная страница' %}{% endblock %}
+{% block title %}{% trans 'Головна сторінка' %}{% endblock %}
 <!-- LINKS -->
 {% block links %}
     <link rel="stylesheet" href="{% static 'css/home/home.css' %}">
@@ -12,7 +12,7 @@
 {% endblock %}
 {% block og %}
     <meta property="og:title"        content="Fortis Beauty" />
-    <meta property="og:description"  content="Интренет магазин проффесиональной косметологической продукции" />
+    <meta property="og:description"  content="Інтернет магазин професійної косметологічної продукції" />
     <meta property="og:type"         content="shop"/>
     <meta property="og:url"          content="https://fortisbeauty.com.ua/{{ request.path }}" />
     <meta property="og:image:width"  content="480" />
@@ -26,7 +26,7 @@
          {% include 'shop/home/home__slider.html' %}
          <div class="home__categories">
             <div class="content">
-                <p class="title1">Категории</p>
+                <p class="title1">Категорії</p>
                 <ul>
                     {% for category in tree %}
                         <li>

@@ -2,7 +2,7 @@
 {% load static %}
 {% block profile %}
 <div class="user__subscribe">
-    <p class="title1">Подписки на рассылку</p>
+    <p class="title1">Передплати на розсилку</p>
    
     <form class="form" action="{% url 'user:user_subscribe' %}" method="POST">
         {% csrf_token %}
@@ -19,7 +19,7 @@
                 {% endfor %}
             </div>
         {% endfor %}
-        <button type="submit">Обновить</button>
+        <button type="submit">Обновити</button>
     </form>
    
 </div>

@@ -1,6 +1,6 @@
 {% load static %}
-<span class="product__code">Код товара: {{ variant.code }}</span>
-<span class="product__code">В наличии: {{ variant.stock }} шт.</span>
+<span class="product__code">Код товару: {{ variant.code }}</span>
+<span class="product__code">В наявності: {{ variant.stock }} шт.</span>
 
 <div class="product__price">
     <span class="reatail__price">
@@ -34,7 +34,7 @@
                 {% else %}
                     <span class="whoosale__price">Опт: {{ variant.whoosale_price }} грн.</span>
                 {% endif %}
-                <span class="helptext">При добавлении в корзину, для Вас, будет учитыватся оптовая цена</span>
+                <span class="helptext">При додаванні в кошик для Вас буде враховуватися оптова ціна</span>
             </div>
         </div>
     {% endif %}
@@ -74,7 +74,7 @@
         {% endif %}
         <button class="action plus">+</button>
     </div>
-    <button class="buy__button">Купить</button>
+    <button class="buy__button">Купити</button>
 </div>
 
 <div class="buyer__info"></div>

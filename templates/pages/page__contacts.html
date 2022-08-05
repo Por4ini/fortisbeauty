@@ -9,10 +9,10 @@
     <!-- BREADCRUMBS -->
     <div class="breadcrumbs">
         <a href="/">
-            <span>{% trans 'Главная' %}</span>
+            <span>{% trans 'Головна' %}</span>
         </a>
         <span class="slash">/</span>
-        <p>{% trans 'Контакты' %}</p>
+        <p>{% trans 'Контакти' %}</p>
     </div>
 
     <!-- TITLE -->
@@ -23,8 +23,8 @@
     <div class="page__contacts">
         <div class="info__wrapper">
             <div class="info">
-                <p class="title title2">{% trans 'Контактная информация' %}</p>
-                <p class="text">{% trans 'Заполните форму и наша команда свяжется с Вами в течении 20 мин.' %}</p>
+                <p class="title title2">{% trans 'Контактна інформація' %}</p>
+                <p class="text">{% trans 'Заповніть форму і наша команда зв'яжеться з Вами протягом 20 хв.' %}</p>
                 <ul>
                     {% for phone in phones %}
                         <li>
@@ -68,7 +68,7 @@
             <div class="fields">
                 {{ form.as_p }}
             </div>
-            <button data-action='submit'>Отправить</button>
+            <button data-action='submit'>Відправити</button>
         </form>
     ` 
     document.querySelector('.constct__form').innerHTML = formInnerDara

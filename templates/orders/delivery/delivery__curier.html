@@ -1,6 +1,6 @@
 
 <div style="margin-bottom: 32px;">
-    <p style="color:grey;">Бесплатная лостава при заказе от 2000 грн.</p>
+    <p style="color:grey;">Безкоштовна доставка при замовленні від 2000 грн.</p>
 </div>
 <div class="curier delivery__type-form ">
     <div class="fields">
@@ -19,7 +19,7 @@
         {% endif %}
         <label>
             <input 
-                placeholder="Город" 
+                placeholder="Місто" 
                 type="text"  data-type="text" name="city" 
                 value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.city }}{% endif %}"
                 required
@@ -27,7 +27,7 @@
         </label>
         <label>
             <input 
-                placeholder="Улица" 
+                placeholder="Вулиця" 
                 type="text" data-type="text" name="street" id="input_street"
                 value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.street }}{% endif %}" 
                 required
@@ -35,7 +35,7 @@
         </label>
         <label>
             <input 
-                placeholder="Дом" 
+                placeholder="Дім" 
                 type="text" data-type="text" name="house" 
                 value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.house }}{% endif %}" 
                 required
@@ -43,7 +43,7 @@
         </label>
         <label>
             <input 
-                placeholder="Квартира / Офис" 
+                placeholder="Квартира / Офіс" 
                 type="text" data-type="text" name="appartment" 
                 value="{% if user.adress_chosen %}{{ user.adress_chosen.adress.appartment }}{% endif %}"
             >
@@ -52,15 +52,15 @@
     
 
     <div>
-        <span class="subtitle">Способ оплаты</span>
+        <span class="subtitle">Спосіб оплати</span>
         <input class="hidden" type="radio" name="pay_type" value="cash" id="paytype_1" checked>
         <input class="hidden" type="radio" name="pay_type" value="card" id="paytype_2">
         <ul class="payment-types">
             <label for="paytype_1">
-                <li>Наличными</li>
+                <li>Готівкою</li>
             </label>
             <label for="paytype_2">
-                <li>Оплатить картой</li>
+                <li>Оплата картою</li>
             </label>
         </ul>
     </div>

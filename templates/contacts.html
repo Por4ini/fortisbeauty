@@ -12,8 +12,8 @@
 		</div>
 	</div>
 	<div class="contatcs-info">
-		<h1 class="medium h1">Контакты</h1>
-		<p class="pd-bottom-48">г. Киев, ул. Семьи Идзиковских 39</p>
+		<h1 class="medium h1">Контакти</h1>
+		<p class="pd-bottom-48">м. Київ, вул. Сімї Ідзиковських 39</p>
 		<div class="contacts-phones">
 			<img src="{% static 'img/icons/kyivstar.png' %}"  alt="kyivstar"><a href="tel:+380962923451"
 				 onclick="fClose('mobile-header-hidden-phones')">+38 096 292 34 51</a>
@@ -27,25 +27,25 @@
 
 
 
-		<p class="h3 medium pd-top-48 pd-bottom-24">Отправить нам сообщение</p>
+		<p class="h3 medium pd-top-48 pd-bottom-24">Відправити нам повідомлення</p>
 		{% if message %}
 		<p class="pd-bottom-24 h3">{{ message }}</p>
 		{% endif %}
 		<form action="{% url 'shop:contacts' %}" method="POST" id="contactsForm">
 			{% csrf_token %}
 			<div class="">
-				<input type="text"  id="first_name"   name="firstName" value="" placeholder="Имя" data-alert="Выедите Ваше имя" required>
+				<input type="text"  id="first_name"   name="firstName" value="" placeholder="Ім'я" data-alert="Введіть ваше ім'я" required>
 			</div>
 			<div class="">
-				<input type="email" id="email"     name="email"     value="" placeholder="Еmail" data-alert="Введите Ваш Еmail" data-error="Выедите Еmail корректно" required>
+				<input type="email" id="email"     name="email"     value="" placeholder="Еmail" data-alert="Введіть ваш Еmail" data-error="Введіть Еmail корректно" required>
 			</div>
 			<div class="">
-				<input type="text"   id="phone"  name="phone"     value="" placeholder="Номер телефона" data-alert="Выедите номер телефона" id="phone" required>
+				<input type="text"   id="phone"  name="phone"     value="" placeholder="Номер телефону" data-alert="Введіть номер телефону" id="phone" required>
 			</div>
 			<div class="">
-				<textarea  rows="10" cols="45" id="text"  name="text"  value="" placeholder="Ваше сообщение" data-alert="Вы хотите отправить нам устое письмо?" required></textarea>
+				<textarea  rows="10" cols="45" id="text"  name="text"  value="" placeholder="Ваше повідомлення" data-alert="Ви хочете відправити нам листа?" required></textarea>
 			</div>
-			<button type="submit">Отпарвить</button>
+			<button type="submit">Відправити</button>
 		</form>
 
 	</div>

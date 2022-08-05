@@ -9,26 +9,26 @@
     >
     {% csrf_token %}
     <div class="personal-info__form form__block">
-        <span class="title">Персональная информация</span>
+        <span class="title">Персональна інформація</span>
         <div class="fields">
             <label>
                 <input 
                     type="text" data-type="text" name="first_name" 
-                    value="{{ request.user.first_name }}" placeholder="Имя" 
+                    value="{{ request.user.first_name }}" placeholder="Ім'я" 
                 required>
             </label>
         
             <label>
                 <input 
                     type="text" data-type="text" name="last_name" 
-                    value="{{ request.user.last_name }}" placeholder="Фамилия" 
+                    value="{{ request.user.last_name }}" placeholder="Фамілія" 
                 required>
             </label>
         
             <label>
                 <input 
                     type="text" data-type="text"  name="father_name" 
-                    value="{{ request.user.father_name }}" placeholder="Отчество"  
+                    value="{{ request.user.father_name }}" placeholder="По-батькові"  
                 >
             </label>
         
@@ -42,18 +42,18 @@
             <label>
                 <input 
                     type="email" name="email" data-type="email" 
-                    value="{{ request.user.email }}" placeholder="Email (для квитанции)" 
+                    value="{{ request.user.email }}" placeholder="Email (для квитанції)" 
                 >
             </label>
 
         </div>
     </div>
     <div class="delivey form__block">
-        <span class="title">Доставка и полата</span>
+        <span class="title">Доставка і оплата</span>
         <div class="fields">
             <input class="hidden" type="radio" name="delivery" id="delivery__new_post" value="newpost" {% if delivery == 'newpost' or delivery == None %}checked{% endif %}>
             <input class="hidden" type="radio" name="delivery" id="delivery__curier"   value="curier"  {% if delivery == 'curier' %}checked{% endif %}>
-            <span class="subtitle">Выберите способ отправки</span>
+            <span class="subtitle">Виберіть спосіб надсилання</span>
             <ul class="delivery-types">
                 <li  class="delivery-types__item" >
                     <a  
@@ -65,7 +65,7 @@
                         data-form="newpost">
                         <img src="{% static 'img/newpost.png' %}" alt="Новая почта">
                     </a>
-                    <span>Новая почта</span>
+                    <span>Нова пошта</span>
                 </li>
                 <li class="delivery-types__item">
                     <a 
@@ -77,7 +77,7 @@
                         data-form="curier">
                         <img src="{% static 'img/courier.png' %}" alt="Курьером">
                     </a>
-                    <span>Курьером</span>
+                    <span>Кур'єром</span>
                 </li>
             </ul>
                 
@@ -89,13 +89,13 @@
                 {% endif %}
             </div>
             <div class="total_price_wrapper" style="margin-top: 24px;">
-                <p style="font-weight: 500;">Стоимотсь доставки: <span class="delivery_price">По тарифам перевозчика</span></p>
-                <p style="font-weight: 500; margin-top: 12px;">Сумма заказа: <span class="order_total_price">-</span></p>
+                <p style="font-weight: 500;">Вартість доставки: <span class="delivery_price">За тарифами перевізника</span></p>
+                <p style="font-weight: 500; margin-top: 12px;">Сума замовлення: <span class="order_total_price">-</span></p>
             </div>
     
         </div>
     </div>
     <div class="order_button grid-hd">
-        <button type="submit">Оформить заказ</button>
+        <button type="submit">Оформити замовлення</button>
     </div>
 </form>

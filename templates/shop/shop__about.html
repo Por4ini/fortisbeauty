@@ -11,13 +11,13 @@
 	<div>
 		<img src="{% static 'img/logo.png' %}" alt="">
 		<div class="richtext">
-			<h1 class="medium h1 pb24 center">О компании</h1>
+			<h1 class="medium h1 pb24 center">Про компанію</h1>
 			{% if text.about_us %}
 				{{ text.about_us.translate.text|safe }}
 			{% else %}
 				<div class="about_mission">
-					<p class="pt8 h4"><span class="bold h4">Наша миссия</span> - это не поиск подходящего клиента для нашего предложения, а создание подходящего предложения для нашего клиента ! Мы делаем это постоянно развиваясь и внедряя самые новые и актуальные предложения с рынка бюти индустрии, тем самым повышая и без того высокую планку потребности нашего клиента. Компания FortisBeauty базируется в Украине, г. Киев ул.Семьи Идзиковских 39 и включает представительства таких брендов как TM Evgeniy Eroshkin TM Moroccanoil, TM Genosys.</p>
-					<p class="pt8 h4">Представительства таких брендов как: TM Evgeniy Eroshkin, TM Moroccanoil, TM Genosys.</p>
+					<p class="pt8 h4"><span class="bold h4">Наша місія</span> - це не пошук відповідного клієнта для нашої пропозиції, а створення відповідної пропозиції для нашого клієнта! Ми робимо це постійно розвиваючись і впроваджуючи найновіші та найактуальніші пропозиції з ринку бюті індустрії, тим самим підвищуючи і так високу планку потреби нашого клієнта. Компанія FortisBeauty базується в Україні, м. Київ вул. Сім'ї Ідзиковських 39 та включає представництва таких брендів як TM Evgeniy Eroshkin TM Moroccanoil, TM Genosys.</p>
+					<p class="pt8 h4">Представництва таких брендів як: TM Evgeniy Eroshkin, TM Moroccanoil, TM Genosys.</p>
 				</div>
 			{% endif %}
 		</div>

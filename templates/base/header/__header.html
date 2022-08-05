@@ -12,12 +12,12 @@
             <div class="actions">
                 <span class="action pointer header_phone_icon">
                     <img  onclick="Open('mobile-header-hidden-phones',this)" class="ico" src="{% static 'img/icons/call.png' %}" alt="call">
-                    <span class="h5" onclick="Open('mobile-header-hidden-phones',this)">{% trans 'Позвонить' %}</span>
+                    <span class="h5" onclick="Open('mobile-header-hidden-phones',this)">{% trans 'Подзвонити' %}</span>
                     <div class="hidden-phones">
                         <!-- CALL ME -->
                         <a class="fast-call" onclick="Close('mobile-header-hidden-phones')">
                             <img src="{% static 'img/icons/phone-call.png' %}" alt="life">
-                            <span class="h5">{% trans 'Перезвонить мне' %}</span>
+                            <span class="h5">{% trans 'Передзвоніть мені' %}</span>
                         </a>
                         <!-- KYIVSTAR -->
                         <a href="tel:+380962923451"onclick="Close('mobile-header-hidden-phones')">
@@ -52,7 +52,7 @@
             </div>
             <div class="right" onclick="SidebarOpen('sidebar_wishlist')">
                 <img src="{% static 'img/icons/user/Heart.svg' %}" alt="wishlist" class="ico">
-                <p>{% trans 'Список желаний' %}</p>
+                <p>{% trans 'Список побажань' %}</p>
             </div>
         </div>
     </div>
@@ -80,11 +80,11 @@
                     <div class="profile action">
                         <img src="{% static 'img/icons/user/Avatar.svg' %}" alt="Пользоввтель" class="ico">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'profile' %}" class="user_profile_icon">{% trans 'Кабинет' %}</a>    
+                            <a href="{% url 'profile' %}" class="user_profile_icon">{% trans 'Кабінет' %}</a>    
                         {% else %}
-                            <a href="{% url 'user:login' %}">{% trans 'Вход' %}</a>
+                            <a href="{% url 'user:login' %}">{% trans 'Вхід' %}</a>
                             <span class="slash">/</span>
-                            <a href="{% url 'user:registration' %}">{% trans 'Регистрация' %}</a>
+                            <a href="{% url 'user:registration' %}">{% trans 'Реєстрація' %}</a>
                         {% endif %}
                     </div>
                     <!-- CART -->
@@ -100,7 +100,7 @@
     </header>
     <div class="header__search" id="header__search">
         <div class="content">
-            <input id="search_input" type="text" name="search" value="" placeholder="{% trans 'Начниете вводить название товара' %}">
+            <input id="search_input" type="text" name="search" value="" placeholder="{% trans 'Почніть вводити назву товару' %}">
             <div id="search_output_header"></div>
         </div>
     </div>

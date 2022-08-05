@@ -2,7 +2,7 @@
 {% block title %}{% trans 'Каталог' %}{% endblock %}
 
 <!-- META DESCRIPTION-->
-{% block meta_description %}{% trans 'Интерент магазин медицинских товаров' %}{% endblock %}
+{% block meta_description %}{% trans 'Інтернет магазин медичних товарів' %}{% endblock %}
 
 <!-- LINKS -->
 {% block links %}
@@ -19,8 +19,8 @@
 <div class="content">
     <!-- BREADCRUMBS -->
     <ul class="breadcrumbs">
-        <li><a href="/">Главная</a></li>
-        <li><span class="slash">/</span><a href="/brands/">Бренды</a></li>
+        <li><a href="/">Головна</a></li>
+        <li><span class="slash">/</span><a href="/brands/">Бренди</a></li>
         <li><span class="slash">/</span><a href="{{ selected_brand.url }}">{{ selected_brand.name }}</a></li>
         {% if category %}
             <li><span class="slash">/</span>{{ category.name }}</li>
@@ -79,16 +79,16 @@
                 
                 <div class="catalogue__filter-menu">
                     <label for="show_filter" class="catalogue__filter-menu__button">
-                        <img src="{% static 'img/icons/filter.png' %}" alt="Фильтр">
-                        <span>Фильтры</span> 
+                        <img src="{% static 'img/icons/filter.png' %}" alt="Фільтр">
+                        <span>Фільтри</span> 
                     </label>
                     <div class="sort">
                         <select data-changed=false name="sort" class="catalogue__filter-menu__select">
                             <option value="new" selected=true>По рейтингу</option>
                             <option value="new">Новинки</option>
-                            <option value="popular">Популярные</option>
-                            <option value="price_asc">Возрастанию цены</option>
-                            <option value="price_dsc">Убыванию цены</option>
+                            <option value="popular">Популярні</option>
+                            <option value="price_asc">Зростання ціни</option>
+                            <option value="price_dsc">Зменшення ціни</option>
                         </select>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
            
                     <div class="more">
                         <button data-href="{{ pages.more }}" class="{% if pages.current == pages.total %}disabled{% endif %} load-more btn-md">
-                            Покать еще
+                            Показати ще
                         </button>
                     </div>
                     

@@ -2,14 +2,14 @@
 {% load static %}
 {% block profile %}
 <div class="user__orders">
-    <p class="title1">Мои заказы</p>
+    <p class="title1">Мої замовлення</p>
     <ul class="orders">
         <li class="heading_wrapper">
             <div class="heading main">
-                <p>Статус заказа</p>
+                <p>Статус замовлення</p>
                 <p>Тип доставки</p>
-                <p>Сумма</p>
-                <p class="date">Время заказа</p>
+                <p>Сума</p>
+                <p class="date">Час замовлення</p>
             </div>
            
             {% for order in orders %}
@@ -22,7 +22,7 @@
                     </div>
                     
                     <ul class="products">
-                        <p class="bold title">Товары в заказе</p>
+                        <p class="bold title">Товари на замовлення</p>
                         {% for product in order.products %}
                             <li class="product">
                                 <div class="image">
@@ -39,7 +39,7 @@
                             </li>
                         {% endfor %}
                         <div>
-                            <a class="button" href="{% url 'order:repeat' id=order.id %}">Повторить</a>
+                            <a class="button" href="{% url 'order:repeat' id=order.id %}">Повторити</a>
                         </div>
                         
                     </ul>

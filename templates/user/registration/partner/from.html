@@ -9,7 +9,7 @@
 {% block content %}
 <div class="content">
     <div class="registration__partner">
-        <p class="h1 center">Регистрация партнера</p>
+        <p class="h1 center">Реєстрація партнера</p>
         <form action="{% url 'user:registration_business' %}" class="form validate" method="POST">
             {% csrf_token %}
             <!-- Errors -->
@@ -34,7 +34,7 @@
                 {% endfor %}
             </div>
             <!-- FormSet | Business info -->
-            <p class="title">Информация о Вашей компании</p>
+            <p class="title">Інформація про Вашу компанію</p>
             <div id="business">
                 {{ business__formset.management_form }}
                 {% for form in business__formset %}
@@ -43,7 +43,7 @@
                     </fieldset>
                 {% endfor %}
             </div>
-            <button type="submit">Зарегестроватся</button>
+            <button type="submit">Зареєструватись</button>
         </form>
     </div>
 </div>
