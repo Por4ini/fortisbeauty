@@ -2,11 +2,11 @@
 
 <div class="swiper-slide quiz_block" data-value="brand_work">
     <!-- PERSONAL INFO -->
-    <input name="name" class="selectize-input mb8" type="hidden" placeholder="Ваше имя" value="{{ user.name }}">
-    <input name="phone" class="selectize-input mb8" type="hidden" placeholder="Номер телефона" value="{{ user.phone }}">
+    <input name="name" class="selectize-input mb8" type="hidden" placeholder="Ваше ім'я" value="{{ user.name }}">
+    <input name="phone" class="selectize-input mb8" type="hidden" placeholder="Номер телефону" value="{{ user.phone }}">
     <input name="email" class="selectize-input mb8" type="hidden" placeholder="E-mail" value="{{ user.email }}">
    <!-- BRANDS -->
-    <p class="h3">Бренды с которыми Вы работаете</p>
+    <p class="h3">Бренди з якими Ви працюєте</p>
     <input type="hidden" id="brand_work_hidden" name="brand_work_hidden">
     <div class="inputs">
         <p>
@@ -106,7 +106,7 @@
             <label for="brand_work_24">3Lab</label>
         </p>
     </div>
-    <select class="select-state" name="state[]" multiple class="demo-default" placeholder="Ваш варинт">
+    <select class="select-state" name="state[]" multiple class="demo-default" placeholder="Ваш варіант">
         {% include 'opt/brands.html' %}
     </select>
 </div>

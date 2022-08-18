@@ -1,13 +1,13 @@
 <div class="swiper-slide">
     <!-- PERSONAL INFO -->
-    <p class="h2 mt24 mb24">Личная информация</p>
+    <p class="h2 mt24 mb24">Особиста інформація</p>
     <div class="form quiz_block" data-value="form" style="margin-top: 32px;">
         <div class="fields">
             <p>
-                <input name="name"  type="text" placeholder="Ваше имя" required>
+                <input name="name"  type="text" placeholder="Ваше ім'я" required>
             </p>
             <p>
-                <input name="phone"  type="text" placeholder="Номер телефона" required>
+                <input name="phone"  type="text" placeholder="Номер телефону" required>
             </p>
             <p>
                 <input name="email" type="email" placeholder="E-mail" required>
@@ -16,15 +16,15 @@
                 <input name="site" type="text" placeholder="Ваш сайт">
             </p>
             <p>
-                <input name="instagram" type="text" placeholder="Ваш инстаграмм">
+                <input name="instagram" type="text" placeholder="Ваш інстаграм">
             </p>
         </div>
     </div>
 
     {% if request.user.is_authenticated %}
-        <button class="openquiz mt24 mb8 h3" type="submit">Получить комерческое предложение</button>
+        <button class="openquiz mt24 mb8 h3" type="submit">Отримати комерційну пропозицію</button>
     {% else %}
-        <button class="openquiz mt24 mb8 h3" type="submit">Зарегестрироватся</button>
+        <button class="openquiz mt24 mb8 h3" type="submit">Зареєструватись</button>
     {% endif %}
    
     

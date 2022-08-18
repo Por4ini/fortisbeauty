@@ -8,8 +8,8 @@ validation = {
             length : 0,
         },
         msg : {
-            re : 'Email имеет неверный формат',
-            length : 'Введите ваш Email', 
+            re : 'Email має невірний формат',
+            length : 'Введіть ваш Email', 
         },
         replace : /[^0-9a-zA-Z._@-]/g,
     },
@@ -18,7 +18,7 @@ validation = {
             length : 0,
         },
         msg : {
-            length : 'Это поле не может быть пустым', 
+            length : 'Це поле не може бути порожнім', 
         },
     },
     text_only : {
@@ -26,7 +26,7 @@ validation = {
             length : 0,
         },
         msg : {
-            length : 'Это поле не может быть пустым', 
+            length : 'Це поле не може бути порожнім', 
         },
         replace : /[^a-zA-ZА-Яа-яіїє]/g
     },
@@ -35,7 +35,7 @@ validation = {
             length : 0,
         },
         msg : {
-            length : 'Это поле не может быть пустым', 
+            length : 'Це поле не може бути порожнім', 
         },
         replace : /[^0-9.]/g
     },
@@ -44,7 +44,7 @@ validation = {
             length : 7,
         },
         msg : {
-            length : 'Это поле не может быть пустым', 
+            length : 'Це поле не може бути порожнім', 
         },
         replace : /[^+ 0-9.]/g
     },
@@ -55,8 +55,8 @@ validation = {
             length : 6,
         },
         msg : {
-            re : 'Пароль имеет не верный формат',
-            length : 'Пароль не может быть меньше 6-ти символов латиницы и цифр', 
+            re : 'Пароль має неправильний формат',
+            length : 'Пароль не може бути менше 6-ти символів латиниці та цифр', 
         },
         replace : /[^0-9a-zA-ZА]/g
     },
@@ -74,7 +74,7 @@ validation = {
             func : inputTypeRadioValid,
         },
         msg : {
-            func : 'Выберите один из вариантов.'
+            func : 'Виберіть один із варіантів.'
         }
     }
 }
@@ -247,7 +247,7 @@ function AjaxFieldChanged(data, field=undefined) {
         document.querySelector('.ajax_input_values_list').remove()
     } else if (data.includes(field.value) == false) {
         field.value = ''
-        alert('Выберите значение из списка доступных')
+        alert('Виберіть значення зі списку доступних')
     }
 }
 
@@ -358,7 +358,7 @@ function formOnSubmit(form) {
             message.innerHTML = ""
             message.classList.remove('active')
         } else {
-            message.innerHTML = "Заполните форму корректно"
+            message.innerHTML = "Заповніть форму коректно"
             message.classList.add('active')
         }
     }

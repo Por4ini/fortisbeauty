@@ -38,7 +38,7 @@ const activateCommentForm = (form) => {
                 }
                 initReply()
             })
-            .catch(err => {alert('Что-то пошло не так. Ошибка ' + err.status)})
+            .catch(err => {alert('Щось пішло не так. Помилка ' + err.status)})
             cloesPopUp()
             
         } 

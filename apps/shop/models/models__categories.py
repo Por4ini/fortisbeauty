@@ -122,9 +122,9 @@ class Categories(MPTTModel, NameSlug, Images, Seo):
     #     cache.delete(self.get_absolute_url())
     #     return True
 
-    # def save(self, *args, **kwargs):
-    #     super(MPTTModel, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super(MPTTModel, self).save(*args, **kwargs)
 
-
+    
 
         
