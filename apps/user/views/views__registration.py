@@ -103,7 +103,7 @@ class PartnerRegistration(CreateView):
             'Бизнес: ' + ', '.join([business.name for business in obj.company.business_type.all()]),
             'E-mail: ' + obj.email,
             'Телефон: ' + obj.phone,
-            'https://fortisbeauty.com.ua' + url,
+            'https://fortisbeauty.store' + url,
         ]
         send_telegeram(msg)
 

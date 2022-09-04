@@ -6,8 +6,10 @@
                 {% if banners|length %}
                     {% for slide in banners %}
                         <div class="swiper-slide home-slider__slide">
+                            
                             <img class="lazy banner__pc"     src="{{ slide.pc.image_thmb.l.path }}"     alt="{{ slide.title }}">
                             <img class="lazy banner__mobile" src="{{ slide.mobile.image_thmb.l.path }}" alt="{{ slide.title }}">
+                            <a href="{% url 'shop:catalogue' %}"</a>
                             <div class="data">
                                 <div class="text">
                                     {% if slide.title %}
@@ -19,7 +21,7 @@
                                 </div>
                                 {% if slide.link|length %}
                                 <div>
-                                    <a class="button" href="{{ slide.link }}">Поробнее</a>
+                                    <a class="button" href="{{ slide.link }}">Детальніше</a>
                                 </div>
                                 {% endif %}
                                 

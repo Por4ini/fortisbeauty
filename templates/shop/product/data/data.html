@@ -1,7 +1,7 @@
 {% load static %}{% load i18n %}<div class="product__data">
     <span class="brand" itemprop="brand">{{ product.brand.name }}</span>
     <span class="human">{{ product.human }}</span>
-    <span class="name">{{ product.name }}</span>
+    <span class="name">{{ product.name }} {{ product.variant.0.value }} мл.</span>
     {% if stars %}
         <div class="stars">
             {% for start in stars %}

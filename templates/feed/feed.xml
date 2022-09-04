@@ -3,7 +3,7 @@
 	<channel>
 		<title>FortisBeauty</title>
 		<link>https://fortisbeauty.com.ua/</link>
-		<description>This is a feed for https://fortisbeauty.com.ua/</description>
+		<description>This is a feed for https://fortisbeauty.store/</description>
         {% for product in products %}
             {% for variant in product.variant.all %}
                 <item>

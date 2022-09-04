@@ -195,6 +195,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
+CKEDITOR_BASEPATH = "/ckeditor/static/ckeditor/ckeditor/"
+
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOGIN_URL = "/login"
