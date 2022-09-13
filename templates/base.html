@@ -1,21 +1,48 @@
 {% load static %}{% load i18n %}{% load compress %}{% load cache %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Facebook Pixel Code -->
+    {% block meta_description %}
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        
+        fbq('init', "475098157616399");
+        fbq('track', 'PageView');
+            fbq('track', 'ViewContent');
+    </script>
+    <noscript>
+     <img height="1" width="1" 
+    src="https://www.facebook.com/tr?id=475098157616399&ev=PageView
+    &noscript=1"/>
+    </noscript>
+    
+    {% endblock meta_description %}
+    <!-- Facebook Pixel Code -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="facebook-domain-verification" content="smqg0a3eubbygwnbuzzh9v51dfcs5q" />
+    
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
     <title>FortisBeauty - {% block title %}Ваш кращий постачальник косметики{% endblock %}</title>
     <!-- OPENGRAPH -->
     {% block og %}
-        <meta property="og:title"        content="Fortis Beauty" />
-        <meta property="og:description"  content="Інтернет магазин професійної косметологічної продукції" />
-        <meta property="og:type"         content="shop"/>
-        <meta property="og:url"          content="https://fortisbeauty.com.ua/{{ request.path }}" />
-        <meta property="og:image:width"  content="480" />
-        <meta property="og:image:height" content="480" />
-        <meta property="og:image"        content="https://fortisbeauty.com.ua{% static 'img/og-logo.jpg' %}" />
+    <meta property="og:title"        content="Fortis Beauty" />
+    <meta property="og:description"  content="Інтернет магазин професійної косметологічної продукції" />
+    <meta property="og:type"         content="website"/>
+    <meta property="og:url"          content="https://fortisbeauty.store{{ request.path }}" />
+    <meta property="og:image:width"  content="480" />
+    <meta property="og:image:height" content="480" />
+    <meta property="og:image"        content="https://fortisbeauty.store{% static 'img/og-logo.jpg' %}" />
+    <meta property="og:locale"       content="ua_UA">
     {% endblock %}
     <!-- CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">

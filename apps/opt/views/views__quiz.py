@@ -106,7 +106,7 @@ def get_analitics(request):
         ]
         request.session['user'] = data
         msg = urllib.parse.quote('\n'.join(msg))
-        url = "https://api.telegram.org/bot817785032:AAG-Q3s8wRhyZbkoJScSPvE2XDrCVlgZKKA/sendMessage?chat_id=-1001490724377&text=" + msg
+        url = "https://api.telegram.org/bot5610177896:AAHDQ3fK_yY2DKMHwh_Unc6V2sJxsZaO2T4/sendMessage?chat_id=-1001619685506&text=" + msg
         contents = urllib.request.urlopen(url).read()
         return HttpResponseRedirect(reverse('opt:success', args={}))
     return render(request, 'opt/salons/get_analysis.html',args)

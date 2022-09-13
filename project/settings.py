@@ -100,8 +100,8 @@ CORS_ALLOW_METHODS = (
 IMG_SIZE_S = 480, 480
 
 
-BOT_TOKEN = '1804134492:AAGQx88cHrWpNShbtgrtUSJQ8Bonfc0dH-s'
-BOT_CHATID = '-1001490724377'
+BOT_TOKEN = '5610177896:AAHDQ3fK_yY2DKMHwh_Unc6V2sJxsZaO2T4'
+BOT_CHATID = '-1001619685506'
 
 
 MIDDLEWARE = [
@@ -195,7 +195,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
-CKEDITOR_BASEPATH = "/ckeditor/static/ckeditor/ckeditor/"
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'static/')
 

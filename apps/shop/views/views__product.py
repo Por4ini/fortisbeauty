@@ -35,7 +35,7 @@ class ProductViewSet(viewsets.ViewSet):
                 "@type": "Product",
                 "sku": self.variant.code,
                 "name": self.product.name,
-                "image": ['https://fortisbeauty.com.ua/' + image.image_thmb['l']['path'] for image in self.variant.images.all() if image.image_thmb.get('l')],
+                "image": ['https://fortisbeauty.store/' + image.image_thmb['l']['path'] for image in self.variant.images.all() if image.image_thmb.get('l')],
                 "description": ''.join([item for item in [
                     self.product.description, 
                     self.product.prescription, 
@@ -77,7 +77,7 @@ class ProductViewSet(viewsets.ViewSet):
                 },
                 "offers": {
                     "@type": "Offer",
-                    "url": "https://fortisbeauty.com.ua/" + self.variant.get_absolute_url(),
+                    "url": "https://fortisbeauty.store/" + self.variant.get_absolute_url(),
                     "priceCurrency": "UAH",
                     "price": self.variant.price,
                     "itemCondition": "https://schema.org/NewCondition",
@@ -148,8 +148,8 @@ class ProductViewSet(viewsets.ViewSet):
         url = reverse('admin:%s_%s_change' % (product._meta.app_label, product._meta.model_name), args=[force_text(product.pk)])
         msg = [
              title + '\n',
-            'https://fortisbeauty.com.ua' + url,
-            'https://fortisbeauty.com.ua' + product.get_absolute_url(),
+            'https://fortisbeauty.store' + url,
+            'https://fortisbeauty.store' + product.get_absolute_url(),
         ]
         send_telegeram(msg)
 

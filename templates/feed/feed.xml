@@ -2,7 +2,7 @@
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
 	<channel>
 		<title>FortisBeauty</title>
-		<link>https://fortisbeauty.com.ua/</link>
+		<link>https://fortisbeauty.store/</link>
 		<description>This is a feed for https://fortisbeauty.store/</description>
         {% for product in products %}
             {% for variant in product.variant.all %}

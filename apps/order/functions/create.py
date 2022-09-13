@@ -25,7 +25,7 @@ class CreateOrder():
             title + '\n',
             ' '.join([obj.name,obj.surname]),
             'Телефон: ' + order.phone,
-            'https://fortisbeauty.com.ua' + url,
+            'https://fortisbeauty.store' + url,
         ]
 
         for n, product in enumerate(order.products.all()):

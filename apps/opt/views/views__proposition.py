@@ -36,7 +36,7 @@ class WhoosaleView(UpdateView):
         url = reverse('admin:%s_%s_change' % (obj._meta.app_label, obj._meta.model_name), args=[force_text(obj.pk)])
         msg = [
             'Зарегестриованный пользовател хочет продавать оптом.' + '\n'
-            'url: ' + 'https://fortisbeauty.com.ua' + url
+            'url:' + 'https://fortisbeauty.store' + url
         ]
         send_telegeram(msg)
 

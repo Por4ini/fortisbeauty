@@ -1,5 +1,21 @@
 {% load static %}
 {% load i18n %}
+
+<!-- META DESCRIPTION
+{% block meta_description %}
+    <meta property="product:retailer_item_id" content="https://fortisbeauty.store{{ product.variant.0.id }}" />
+    <meta property="og:image" content="https://fortisbeauty.store{{ product.variant.0.images.0.s }}" />
+    <meta property="og:url" content="https://fortisbeauty.store/catalogue{{ product.url }}" />
+    <meta property="product:brand" content="{{ product.brand }}" />
+    <meta property="product:human" content="{{ product.human }}" />
+    <meta property="product:name" content="https://fortisbeauty.store/catalogue{{ product.name }}" />
+    <meta property="product:price:amount" content="{{ product.variant.0.price }}" />
+    <meta property="product:price:currency" content="UAH" />
+    <meta property="og:availability" content="available for order" />
+{% endblock meta_description %}-->
+
+
+
 <li class="catalogue__product__wrapper">
     <div class="catalogue__product" id="product-{{ product.pk }}">
         {% if product.variant.0.images|length %}

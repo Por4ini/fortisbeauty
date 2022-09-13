@@ -61,10 +61,10 @@ class CustomerRegistration(CreateView):
         email = EmailMessage(
             mail_subject,
             html,
-            'info@fortisbeuty.com',
+            'office.fortisbeauty@gmail.com',
             [user.email],
             headers={
-                'Reply-To': 'info@fortisbeuty.com'
+                'Reply-To': 'office.fortisbeauty@gmail.com'
             }
         )
         email.content_subtype = "html"
@@ -122,10 +122,10 @@ class PartnerRegistration(CreateView):
         email = EmailMessage(
             mail_subject,
             html,
-            'info@fortisbeuty.com',
+            'office.fortisbeauty@gmail.com',
             [user.email],
             headers={
-                'Reply-To': 'info@fortisbeuty.com'
+                'Reply-To': 'office.fortisbeauty@gmail.com'
             }
         )
         email.content_subtype = "html"
