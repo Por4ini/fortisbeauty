@@ -26,7 +26,7 @@ validation = {
             length : 0,
         },
         msg : {
-            length : 'Це поле не може бути порожнім', 
+            length : 'Це поле не може бути порожнім',
         },
         replace : /[^a-zA-ZА-Яа-яіїє]/g
     },
@@ -65,7 +65,7 @@ validation = {
             func : inputTypePassvord2Valid,
         },
         msg : {
-            func : 'Пароли не совпадают', 
+            func : 'Паролі не співпадають', 
         },
         replace : /[^0-9a-zA-ZА]/g
     },

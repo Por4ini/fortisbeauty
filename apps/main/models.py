@@ -56,12 +56,12 @@ class OurAdvantages(Translation):
 
 
 class Message(models.Model):
-    subject =    models.CharField(blank=False,  max_length=255, verbose_name=_("Тема письма"))
+    subject =    models.CharField(blank=False,  max_length=255, verbose_name=_("Тема листа"))
     date =       models.DateTimeField(auto_now=True, verbose_name=_("Время отправки"))
-    first_name = models.CharField(blank=False, max_length=255, verbose_name=_("Имя"))
+    first_name = models.CharField(blank=False, max_length=255, verbose_name=_("Ім'я"))
     email =      models.CharField(blank=False, max_length=255, verbose_name=_("Email"))
     phone =      models.CharField(blank=True,  max_length=255, verbose_name=_("Телефон"))
-    text =       models.TextField(blank=False,    verbose_name=_("Текст письма"))
+    text =       models.TextField(blank=False,    verbose_name=_("Текст листа"))
     
     class Meta:
         verbose_name = _('Сообщения')

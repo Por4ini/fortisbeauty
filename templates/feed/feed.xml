@@ -16,9 +16,9 @@
                         {{ product.application }}
                         {{ product.composition }}
                     </g:description>
-                    <g:link>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:link>
-                    <g:url>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:url>
-                    <g:image_link>{{ request.scheme }}://{{ current_site }}{{ product.get_image.image_thmb.s.path }}</g:image_link>
+                    <g:link>{{ request.scheme }}:/{{ current_site }}{{ variant.get_absolute_url }}</g:link>
+                    <g:url>{{ request.scheme }}:/{{ current_site }}{{ variant.get_absolute_url }}</g:url>
+                    <g:image_link>{{ request.scheme }}:/{{ current_site }}{{ product.get_image.image_thmb.s.path }}</g:image_link>
                     <g:gender>unisex</g:gender>
                     <g:condition>New</g:condition>
                     <g:availability>in stock</g:availability>

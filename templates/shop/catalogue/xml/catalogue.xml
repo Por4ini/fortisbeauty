@@ -2,8 +2,8 @@
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
 	<channel>
 		<title>Moami</title>
-		<link>{{ request.scheme }}://{{ current_site }}</link>
-		<description>This is a feed for {{ request.scheme }}://{{ current_site }}</description>
+		<link>{{ request.scheme }}:/{{ current_site }}</link>
+		<description>This is a feed for {{ request.scheme }}:/{{ current_site }}</description>
         {% for product in products %}
             {% for variant in product.variants.all %}
                 <item>
@@ -11,9 +11,9 @@
                     <g:brand>{{ product.brand.name }}</g:brand>
                     <g:title>{{ product.brand.name }} - {{ product.name }}, {{ product.human }}, {{ variant.value }} {{ variant.type.translate.unit }}</g:title>
                     <g:description>{% autoescape on %}{{ product.description_text }}{% endautoescape %}</g:description>
-                    <g:link>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:link>
-                    <g:url>{{ request.scheme }}://{{ current_site }}{{ variant.get_absolute_url }}</g:url>
-                    <g:image_link>{{ request.scheme }}://{{ current_site }}{{ product.main_image_medium.url }}</g:image_link>
+                    <g:link>{{ request.scheme }}:/{{ current_site }}{{ variant.get_absolute_url }}</g:link>
+                    <g:url>{{ request.scheme }}:/{{ current_site }}{{ variant.get_absolute_url }}</g:url>
+                    <g:image_link>{{ request.scheme }}:/{{ current_site }}{{ product.main_image_medium.url }}</g:image_link>
                     <g:gender>unisex</g:gender>
                     <g:condition>New</g:condition>
                     <g:availability>in stock</g:availability>

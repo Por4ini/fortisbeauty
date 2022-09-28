@@ -9,10 +9,10 @@
 </head>
 <body style=" font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 16px; margin: 0; padding: 0; color: #333;">
     <header style="position: relative;background-color: whitesmoke; width: 100%; display: block; padding: 12px 0;">
-        <img style="position: relative; display: block; width: 100%; max-width: 320px; margin: 0 auto 12px auto;" class=logo src="https://fortisbeauty.com.ua/static/img/logo.png" alt="FortisBeauty">
+        <img style="position: relative; display: block; width: 100%; max-width: 320px; margin: 0 auto 12px auto;" class=logo src="https://fortisbeauty.store/static/img/logo.png" alt="FortisBeauty">
     </header>
     <p style="position: relative;font-size: 20px; font-weight: 600; text-align: center;">{% trans 'Для відновлення пароля перейдіть за посиланням' %}:</p>
-    <a style="position: relative;display: block;text-align: center; max-width: 320px; text-decoration: none; background-color: #753871; color: white; font-weight: 600; border: none; border-radius: 4px; padding: 12px; margin: 24px auto 0 auto;" href="https://fortisbeauty.com.ua{% url 'user:restore_password__confirm' uidb64=uid token=token %}">
+    <a style="position: relative;display: block;text-align: center; max-width: 320px; text-decoration: none; background-color: #753871; color: white; font-weight: 600; border: none; border-radius: 4px; padding: 12px; margin: 24px auto 0 auto;" href="https://fortisbeauty.store{% url 'user:restore_password__confirm' uidb64=uid token=token %}">
         {% trans 'Відновити пароль' %}
     </a>
 </body>

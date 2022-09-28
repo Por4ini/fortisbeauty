@@ -1,35 +1,37 @@
 {% load static %}{% load i18n %}{% load compress %}{% load cache %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-site-verification" content="Tc_Gl5qTnRBhu9y5ro2WzI7BVVCY7FdWz1ISTQhSAgA" />
     <!-- Facebook Pixel Code -->
     {% block meta_description %}
+    <!-- Meta Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '5738122676207379');
+      fbq('track', 'PageView');
         
-        fbq('init', "475098157616399");
-        fbq('track', 'PageView');
-            fbq('track', 'ViewContent');
+        fbq('track', 'ViewContent');
     </script>
-    <noscript>
-     <img height="1" width="1" 
-    src="https://www.facebook.com/tr?id=475098157616399&ev=PageView
-    &noscript=1"/>
-    </noscript>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=5738122676207379&ev=PageView&noscript=1"
+    /></noscript>
     
+
     {% endblock meta_description %}
-    <!-- Facebook Pixel Code -->
+    <!-- End Meta Pixel Code -->
     
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="facebook-domain-verification" content="smqg0a3eubbygwnbuzzh9v51dfcs5q" />
+    
+    <meta name="facebook-domain-verification" content="eh20i8f6icowesrnl2yyjdyx3el9zq" />
     
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
     <title>FortisBeauty - {% block title %}Ваш кращий постачальник косметики{% endblock %}</title>
