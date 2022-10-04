@@ -100,7 +100,7 @@ class PartnerRegistration(CreateView):
             ' '.join([obj.first_name,obj.father_name,obj.last_name]),
             'Город: ' + obj.city,
             'Компания: ' + obj.company.name,
-            'Бизнес: ' + ', '.join([business.name for business in obj.company.business_type.all()]),
+            #'Бизнес: ' + ','.join([business.name for business in obj.company.business_type.all()]),
             'E-mail: ' + obj.email,
             'Телефон: ' + obj.phone,
             'https://fortisbeauty.store' + url,

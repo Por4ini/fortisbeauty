@@ -16,6 +16,8 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Пользователь должен иметь адрес элетронной почты')
         user = self.model(email=self.normalize_email(email))
         user.set_password(password)
+        user.is_admin = False
+        user.is_staff= False
         for key, value in data.items():
             if hasattr(user, key):
                 setattr(user, key, value)
@@ -31,11 +33,6 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
-
-
-
-    
 
 class CustomUser(AbstractBaseUser):
     email =             models.EmailField(unique=True)
@@ -84,12 +81,12 @@ class CustomUser(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
-        return True
+        return self.is_admin
 
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
-        return True
+        return self.is_admin
 
     def is_staff(self):
         "Is the user a member of staff?"
