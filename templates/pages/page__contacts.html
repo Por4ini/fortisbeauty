@@ -71,8 +71,7 @@
             <div class="fields">
                 {{ form.as_p }}
             </div>
-            <input id="check" name="check" type="hidden" value="" />
-            <button onclick="document.getElementById('check').value = 'secretcode';" data-action='submit'>Відправити</button>
+            <button data-action='submit'>Відправити</button>
         </form>
     ` 
     document.querySelector('.constct__form').innerHTML = formInnerDara

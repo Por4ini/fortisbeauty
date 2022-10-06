@@ -144,7 +144,7 @@ class ProductViewSet(viewsets.ViewSet):
 
 
     def send_to_telegram(self, product, comment_type):
-        title = 'Комментарий' if comment_type == "COMMENT" else "Вопрос"
+        title = 'Коментар' if comment_type == "COMMENT" else "Запитання"
         url = reverse('admin:%s_%s_change' % (product._meta.app_label, product._meta.model_name), args=[force_text(product.pk)])
         msg = [
              title + '\n',
@@ -209,10 +209,10 @@ class ProductViewSet(viewsets.ViewSet):
         if request.user.is_authenticated:
             if comment_type == 'COMMENT':
                 ModelForm = CommentForm
-                heading = f'Комментарий к {product.human if product.human else product.name}'
+                heading = f'Коментар до {product.human if product.human else product.name}'
             else:
                 ModelForm =  QuestionForm
-                heading = f'Вопрос к {product.human if product.human else product.name}'
+                heading = f'Запитання до {product.human if product.human else product.name}'
        
             if request.method == 'POST':
                 form = ModelForm(data=request.POST)
@@ -235,13 +235,13 @@ class ProductViewSet(viewsets.ViewSet):
             })
             template = render_to_string('shop/product/comments/comment_form.html', {'form' : form, 'user' : request.user, 'url' : request.path})
         else:
-            form_type = 'оставить комментарий' if comment_type == 'COMMENT' else 'задать вопрос'
+            form_type = 'залишити коментар' if comment_type == 'COMMENT' else 'задати запитання'
             url = product.variant.first().get_absolute_url()
             template = render_to_string('user/login__form.html', {
                 'form' : LoginForm(), 
                 'url' : f'/login/?redirect={url}'
             }) 
-            heading = f'Для того чтоб {form_type} необходимо авторизоватся'
+            heading = f'Для того щоб {form_type} потрібно авторизуватись'
         return Response({'form' : template, 'heading' : heading})
 
 
@@ -267,7 +267,7 @@ class ProductViewSet(viewsets.ViewSet):
             'user' : request.user.id,
         })
         template = render_to_string('shop/product/comments/comment_reply_form.html', {'form' : form, 'user' : request.user, 'url' : request.path})
-        return Response({'form' : template, 'heading' : 'Ответ на комментарий'})
+        return Response({'form' : template, 'heading' : 'Відповідь на коментар'})
         
 
 
@@ -301,7 +301,7 @@ class WatchListView(viewsets.ViewSet):
 
         return Response({
             'watchlist' : render_to_string('shop/home/home__products.html', {
-                'heading'  : 'Вы просматривали',
+                'heading'  : 'Переглянуті товари',
                 'products' : ProductSerializer(watchlist_products, many=True).data,
             })
         })

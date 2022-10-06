@@ -11,7 +11,7 @@
                     <a href="{{ item.variant.url }}" class="name">{{ item.variant.name }}</a>
                     <span class="price">
                         <span>{{ item.variant.price }} грн.</span>
-                        <button class="buy" data-id="{{ item.variant.id }}" onclick="WishlistToCart(this)">Купить</button>
+                        <button class="buy" data-id="{{ item.variant.id }}" onclick="WishlistToCart(this)">Купити</button>
                     </span>
                     <img class="remove" onclick="RemoveFromWishlist('{{ item.variant.id }}')" src="{% static 'img/icons/svg/Garbage.svg' %}" alt="remove">
                 </div>    

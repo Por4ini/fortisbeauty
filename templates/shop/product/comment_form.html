@@ -8,7 +8,7 @@
         <option value="2" {% if review.stars == 2 %}selected="selected"{% endif %}>{% trans 'Погано' %}</option>
         <option value="1" {% if review.stars == 1 %}selected="selected"{% endif %}>{% trans 'Жахливо' %}</option>
     </select>
-    <textarea   rows="10" cols="45"  name="text"  placeholder="Текст комментария" data-alert="Ви нічого не написали" required>{{ review.text }}</textarea>
+    <textarea   rows="10" cols="45"  name="text"  placeholder="Текст коментаря" data-alert="Ви нічого не написали" required>{{ review.text }}</textarea>
     <input type="hidden" name="comment_id" value="{{ review.pk }}">
     <button type="submit">{% trans 'Відправити' %}</button>
 </form>
