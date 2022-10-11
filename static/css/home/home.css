@@ -196,3 +196,11 @@
     font-weight: 600;
     margin-bottom: 12px;
 }
+
+
+.home-advantages .content img {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 24px;
+    object-fit: contain;
+    object-position: center;

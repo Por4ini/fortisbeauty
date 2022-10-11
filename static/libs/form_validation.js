@@ -15,18 +15,22 @@ validation = {
     },
     text : {
         errors : {
+            
             length : 0,
         },
         msg : {
-            length : 'Это поле не может быть пустым', 
+            
+            length : 'Це поле не може бути порожнім', 
         },
     },
     text_only : {
         errors : {
+            
             length : 0,
         },
         msg : {
-            length : 'Это поле не может быть пустым', 
+            
+            length : 'Це поле не може бути порожнім',
         },
         replace : /[^a-zA-ZА-Яа-яіїє]/g
     },

@@ -15,21 +15,20 @@ validation = {
     },
     text : {
         errors : {
-            re : (http|https):\/\/,
             length : 0,
         },
         msg : {
-            re : ''
+            
             length : 'Це поле не може бути порожнім', 
         },
     },
     text_only : {
         errors : {
-            re : (http|https):\/\/,
+            
             length : 0,
         },
         msg : {
-            re : ''
+            
             length : 'Це поле не може бути порожнім',
         },
         replace : /[^a-zA-ZА-Яа-яіїє]/g

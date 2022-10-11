@@ -12,9 +12,13 @@
         <ul>
             {% for advantage in our_advantages %}
                 <li>
-                    <p class="name">{{ advantage.title }}</p>
+                    <div class="content img">
+                        <img src="{{ advantage.image.image_thmb.l.path }}" alt="">
+                    </div>
+                    
+                    <!-- <p class="name">{{ advantage.title }}</p>
                     <p class="description">
-                        {{ advantage.text }}
+                        {{ advantage.text }} -->
                     </p>
                 </li>
             {% endfor %}

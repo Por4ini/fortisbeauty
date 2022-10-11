@@ -22,3 +22,4 @@ class MessagesForm(forms.ModelForm):
         self.fields['email'].widget.attrs['data-type'] = "email"
         self.fields['phone'].widget.attrs['data-type'] = "text"
 
+    

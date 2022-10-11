@@ -45,13 +45,17 @@ class Slogan(Translation):
 
 class OurAdvantages(Translation):
     num =   models.PositiveIntegerField(default=0)
-    title = models.CharField(max_length=255)
-    text =  models.TextField()
     
     class Meta:
         ordering = ['num']
         verbose_name = _('Наши преимущества')
         verbose_name_plural = _('Наши преимущества')
+        
+        
+        
+class OurAdvantagesPC(Images):
+    parent = models.OneToOneField(OurAdvantages, on_delete=models.CASCADE, related_name='image')
+    image = models.FileField(max_length=1024, null=False, blank=False, verbose_name='Изображение')
 
 
 
@@ -73,3 +77,5 @@ class Message(models.Model):
             if field != None:
                 fields.append(field)
         return ' - '.join(fields)
+        
+        
