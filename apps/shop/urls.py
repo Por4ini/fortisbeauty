@@ -92,5 +92,6 @@ urlpatterns = [
     path('templates',    include(templates)),
     path('', include(product)),
     path('', include(catalogue)),
+    path('appear__product',      views.appear__product,  name='appear__product'),
 
 ]

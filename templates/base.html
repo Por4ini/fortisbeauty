@@ -117,6 +117,19 @@
     </form>    
 </div>
 
+
+<!-- Appear form -->
+<div class="form__appear__product hidden">
+        <form action="{% url 'shop:appear__product' %}" class="form" method="POST">
+            {% csrf_token %}
+            <div class="fields">
+                <input type="email" name="email" placeholder="Email">
+            </div>
+            <button type="submit">Повідомити, коли з'явиться</button>
+        </form> 
+    </div>
+
+
 <!-- CSRF token input -->
 {% csrf_token %}
 
@@ -233,6 +246,14 @@ document.querySelector('.button__recall').onclick = () => {
     popupContent.innerHTML = document.querySelector('.form__recall').innerHTML
     openPopUp()
 }
+
+document.querySelector('.button__appear__product').onclick = () => {
+    popupHeading.innerHTML = 'Введіть свій Email і ми вам повідомимо коли товар буде в наявності.'
+    popupContent.innerHTML = document.querySelector('.form__appear__product').innerHTML
+    openPopUp()
+}
+
+
 document.querySelector('select[name="set_language"]').onchange = (e) => {
     document.location.href = e.target.value
 }

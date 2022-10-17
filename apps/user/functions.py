@@ -99,16 +99,6 @@ def ValidateUserName(username):
 
 
 
-
-
-
-
-
-
-
-
-
-
 def UserDocs(instance, filename, document):
     path = ''
     ext = filename.split('.')[-1]

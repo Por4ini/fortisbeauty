@@ -15,6 +15,7 @@ validation = {
     },
     text : {
         errors : {
+            
             length : 0,
         },
         msg : {

@@ -75,7 +75,7 @@ class ContactFormView(FormView):
             for k, v in form.cleaned_data.items():
                 msg.append(translation[k] + ': ' + v)
 
-            send_telegeram(msg)
+            #send_telegeram(msg)
 
         return super().form_valid(form)
 

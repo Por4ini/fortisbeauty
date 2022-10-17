@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'mptt',
     'django_mptt_admin',
     'django_elasticsearch_dsl',
-
+    'rest_framework.authtoken',
 
     'apps.core.apps.CoreConfig',
     'apps.blog.apps.BlogConfig',

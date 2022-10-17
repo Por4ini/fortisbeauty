@@ -34,7 +34,7 @@
             <form action="{% url 'opt:opt' %}" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="button">Хочу купляти оптом</button>
+                <button class="button">Хочу купувати оптом</button>
             </form>
         {% endif %}
     {% else %}

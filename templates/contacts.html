@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<script src="https://www.google.com/recaptcha/api.js?render=6LeWD34iAAAAAKZStaluVX9zTTHNGRjdPYNxlRYh"></script>
 <div class="content contatcs">
 	<div class="contatcs-map">
 		<div style="overflow:hidden;width: 100%; ;position: relative;" pd>
@@ -45,7 +46,10 @@
 			<div class="">
 				<textarea  rows="10" cols="45" id="text"  name="text"  value="" placeholder="Ваше повідомлення" data-alert="Ви хочете відправити нам листа?" required></textarea>
 			</div>
-			<button type="submit">Відправити</button>
+			<button class="g-recaptcha" 
+        data-sitekey="6LeWD34iAAAAALlgdy3mFNm4UxaNPSkhiSzbhQvd" 
+        data-callback='onSubmit' 
+        data-action='submit' type="submit">Відправити.</button>
 		</form>
 
 	</div>

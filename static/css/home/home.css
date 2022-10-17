@@ -199,8 +199,8 @@
 
 
 .home-advantages .content img {
-    width: 96px;
-    height: 96px;
+    max-width: 100%;
+    height: auto;
     margin-bottom: 24px;
     object-fit: contain;
-    object-position: center;
+    object-position: 50% 50%;

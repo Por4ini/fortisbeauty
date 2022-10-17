@@ -74,7 +74,14 @@
         {% endif %}
         <button class="action plus">+</button>
     </div>
+{% if variant.stock == 0 %}
+    <button class="button button__appear__product">Повідомити, коли з'явиться</button>
+
+   
+{% else %}
     <button class="buy__button">Купити</button>
+{% endif %}
 </div>
+
 
 <div class="buyer__info"></div>

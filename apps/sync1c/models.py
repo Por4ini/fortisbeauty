@@ -5,6 +5,7 @@ from pygments import highlight
 from pygments.formatters.html import HtmlFormatter
 from pygments.lexers.data import JsonLexer
 from apps.shop.models import Variant
+from apps.shop.serializers.serializers__product import ProductPageVariantsSerializer
 import json
 
 
@@ -44,7 +45,7 @@ class RequestData1C(models.Model):
                     Variant.objects.filter(code=code).update(
                         price =          product.get('price'),
                         whoosale_price = product.get('whoosale_price'),
-                        quantity =       product.get('qunatity'),
+                        stock =       product.get('stock'),
                         update =         now()
                     )
             return True
@@ -54,4 +55,5 @@ class RequestData1C(models.Model):
     def save(self):
         # self.run_workers()
         super(RequestData1C, self).save()
-
+        
+        
