@@ -37,14 +37,16 @@ class ProductPageVariantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Variant
         fields = [
-            'id','value','code','price','discount_price','whoosale_price','discount_whoosale_price','images', 'url','stock'
+            'id','value','code','price','discount_price','whoosale_price','discount_whoosale_price','images', 'url', 'stock'
         ]
 
     def whoosale_price(self, obj):
         if self.context.get('is_whoosaler'):
             return obj.whoosale_price
         return None
-
+    
+    
+    
 
 class UnitSerializer(serializers.ModelSerializer):
     class Meta:

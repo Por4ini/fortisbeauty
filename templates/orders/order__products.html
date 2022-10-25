@@ -16,6 +16,7 @@
             <div class="qunatity">
                 <div class="counter">
                     <button class="action minus">-</button>
+                    
                     {% if request.user.real_stock %}
                         <input 
                             class="product_quantity" 
@@ -31,7 +32,7 @@
                             type="number" value="{{ item.quantity }}" min="1" max="10000"
                         >
                     {% endif %}
-                  
+                    
                     <button class="action plus">+</button>
                 </div>
             </div>

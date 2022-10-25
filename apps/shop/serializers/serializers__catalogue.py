@@ -30,7 +30,8 @@ class VariantSerializer(serializers.ModelSerializer):
             'discount_whoosale_price',
             'value',
             'images',
-            'url'
+            'url',
+            'stock'
         ]
 
     def get_whoosale_price(self, obj):

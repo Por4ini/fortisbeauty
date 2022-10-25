@@ -18,12 +18,21 @@
                 </p>
                 <div class="counter">
                     <button class="action minus">-</button>
-                    <input 
-                        class="product_quantity" 
-                        data-cart="true"
-                        data-variant-id="{{ variant.id }}" 
-                        type="number" value="{{ variant.quantity }}" min="1" max="{{ variant.stock }}"
-                    >
+                    {% if request.user.real_stock %}
+                        <input 
+                            class="product_quantity" 
+                            data-cart="true"
+                            data-variant-id="{{ variant.id }}"  
+                            type="number" value="{{ variant.quantity }}" min="1" max="10000"
+                        >
+                    {% else %}
+                        <input 
+                            class="product_quantity" 
+                            data-cart="true"
+                            data-variant-id="{{ variant.id }}"  
+                            type="number" value="{{ variant.quantity }}" min="1" max="10000"
+                        >
+                    {% endif %}
                     <button class="action plus">+</button>
                 </div>
                 <span class="remove" data-id="{{ variant.id }}" onclick=removeFromCart(this)>

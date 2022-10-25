@@ -57,26 +57,39 @@
 <div class="buy__actions">
     <div class="counter">
         <button class="action minus">-</button>
-        {% if request.user.real_stock %}
-            <input 
-                class="product_quantity" 
-                data-product-id="{{ product.id }}" 
-                data-variant-id="{{ variant.id }}" 
-                type="number" value="1" min="1" max="{{ variant.stock }}"
-            >
-        {% else %}
-            <input 
-                class="product_quantity" 
-                data-product-id="{{ product.id }}" 
-                data-variant-id="{{ variant.id }}" 
-                type="number" value="1" min="1" max="10000"
-            >
-        {% endif %}
+            {% if request.user.is_whoosaler %}
+                
+                <input 
+                    class="product_quantity" 
+                    data-cart="true"
+                    data-product-id="{{ product.id }}" 
+                    data-variant-id="{{ variant.id }}" 
+                    type="number" value="1" min="1" max="10000"
+                >
+            {% else %}
+                <input 
+                    class="product_quantity" 
+                    data-cart="true"
+                    data-product-id="{{ product.id }}" 
+                    data-variant-id="{{ variant.id }}" 
+                    type="number" value="1" min="1" max="10000"
+                >
+            {% endif %}
+        
         <button class="action plus">+</button>
     </div>
 {% if variant.stock == 0 %}
-    <button class="button button__appear__product">Повідомити, коли з'явиться</button>
-
+    {% if request.user.is_whoosaler %}
+    
+    
+        <button class="button add_to_cart"
+                data-id="{{ product.variant.0.id }}"
+                onclick=addToCart(this)>
+                Передзамовлення
+        </button>
+    {% else %}
+        <button class="button button__appear__product">Повідомити, коли з'явиться</button>
+    {% endif %}
    
 {% else %}
     <button class="buy__button">Купити</button>
@@ -85,3 +98,6 @@
 
 
 <div class="buyer__info"></div>
+
+
+
