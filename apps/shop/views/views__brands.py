@@ -65,6 +65,7 @@ class BrandsCatalogue(View):
             'price_asc' : 'variant__price',
             'price_dsc' : '-variant__price',
         }
+        self.products = self.products.order_by('-variant__stock')
         if sort and sort in order_by.keys():
             self.products = self.products.order_by(order_by[sort])
             if sort == 'price_asc':
@@ -72,7 +73,11 @@ class BrandsCatalogue(View):
             elif sort == 'price_dsc':
                 self.variants = self.variants.order_by('-price')
         
-
+    def sorted_stock(self):
+        
+        self.variants = self.variants.order_by('-stock')
+    
+    
     def get_context(self):
         context = {
             'products' : ProductSerializer(self.products, many=True).data,
@@ -114,6 +119,7 @@ class BrandsCatalogue(View):
         self.set_brands()
         self.set_price_range()
         self.get_sorted()
+        self.sorted_stock()
         self.total = self.products.count()
         self.products = self.products.prefetch_related(
             Prefetch('variant', queryset=self.variants)

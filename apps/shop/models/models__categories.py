@@ -111,16 +111,16 @@ class Categories(MPTTModel, NameSlug, Images, Seo):
             'category': self.get_tree(), 
         })
 
-    # @property
-    # def udapte_descendants(self):
-    #     for category in Categories.objects.all():
-    #         category.children_category.all().delete()
-    #         for c in category.get_descendants(include_self=True):
-    #             obj = CategoryChildRel(parent=category, relation=c)
-    #             obj.save()
-    #     cache.delete('tree_categories')
-    #     cache.delete(self.get_absolute_url())
-    #     return True
+    #@property
+    #def udapte_descendants(self):
+    #    for category in Categories.objects.all():
+    #        category.children_category.all().delete()
+    #        for c in category.get_descendants(include_self=True):
+    #            obj = CategoryChildRel(parent=category, relation=c)
+    #            obj.save()
+    #    cache.delete('tree_categories')
+    #    cache.delete(self.get_absolute_url())
+    #    return True
 
     def save(self, *args, **kwargs):
         super(MPTTModel, self).save(*args, **kwargs)

@@ -172,7 +172,7 @@
 
 <!-- LAZYLOAD -->
 <script>
-    const searchUrl = ``
+    const searchUrl = `https://fortisbeauty.store/catalogue/`
     var searchTimout = null
 
     const searchOutput =   document.querySelector('.search__output')
@@ -201,13 +201,14 @@
                     'X-CSRFToken': csrf.value
                 },
                 body: JSON.stringify({input: e.target.value})
+                
             })
             .then(res => res.json())
             .then(json => {
                 
                 outputProducts.innerHTML = ''
                 if (json.variants) {
-                    outputProducts.innerHTML += json.variants
+                    outputProducts.innerHTML += json.variants.code
                 } 
                 if (json.products) {
                     outputProducts.innerHTML += json.products
@@ -228,10 +229,10 @@
                 }
 
                 // if (!json.products && !json.categories && !json.brands) {
-                //     outputProducts.innerHTML = `
-                //         <p>По вашому запиту нічого не знайдено</p>
-                //     `
-                // }
+                //    outputProducts.innerHTML = `
+                //    <p>По вашому запиту нічого не знайдено</p>
+                //   `
+                //}
             })
             
         }, 150);

@@ -49,21 +49,30 @@ class Catalogue(View):
 
 
     def get_sorted(self):
+        
         sort = self.context['kwargs'].get('sort')
+        
         order_by = {
             'newest' : '-update',
             'popular' : '-update',
             'price_asc' : 'variant__price',
             'price_dsc' : '-variant__price',
         }
+        
         if sort and sort in order_by.keys():
             self.products = self.products.order_by(order_by[sort])
-            if sort == 'price_asc':
-                self.variants = self.variants.order_by('price')
+            if sort == 'newest':
+                self.products = self.products.order_by('-update')
+            elif sort == 'popular':
+                self.products = self.products.order_by('-update')
+            elif sort == 'price_asc':
+                self.products = self.products.order_by('variant__price')
             elif sort == 'price_dsc':
-                self.variants = self.variants.order_by('-price')
-
-
+                self.products = self.products.order_by('-variant__price')
+        else:
+            self.products = self.products.order_by('-variant__stock')
+    
+    
     def get_context(self, request):
         context = {
             'brands' : BrandSerializer(self.brands, many=True, context={'kwargs': self.context['kwargs']}).data,

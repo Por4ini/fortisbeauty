@@ -170,21 +170,31 @@
 .home-advantages .content ul {
     position: relative;
     width: calc(100% + 16px);
-    margin-left: -8px;
-    display: flex;
+    margin-left: 8px;
+    
     flex-wrap: wrap;
 }
 .home-advantages .content ul li {
-    position: relative;
-    display: block;
+    position: static;
+    display: inline-block;
+    text-align: center;
     border: 2px solid whitesmoke;
     border-radius: 8px;
-    padding: 32px;
+    
     margin: 0 8px 16px 8px;
-    width: 33%;
+    width: 31%;
     flex-grow: 1;
     transition: all 0.2s ease-in-out;
 }
+
+
+@media(max-width: 640px) {
+    
+    .home-advantages .content ul li {display: block;
+        width: 88%;
+    }
+}
+
 .home-advantages .content ul li:hover {
     transform: translateY(-8px);
     box-shadow: 0 8px 24px rgba(0,0,0, 0.1);
@@ -201,6 +211,6 @@
 .home-advantages .content img {
     max-width: 100%;
     height: auto;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     object-fit: contain;
     object-position: 50% 50%;
