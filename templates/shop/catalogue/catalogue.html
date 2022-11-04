@@ -274,12 +274,27 @@
                     e.preventDefault()
                     cataloguePostRequest(input.href)
                 }
+            } else if (input.tagName == 'SELECT') {
+                input.onchange = (e) => {
+                    e.preventDefault()
+                    let url
+                    if (window.location.toString().match(/(sort=)\S*\//)){
+                        url = window.location.toString().replace(
+                            /(sort=)\S*\//,
+                            `sort=${e.target.selectedOptions[0].value}/`
+                        )
+                    } else {
+                        url = `sort=${e.target.selectedOptions[0].value}/`
+                    }
+                    cataloguePostRequest(url)
+                }
             } else {
                 input.onchange = () => {
                     cataloguePostRequest(input.dataset.href)
                 }
             }
         }
+
         for (let input of document.querySelectorAll('.price_range')) {
             input.onchange = () => {
                 let str = "price=min_price,max_price/"

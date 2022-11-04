@@ -61,14 +61,6 @@ class Catalogue(View):
         
         if sort and sort in order_by.keys():
             self.products = self.products.order_by(order_by[sort])
-            if sort == 'newest':
-                self.products = self.products.order_by('-update')
-            elif sort == 'popular':
-                self.products = self.products.order_by('-update')
-            elif sort == 'price_asc':
-                self.products = self.products.order_by('variant__price')
-            elif sort == 'price_dsc':
-                self.products = self.products.order_by('-variant__price')
         else:
             self.products = self.products.order_by('-variant__stock')
     
