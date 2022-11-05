@@ -1,7 +1,7 @@
 
 const productGalerySwiper = () => {
   const productGalery = document.querySelector('.product__galery')
-  new LazyLoad({container: productGalery});
+  // new LazyLoad({container: productGalery});
 
   new Swiper(productGalery, {
     pagination: {

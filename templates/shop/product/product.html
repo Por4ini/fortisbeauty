@@ -59,6 +59,7 @@
 {% endblock %}
 
 
+
 {% block js %}
     {{ variants|json_script:"variants" }}
     <script src="{% static 'libs/photoswipe/photoswipe.js' %}"></script>
@@ -153,7 +154,7 @@
             if (json.serie) {
                 serieProducts.innerHTML = json.serie
                 initSwiperProductList(serieProducts)
-                new LazyLoad({container: serieProducts});
+                // new LazyLoad({container: serieProducts});
             }
         })
     </script>

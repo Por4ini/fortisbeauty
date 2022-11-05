@@ -21,7 +21,7 @@ urlpatterns += i18n_patterns(
     path('blog/',     include('apps.blog.urls',      namespace='blog')),
     path('order/',    include('apps.order.urls',     namespace='order')),
     path('core/',     include('apps.core.urls',      namespace='core')),
-    # path('search/',   include('apps.search.urls',    namespace='search')),
+    path('search/',   include('apps.search.urls',    namespace='search')),
     path('wishlist/', include('apps.wishlist.urls',  namespace='wishlist')),
     path('opt/',      include('apps.opt.urls',       namespace='opt')),
     path('i18n/',     include('django.conf.urls.i18n')),

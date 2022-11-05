@@ -76,7 +76,7 @@ class UserRegistrationForm(UserCreationForm):
         errors = []
         user = CustomUser.objects.filter(email=cd['email']).first()
         if user:
-            errors.append("Такой пользователь уже зарегестрирован")
+            errors.append("Такий користувач вже зареєстрований")
        
         if len(errors):
             raise forms.ValidationError(errors)

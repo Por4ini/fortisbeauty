@@ -5,7 +5,7 @@
         <div class="image__wrapper">
             <div class="image">
                 {% if variant.images.0  %}
-                    <img src="{{ variant.images.0.xs }}" alt="">
+                    <img loading="lazy" src="{{ variant.images.0.s }}" alt="">
                 {% else %}
                     <img class="no-image" src="{% static 'img/no_image.jpg' %}" alt="">
                 {% endif %}

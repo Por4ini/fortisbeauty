@@ -4,7 +4,7 @@
             {% for image in variant.images %}
                 <figure class="swiper-slide slide">
                     <a href="{{ image.l }}" itemprop="contentUrl" data-size="{{ image.w }}x{{ image.h }}">
-                        <img class="lazy" src="{{ image.xs }}" data-src="{{ image.l }}" alt="{{ product.name }}" />
+                        <img loading="lazy" src="{{ image.xs }}" data-src="{{ image.l }}" alt="{{ product.name }}" />
                     </a>
                 </figure>
             {% endfor %}

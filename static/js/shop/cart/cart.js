@@ -48,7 +48,7 @@ function cartRequest(url, data) {
     .then(json => {
         cartUpdater(json)
         if (!isOrderPage) {
-            SidebarOpen('sidebar_cart')
+            // SidebarOpen('sidebar_cart')
         }
         
     })

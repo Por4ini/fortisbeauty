@@ -172,15 +172,13 @@
 
 <!-- LAZYLOAD -->
 <script>
-    const searchUrl = `https://fortisbeauty.store/catalogue/`
-    var searchTimout = null
+    let searchTimeout
 
-    const searchOutput =   document.querySelector('.search__output')
+    const searchOutput =  document.querySelector('.search__output')
     const searchOutputMore = searchOutput.querySelector('.more')
     const outputProducts = document.querySelector('.search__output-products')
     const outputCategory = document.querySelector('.search__output-category')
-    const outputBrands =   document.querySelector('.search__output-brands')
-
+    const outputBrands = document.querySelector('.search__output-brands')
     const searchInput = document.querySelector('input[name="search"]')
     
  
@@ -191,9 +189,12 @@
             searchOutput.classList.remove('active')
         }
 
-        searchTimout !== null && clearTimeout(searchTimout);
-        searchTimout = setTimeout(() => {
-            fetch(searchUrl, {
+        if (searchTimeout !== null) {
+            clearTimeout(searchTimeout)
+        }
+
+        searchTimeout = setTimeout(() => {
+            fetch('/search/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -228,17 +229,14 @@
                     searchOutputMore.classList.remove('active')
                 }
 
-                // if (!json.products && !json.categories && !json.brands) {
-                //    outputProducts.innerHTML = `
-                //    <p>По вашому запиту нічого не знайдено</p>
-                //   `
-                //}
+                if (!json.products && !json.variants) {
+                    outputProducts.innerHTML = `<p>По вашому запиту нічого не знайдено</p>`
+                }
             })
             
-        }, 150);
-    } 
-
-
+        }, 700);
+    }
+    
 function lazy() {
     var lazyLoadInstance = new LazyLoad({
     elements_selector: ".lazy"
@@ -249,6 +247,7 @@ document.querySelector('.button__recall').onclick = () => {
     popupContent.innerHTML = document.querySelector('.form__recall').innerHTML
     openPopUp()
 }
+
 
 document.querySelector('.button__appear__product').onclick = () => {
     popupHeading.innerHTML = 'Введіть свій Email і ми вам повідомимо коли товар буде в наявності.'

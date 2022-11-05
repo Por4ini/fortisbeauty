@@ -50,11 +50,23 @@ class PaymentResponsesAdmin(admin.ModelAdmin):
     readonly_fields = ('detail_json_formatted',)
 
 
+
+class OrderDeliveryNPAdmin(admin.StackedInline):
+    model = OrderDeliveryNP
+    extra = 0
+
+
+class OrderDeliveryCurierAdmin(admin.StackedInline):
+    model = OrderDeliveryCurier
+    extra = 0
+    
    
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     inlines = [
-        OrderProductInline
+        OrderProductInline,
+        OrderDeliveryNPAdmin,
+        OrderDeliveryCurierAdmin,
     ]
 
     list_display = [

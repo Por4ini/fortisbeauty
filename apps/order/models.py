@@ -66,7 +66,7 @@ class Order(models.Model):
         if self.delivery_type == 'newpost':
             self.delivery_cost = 'По тарифам перевозчика'
         elif self.delivery_type == 'curier':
-            if get_total() < 2000:
+            if self.get_total() < 2000:
                 self.delivery_cost = '70 грн.'
             else:
                 self.delivery_cost = 'бесплатно'
@@ -136,6 +136,9 @@ class OrderDeliveryCurier(models.Model):
         verbose_name = _("Доставка курьером")
         verbose_name_plural = _("Доставка курьером")
 
+
+    def __str__(self):
+        return f'{self.city} {self.street} {self.house} {self.appartment}'
 
 
 class PaymentResponses(models.Model):

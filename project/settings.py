@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'mptt',
     'django_mptt_admin',
-    'django_elasticsearch_dsl',
+    # 'django_elasticsearch_dsl',
     'rest_framework.authtoken',
 
     'apps.core.apps.CoreConfig',
@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     'apps.order.apps.OrderConfig',
     'apps.main.apps.MainConfig',
     'apps.pages.apps.PagesConfig',
-    # 'apps.search.apps.SearchConfig',
+    'apps.search.apps.SearchConfig',
     'apps.filters.apps.FiltersConfig',
     'apps.opt.apps.OptConfig',
     'apps.wishlist.apps.WishlistConfig',

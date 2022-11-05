@@ -6,6 +6,6 @@ fetch(WatchlistUrl, {method : 'GET'})
     if (json.watchlist) {
         watchlist.innerHTML = json.watchlist
         initSwiperProductList(watchlist)
-        new LazyLoad({container: watchlist});
+        // new LazyLoad({container: watchlist});
     }
 })

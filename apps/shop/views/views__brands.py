@@ -65,18 +65,16 @@ class BrandsCatalogue(View):
             'price_asc' : 'variant__price',
             'price_dsc' : '-variant__price',
         }
-        self.products = self.products.order_by('-variant__stock')
+        
         if sort and sort in order_by.keys():
             self.products = self.products.order_by(order_by[sort])
             if sort == 'price_asc':
                 self.variants = self.variants.order_by('price')
             elif sort == 'price_dsc':
                 self.variants = self.variants.order_by('-price')
+        else:
+            self.products = self.products.order_by('-variant__stock')
         
-    def sorted_stock(self):
-        
-        self.variants = self.variants.order_by('-stock')
-    
     
     def get_context(self):
         context = {
@@ -115,11 +113,9 @@ class BrandsCatalogue(View):
             self.products = Product.objects.all()
         self.base_products = self.products
         self.variants = Variant.objects.filter(parent__in=self.products)
-
         self.set_brands()
         self.set_price_range()
         self.get_sorted()
-        self.sorted_stock()
         self.total = self.products.count()
         self.products = self.products.prefetch_related(
             Prefetch('variant', queryset=self.variants)

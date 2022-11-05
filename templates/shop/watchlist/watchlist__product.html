@@ -5,7 +5,8 @@
     <div class="item" id="product-{{ product.pk }}">
         <a class="product_image" id="product_{{ product.pk }}_url" href="{{ product.get_absolute_url }}">
             <img 
-                class="lazy product_image_img" 
+                class="product_image_img"
+                loading="lazy"
                 src="{{ product.images.all.0.image_xs.url }}" 
                 data-src="{{ product.images.all.0.image_s.url }}" 
                 alt="">
