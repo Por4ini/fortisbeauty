@@ -60,25 +60,36 @@
                 </ul>
             {% endif %}
         </div>
-        <div class="buttons"> 
+        <div class="buttons">
+            {% if request.user.is_whoosaler %}
+                {% if product.variant.0.stock <= 2 %}
             
-            {% if product.variant.0.stock == 0 %}
-                {% if request.user.is_whoosaler %}
-                    <button class="button"
-                        data-id="{{ product.variant.0.id }}"
-                        onclick=addToCart(this)>
-                        Передзамовлення
+                    <button class="button add_to_cart"
+                            data-id="{{ product.variant.0.id }}"
+                            onclick=addToCart(this)>
+                            Передзамовлення
                     </button>
                 {% else %}
-                    <button class="button button__appear__product">{% trans 'Повідомити, коли з\'явиться' %}</button>
+                    <button class="add_to_cart"
+                        data-id="{{ product.variant.0.id }}"
+                        onclick=addToCart(this)>
+                        В корзину
+                    </button>
                 {% endif %}
+                
             {% else %}
-                <button class="add_to_cart"
+                {% if product.variant.0.stock == 0 %}
+                    <button class="button button__appear__product">Повідомити, коли з'явиться</button>
+                {% else %}
+                    <button class="add_to_cart"
                     data-id="{{ product.variant.0.id }}"
                     onclick=addToCart(this)>
                     В корзину
-                </button>
+                    </button>
+                {% endif %}    
+                    
             {% endif %}
+                
             <span data-id="{{ product.variant.0.id }}" onclick=AddToWishlist(this)>
                 <img src="{% static 'img/icons/svg/Heart.svg' %}" alt="wishlist" class="ico">
             </span>

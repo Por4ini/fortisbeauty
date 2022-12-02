@@ -78,10 +78,10 @@ class VariantAdmin(admin.ModelAdmin):
             return '-'
 
     readonly_fields = ['product', ]
-    search_fields = ['code']
-    list_display = ['code','stock','get_image','brand','parent','value', 'price', 'whoosale_price',]
+    search_fields = ['code', 'parent__name', 'parent__human']
+    list_display = ['code','stock','get_image','brand','parent','value', 'price', 'whoosale_price', 'discount_price', 'discount_whoosale_price']
     list_filter = ['stock','parent__brand','parent__category']
-    list_editable=['stock','price', 'whoosale_price']
+    list_editable=['stock','price', 'whoosale_price', 'discount_price', 'discount_whoosale_price']
     # exclude = ['parent']
     inlines = [
         VariantImagesInline,

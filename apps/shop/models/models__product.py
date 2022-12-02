@@ -102,7 +102,7 @@ class Variant(models.Model):
     discount_whoosale_price = models.PositiveIntegerField(default=0, blank=True, null=True, verbose_name="Оптовая цена (скидка)")
     code =           models.CharField(max_length=250,       blank=True, null=True, verbose_name="Артикул")
     barcode =        models.CharField(max_length=250,       blank=True, null=True, verbose_name='Штрихкод', default='')
-    stock =          models.PositiveIntegerField(default=1, blank=True, verbose_name="Остаток")
+    stock =          models.PositiveIntegerField(default=0, blank=True, verbose_name="Остаток")
     update =         models.DateTimeField(default=now, verbose_name="Дата обновления")
     views =           models.PositiveIntegerField(default=0, blank=True, verbose_name="Просмотров")
     

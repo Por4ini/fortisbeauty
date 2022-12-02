@@ -1,7 +1,18 @@
 {% load static %}
 <span class="product__code">Код товару: {{ variant.code }}</span>
-<span class="product__code">В наявності: {{ variant.stock }} шт.</span>
-
+{% if request.user.is_whoosaler %}
+    {% if variant.stock <= 2 %}
+        <span class="product__code">В наявності: 0 шт.</span>
+    {% else %}
+        <span class="product__code">В наявності: {{ variant.stock }} шт.</span>
+    {% endif %}    
+{% else %}
+    {% if variant.stock == 0 %}
+        <span class="product__code">Не в наявності <!--: {{ variant.stock }} шт.--></span>
+    {% else %}
+        <span class="product__code">В наявності <!--: {{ variant.stock }} шт.--></span>
+    {% endif %}
+{% endif %}
 <div class="product__price">
     <span class="reatail__price">
         <span class="price__wishlist">
@@ -78,21 +89,26 @@
         
         <button class="action plus">+</button>
     </div>
-{% if variant.stock == 0 %}
-    {% if request.user.is_whoosaler %}
-    
-    
+
+{% if request.user.is_whoosaler %}
+    {% if variant.stock <= 2 %}
+
         <button class="button add_to_cart"
-                data-id="{{ product.variant.0.id }}"
-                onclick=addToCart(this)>
-                Передзамовлення
+            data-id="{{ product.variant.0.id }}"
+            onclick=addToCart(this)>
+            Передзамовлення
         </button>
     {% else %}
-        <button class="button button__appear__product">Повідомити, коли з'явиться</button>
+        <button class="buy__button">Купити</button>
     {% endif %}
-   
+    
 {% else %}
-    <button class="buy__button">Купити</button>
+    {% if variant.stock == 0 %}
+        <button class="button button__appear__product">Повідомити, коли з'явиться</button>
+    {% else %}
+        <button class="buy__button">Купити</button>
+    {% endif %}    
+
 {% endif %}
 </div>
 

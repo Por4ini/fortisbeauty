@@ -58,7 +58,7 @@ class Cart(object):
                 if self.real_stock and cur_qty >= variant.stock:
                     self.cart[number]['quantity'] = variant.stock
                 else:
-                    self.cart[number]['quantity'] += 1
+                    self.cart[number]['quantity'] += 0
         else:
             self.cart.append({'id':data['id'], 'quantity': quantity if quantity else 1})
         self.save()

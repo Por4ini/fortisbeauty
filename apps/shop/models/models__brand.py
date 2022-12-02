@@ -4,7 +4,7 @@ from django.utils.timezone import now
 from django.utils.translation import get_language as lang
 from apps.core.models import NameSlug, Translation, Images, Seo
 from ckeditor.fields import RichTextField
-
+import math
 
 
 
@@ -33,9 +33,9 @@ class Brand(NameSlug, Translation, Seo, Images):
             for product in self.product.all():
                 for variant in product.variant.all():
                     if self.discount:
-                        variant.discount_price = int(variant.price * (1 - self.discount / 100))
+                        variant.discount_price = int(math.ceil(variant.price * (1 - self.discount / 100)))
                     if self.discount_whoosale:
-                        variant.discount_whoosale_price = int(variant.whoosale_price * (1 - self.discount_whoosale / 100))
+                        variant.discount_whoosale_price = int(math.ceil(variant.whoosale_price * (1 - self.discount_whoosale / 100)))
                     variant.save()
             self.enable = False
 

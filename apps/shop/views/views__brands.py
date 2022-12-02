@@ -76,9 +76,9 @@ class BrandsCatalogue(View):
             self.products = self.products.order_by('-variant__stock')
         
     
-    def get_context(self):
+    def get_context(self, request):
         context = {
-            'products' : ProductSerializer(self.products, many=True).data,
+            
             'total_products' : self.total,
             'categories' : self.categories,
             'selected_category' : self.category.first() if self.category else None,
@@ -95,7 +95,9 @@ class BrandsCatalogue(View):
             'min_price' : self.min_price,
             'max_price' : self.max_price,
         }
-        
+        context['products'] = ProductSerializer(
+            self.products, many=True, context={'is_whoosaler': request.user.is_whoosaler if request.user.is_authenticated else None}
+        ).data
         categories =  Categories.objects.filter(product__brand=self.brand).distinct()
         context['types'] = CategoryBrandSerializer(
             categories,context={'brand': self.brand}, many=True
@@ -132,7 +134,7 @@ class BrandsCatalogue(View):
             "kwargs" : {k : v for k, v in kwargs.items() if v} 
         }
         self.set_context()
-        return render(request, 'shop/brands/brands__catalogue.html', self.get_context())
+        return render(request, 'shop/brands/brands__catalogue.html', self.get_context(request))
 
 
     def post(self, request, *args, **kwargs):
