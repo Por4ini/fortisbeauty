@@ -1,21 +1,30 @@
 {% load static %}
 {% load i18n %}
+{% load variant_url %}
 
 
 <li class="catalogue__product__wrapper">
     <div class="catalogue__product" id="product-{{ product.pk }}">
         {% if product.variant.0.images|length %}
-            <a class="image" id="product_{{ product.pk }}_url" href="{{ product.url }}" >
+            <a
+                class="image"
+                id="product_{{ product.pk }}_url"
+                href="{{ product.variant.0.id|variant_url }}"
+            >
                 <img class="lazy" src="{{ product.variant.0.images.0.xs }}" data-src="{{ product.variant.0.images.0.s }}" alt="{{ product.brand.name }} {{ product.name }} ">
             </a>
         {% else %}
-            <a class="image blank" id="product_{{ product.pk }}_url" href="{{ product.url }}" >
+            <a
+                class="image blank"
+                id="product_{{ product.pk }}_url"
+                href="{{ product.variant.0.id|variant_url }}"
+            >
                 <img src="{% static 'img/no_image.png' %}" dalt="{{ product.brand.name }} {{ product.name }} ">
             </a>
         {% endif %}
 
         <div class="info">
-            <a class="name" href="{{ variant.get_absolute_url }}">
+            <a class="name" href="{{ product.variant.0.id|variant_url }}">
                 <span>{{ product.name }}</span>
                 <span class="variant__value">{% if product.variant.0.value %}{{ product.variant.0.value }} мл.{% endif %}</span>
             </a>

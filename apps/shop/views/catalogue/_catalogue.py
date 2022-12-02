@@ -7,7 +7,7 @@ from apps.shop.models import Categories
 from apps.shop.models import Brand, Product, Variant
 from apps.shop.serializers.serializers__category import CategorySerializer
 from apps.shop.serializers.serializers__brand import BrandSerializer, BrandDetailSerializer
-from apps.shop.serializers.serializers__catalogue import ProductSerializer 
+from apps.shop.serializers.serializers__catalogue import ProductSerializer
 import json 
 
 
@@ -75,7 +75,7 @@ class Catalogue(View):
             'price__lte' : self.price__lte,
             'min_price' :  self.min_price,
             'max_price' :  self.max_price,
-            'seo_text' :   self.text,
+            'seo_text' :   self.text
         }
         context['products'] = ProductSerializer(
             self.products, many=True, context={'is_whoosaler': request.user.is_whoosaler if request.user.is_authenticated else None}

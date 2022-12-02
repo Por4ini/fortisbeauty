@@ -137,7 +137,7 @@ class ProductViewSet(viewsets.ViewSet):
             'variant'  :   ProductPageVariantsSerializer(self.variant).data,
             'variant_id' : self.variant.id,
             'categories' : ProductCategorySerializer(categories, many=True).data,
-            'schema' :     self.get_schema(),
+            'schema' :     self.get_schema()
         }
         return render_to_string('shop/product/product.html', context=context, request=request)
 
