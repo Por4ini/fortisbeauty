@@ -71,7 +71,7 @@
         </div>
         <div class="buttons">
             {% if request.user.is_whoosaler %}
-                {% if product.variant.0.stock <= 2 %}
+                {% if product.variant.0.stock <= 5 %}
             
                     <button class="button add_to_cart"
                             data-id="{{ product.variant.0.id }}"

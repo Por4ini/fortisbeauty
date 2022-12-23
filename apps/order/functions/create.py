@@ -31,7 +31,11 @@ class CreateOrder():
         for n, product in enumerate(order.products.all()):
             msg.append('\n')
             msg.append(f'{str(n + 1)}. {product.variant.code}, {product.variant.parent.name}, {product.variant.value}')
-            msg.append(f'{str(product.quantity)}шт. х {str(product.price)} грн. = {str(product.total)}' )
+            
+            if product.variant.stock <= 5:
+                msg.append(f'Передзамовлення {str(product.quantity)}шт. х {str(product.price)} грн. = {str(product.total)}' )
+            else:
+                msg.append(f'{str(product.quantity)}шт. х {str(product.price)} грн. = {str(product.total)}')
         
         
         msg.append('\n')

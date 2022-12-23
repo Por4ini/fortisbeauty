@@ -88,7 +88,7 @@ urlpatterns = [
     path('',             views.home, name='home'),
     path('watchlist',    views.WatchListView.as_view({'get': 'get'}), name="watchlist"),
     path('cart/',        include(cart)),
-    path('feed/',        views.FeedView.as_view(), name="feed"),
+    path('feed.xml',        views.FeedView.as_view(), name="feed"),
     path('templates',    include(templates)),
     path('', include(product)),
     path('', include(catalogue)),

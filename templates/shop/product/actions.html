@@ -1,7 +1,7 @@
 {% load static %}
 <span class="product__code">Код товару: {{ variant.code }}</span>
 {% if request.user.is_whoosaler %}
-    {% if variant.stock <= 2 %}
+    {% if variant.stock <= 5 %}
         <span class="product__code">В наявності: 0 шт.</span>
     {% else %}
         <span class="product__code">В наявності: {{ variant.stock }} шт.</span>
@@ -91,7 +91,7 @@
     </div>
 
 {% if request.user.is_whoosaler %}
-    {% if variant.stock <= 2 %}
+    {% if variant.stock <= 5 %}
 
         <button class="button add_to_cart"
             data-id="{{ product.variant.0.id }}"

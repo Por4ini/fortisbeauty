@@ -9,3 +9,11 @@
         grid-template-columns: 1fr;
     }
 }
+
+#delivery {
+  position: relative;
+  max-width: calc(100% - 24px);
+  margin-right: auto;
+  margin-left: auto;
+
+}

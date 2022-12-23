@@ -12,21 +12,22 @@
                     <g:title>{{ product.name }}</g:title>
                     <g:description>
                         {% autoescape on %}{{ product.description }}{% endautoescape %}
-                        {{ product.prescription }}
-                        {{ product.application }}
-                        {{ product.composition }}
+                        
                     </g:description>
-                    <g:link>{{ request.scheme }}:/{{ current_site }}{{ variant.get_absolute_url }}</g:link>
-                    <g:url>{{ request.scheme }}:/{{ current_site }}{{ variant.get_absolute_url }}</g:url>
-                    <g:image_link>{{ request.scheme }}:/{{ current_site }}{{ product.get_image.image_thmb.s.path }}</g:image_link>
-                    <g:gender>unisex</g:gender>
+                    <g:link>{{ request.scheme }}://fortisbeauty.store{{ variant.get_absolute_url }}</g:link>
+                    <g:url>{{ request.scheme }}://fortisbeauty.store{{ variant.get_absolute_url }}</g:url>
+                    <g:image_link>{{ request.scheme }}://fortisbeauty.store{{ product.get_image.image_thmb.s.path }}</g:image_link>
                     <g:condition>New</g:condition>
-                    <g:availability>in stock</g:availability>
+                    {% if variant.stock > 0 %}
+                        <g:availability>in_stock</g:availability>
+                    {% else %}
+                        <g:availability>out_of_stock</g:availability>
+                    {% endif %}
                     <g:price>{{ variant.price }} UAH</g:price>
                     <g:shipping>
                         <g:country>UA</g:country>
-                        <g:service>Standard</g:service>
-                        <g:price>50 UAH</g:price>
+                        <g:service>Доставка</g:service>
+                        <g:price>60 UAH</g:price>
                     </g:shipping>
                     <g:google_product_category>{{ product.category.taxonomy.name }}</g:google_product_category>
                     <g:product_type>{{ product.category.get_tree_name }}</g:product_type>

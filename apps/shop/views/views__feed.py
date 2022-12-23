@@ -7,6 +7,7 @@ from apps.shop.serializers import ProductSerializer
 
 class FeedView(View):
     def get(self, request):
+        products = Product.objects.all()
         return render(request, 'feed/feed.xml', {
-            'products' : Product.objects.filter(variant__images__isnull=False)
+            'products' : products
         }, content_type="application/xhtml+xml")
