@@ -88,7 +88,7 @@
                 
             {% else %}
                 {% if product.variant.0.stock == 0 %}
-                    <button class="button button__appear__product">Повідомити, коли з'явиться</button>
+                    <button class="button button__appear__product">Немає в наявності</button>
                 {% else %}
                     <button class="add_to_cart"
                     data-id="{{ product.variant.0.id }}"

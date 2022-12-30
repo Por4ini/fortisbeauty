@@ -91,7 +91,8 @@ input#delivery__curier:checked ~   ul.delivery-types li [data-id="delivery__curi
 }
 
 input#paytype_1:checked ~ .payment-types label[for="paytype_1"],
-input#paytype_2:checked ~ .payment-types label[for="paytype_2"] {
+input#paytype_2:checked ~ .payment-types label[for="paytype_2"],
+input#paytype_3:checked ~ .payment-types label[for="paytype_3"] {
     border-color: var(--clr-1);
     background-color: #99ecff50;
 }

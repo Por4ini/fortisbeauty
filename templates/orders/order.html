@@ -73,6 +73,20 @@
                 .then(json => {
                     json.data && Pay(json.data)
                 })
+            } else if (object['pay_type'] == "prepayment") {
+                fetch('{% url "order:prepayment" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken' : csrf.value
+                    },
+                    body: JSON.stringify(object),
+                })
+                .then(res => res.json())
+                .then(json => {
+                    json.data && Pay(json.data)
+                })
             } else {
                 form.submit()
             }

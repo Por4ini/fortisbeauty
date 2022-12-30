@@ -28,13 +28,23 @@
         
         <input class="hidden" type="radio" name="pay_type" value="cash" id="paytype_1" checked>
         <input class="hidden" type="radio" name="pay_type" value="card" id="paytype_2" id="order_card_pay">
+        <input class="hidden" type="radio" name="pay_type" value="prepayment" id="paytype_3" id="order_card_pay">
         <ul class="payment-types">
-            <label for="paytype_1">
-                <li>Накладений платіж</li>
-            </label>
-            <label for="paytype_2">
-                <li>Оплатити карткою</li>
-            </label>
+            {% if request.user.is_whoosaler %}
+                <label for="paytype_1">
+                    <li>Накладений платіж</li>
+                </label>
+                <label for="paytype_2">
+                    <li>Оплатити карткою</li>
+                </label>
+            {% else %}
+                <label for="paytype_3">
+                    <li>Накладений платіж по передоплаті в розмірі 200 грн.</li>
+                </label>
+                <label for="paytype_2">
+                    <li>Оплатити карткою</li>
+                </label>
+            {% endif %}
         </ul>
         
     </div>
