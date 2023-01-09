@@ -88,6 +88,11 @@
     </script>
 </head>
 <body>
+    
+<div class="preloader">
+    <div class="preloader__image"></div>
+</div>
+
 <!-- Header -->
 {% include 'base/header/header.html' %}
 {% include 'base/header/header__menu.html' %}
@@ -180,6 +185,21 @@
 <script src="{% static 'libs/form_validation.js' %}"></script>
 <script src="{% static 'js/shop/Home/home_products.js' %}"></script>
 <script src="{% static 'js/interactions/showhide.js' %}"></script>
+
+<script>
+    if (!sessionStorage.isVisited) {
+    sessionStorage.isVisited = 'true'
+        $(window).on('load', function () {
+            $('body').addClass('loaded_hiding');
+            window.setTimeout(function () {
+              $('body').addClass('loaded');
+              $('body').removeClass('loaded_hiding');
+            }, 3000);
+        });
+    } else {
+        $('.preloader, .preloader__image, .loaded_hiding .preloader').hide();
+    }
+</script>
 
 <!-- LAZYLOAD -->
 <script>
