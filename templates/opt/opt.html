@@ -17,12 +17,18 @@
     <div class="breadcrumbs">
         <a href="/">{% trans 'Головна' %}</a>
         <span class="slash">/</span>
-        <p>Опт</p>
+        <p>Співпраця</p>
     </div>
 </div>
    
 
 <div class="content opt">
+    <div class="swiper-container home-slider">
+        <div class="swiper-slide home-slider__slide">
+            <img class="lazy banner__pc"     alt="{{ slide.title }}">
+            <img class="lazy banner__mobile"  alt="{{ slide.title }}">
+        </div>
+    </div>
     <h1>{% trans 'Пропозиція оптовому покупцю' %}</h1>
     <div class="richtext">
         {{ text.text|safe }}

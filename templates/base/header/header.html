@@ -20,6 +20,9 @@
                 <a href="{% url 'pages:delivery' %}">
                     <li>{% trans 'Доставка' %}</li>
                 </a>
+                <a href="{% url 'pages:returnprod' %}">
+                    <li>{% trans 'Повернення' %}</li>
+                </a>
                 <a href="{% url 'pages:payment' %}">
                     <li>{% trans 'Оплата' %}</li>
                 </a>
@@ -132,12 +135,12 @@
         <div class="content">
             <nav>
                 <ul>
-                    <a href="/opt">
+                    <!-- <a href="/opt">
                         <li>
                             <img src="{% static 'img/icons/svg/Delivery.svg' %}" alt="Opt">
                             <span>{% trans 'Співпраця' %}</span>
                         </li>
-                    </a>
+                    </a> -->
                     {% for category in tree %}
                         <a href="{{ category.url }}">
                             <li>{{ category.name }}</li>

@@ -15,6 +15,41 @@
     </div>
 </div>
 
+<div class="content order__wrapper">
+    <div class="order">
+        <h1 class="title1">Деталі Вашого замовлення </h1>
+            <ul class="products__list__order">
+                {% for item in cart.items %}
+
+                    <li>
+                        <div class="image">
+                            <a href="{{ item.url }}" class="wrapper">
+                                <img src="{{ item.image }}" alt="*">
+                            </a>
+                        </div>
+                        <div class="data">
+                            <div class="info">
+                                <span class="name">{{ item.name }}</span>
+                                <span class="price">{{ item.price }} грн.</span>
+                            </div>
+                            <div class="qunatity">
+                                 <div class="counter">{{ item.quantity }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+
+                {% endfor %}
+            </ul>
+        <span class="order__total">
+            <span>Сума замовлення:</span>
+
+            <span>{{ cart.total }} грн.</span>
+        </span>
+    </div>
+</div>
+
 <script>
     window.onload = function(){
      var delivery = document.getElementById("delivery");

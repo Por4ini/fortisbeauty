@@ -24,3 +24,22 @@ class BannerPC(Images):
 class BannerMobile(Images):
     parent =      models.OneToOneField(Banner, on_delete=models.CASCADE, related_name='mobile')
     image =       models.FileField(max_length=1024, null=False, blank=False, verbose_name="Изображение Мобильный")
+    
+    
+class BannerOpt(Translation):
+    title =       models.CharField(max_length=1024, blank=True, null=True,   verbose_name="Заголовок")
+    description = models.TextField(blank=True, null=True,                    verbose_name="Текст")
+
+    class Meta:
+        verbose_name = 'Баннер'
+        verbose_name_plural = 'Баннеры Opt'
+
+
+class BannerOptPC(Images):
+    parent =      models.OneToOneField(BannerOpt, on_delete=models.CASCADE, related_name='pc')
+    image =       models.FileField(max_length=1024, null=False, blank=False, verbose_name="Изображение PC")
+
+
+class BannerOptMobile(Images):
+    parent =      models.OneToOneField(BannerOpt, on_delete=models.CASCADE, related_name='mobile')
+    image =       models.FileField(max_length=1024, null=False, blank=False, verbose_name="Изображение Мобильный")

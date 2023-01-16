@@ -4,6 +4,8 @@ from apps.core.functions import send_telegeram
 from apps.order.models import Order, OrderProduct, OrderDeliveryNP, OrderDeliveryCurier
 from apps.shop.models import Variant
 from apps.user.models.models__user import UserAdress, UserNP
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 
 
 class CreateOrder():
@@ -43,7 +45,32 @@ class CreateOrder():
 
         send_telegeram(msg)
 
+    
+    def send_email_order(self, order):
+        user = self.user
+        mail_subject = 'Ваше замовлення FortisBeuty.'
 
+        html = render_to_string('orders/order__email.html', context={
+            'user': user,
+            'cart': order.products.all(),
+            'total' : order.get_total(),
+
+        },
+                                )
+
+        email = EmailMessage(
+            mail_subject,
+            html,
+            'office.fortisbeauty@gmail.com',
+            [user.email],
+            headers={
+                'Reply-To': 'office.fortisbeauty@gmail.com'
+            }
+        )
+        email.content_subtype = "html"
+        email.send()
+    
+    
     def add_products(self, order):
         for item in self.cart:
             variant = Variant.objects.filter(pk=item['id']).first()
@@ -146,5 +173,6 @@ class CreateOrder():
 
         self.add_products(order)
         self.save_delivery(order)
+        self.send_email_order(order)
         self.send_to_telegram(order)
         return order

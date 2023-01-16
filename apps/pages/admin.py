@@ -3,6 +3,7 @@ from apps.pages.models import (
     Page,
     PageContacts,
     PageAbout,
+    PageReturnProd,
     PagePayment,
     PageDelivery,
     PageTermsOfUse
@@ -16,6 +17,11 @@ class PageContactsAdmin(SingleModelAdmin):
 
 
 @admin.register(PageAbout)
+class PageAboutAdmin(SingleModelAdmin):
+    pass
+
+
+@admin.register(PageReturnProd)
 class PageAboutAdmin(SingleModelAdmin):
     pass
 

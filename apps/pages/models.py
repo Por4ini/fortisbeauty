@@ -32,6 +32,16 @@ class PageAbout(Translation):
         return self.title
 
 
+class PageReturnProd(Translation):
+    title = models.CharField(max_length=255, default=_("Повернення"), verbose_name=_("Заголовок"))
+    text = RichTextField(null=True, blank=True, verbose_name=_("Текст"))
+
+    class Meta:
+        verbose_name = _("Страница: Повернення")
+        verbose_name_plural = _("Страница: Повернення ")
+
+    def __str__(self):
+        return self.title
 
 
 

@@ -6,6 +6,7 @@ from apps.pages.models import (
     Page,
     PageContacts,
     PageAbout,
+    PageReturnProd,
     PagePayment,
     PageDelivery,
     PageTermsOfUse
@@ -33,6 +34,12 @@ def page_payment(request):
         'page' : PagePayment.objects.first(),
     })
 
+
+def page_returnprod(request):
+    return render(request, 'pages/page.html', {
+        'page' : PageReturnProd.objects.first(),
+    })
+    
 
 def page_delivery(request):
     return render(request, 'pages/page.html', {
