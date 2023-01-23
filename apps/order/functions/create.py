@@ -48,6 +48,7 @@ class CreateOrder():
     
     def send_email_order(self, order):
         user = self.user
+        data = self.data
         mail_subject = 'Ваше замовлення FortisBeuty.'
 
         html = render_to_string('orders/order__email.html', context={
@@ -62,7 +63,7 @@ class CreateOrder():
             mail_subject,
             html,
             'office.fortisbeauty@gmail.com',
-            [user.email],
+            [data.get('email')],
             headers={
                 'Reply-To': 'office.fortisbeauty@gmail.com'
             }

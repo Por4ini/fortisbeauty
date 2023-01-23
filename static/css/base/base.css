@@ -100,12 +100,12 @@
   margin-top: -200px;
   margin-left: -200px;
 
-  background: url('/static/img/image-fb.gif') no-repeat 50% 50%; /*расположение (url) изображения gif и др. параметры*/
   background-size: contain;
 }
 
 .loaded_hiding .preloader {
   transition: 6s opacity;
+  transition-delay: 1s;
   opacity: 0;
 }
 
