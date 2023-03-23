@@ -3,7 +3,7 @@
 {% load i18n %}
 <!-- TITLE -->
 {% block title %}
-{% trans 'Блог' %}
+{% trans 'Статті' %}
 {% endblock %}
 <!-- LINKS -->
 {% block links %}
@@ -11,7 +11,7 @@
 {% endblock %}
 <!-- OPENGRAPH -->
 {% block og %}
-    <meta property="og:title"        content="FortisBeauty: {% trans 'Блог' %}" />
+    <meta property="og:title"        content="FortisBeauty: {% trans 'Статті' %}" />
     <meta property="og:description"  content="{% trans 'Блог' %} FortisBeauty" />
     <meta property="og:type"         content="blog" />
     <meta property="og:url"          content="https://fortisbeauty.store{{ request.path }}" />
@@ -29,7 +29,7 @@
         </li>
         <li>
             <span class="slash">/</span>
-            <span>{% trans 'Блог' %}</span>
+            <span>{% trans 'Статті' %}</span>
         </li>
     </ul>
 </div>

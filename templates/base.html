@@ -1,6 +1,7 @@
 {% load static %}{% load i18n %}{% load compress %}{% load cache %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta name="google-site-verification" content="Tc_Gl5qTnRBhu9y5ro2WzI7BVVCY7FdWz1ISTQhSAgA" />
     <!-- Facebook Pixel Code -->
     {% block meta_description %}
@@ -76,25 +77,18 @@
     
     {% block links %}{% endblock %}
     
-    <!-- Google tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-251576455-1">
-    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11040584244"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'UA-251576455-1');
+      gtag('config', 'AW-11040584244');
     </script>
+    
 </head>
 <body>
-    
-<div class="preloader">
-    <video class="preloader__image" autoplay muted loop preload="auto">
-        <source src="{% static 'img/image-fb.mp4' %}">
-    </video>
-</div>
-
 <!-- Header -->
 {% include 'base/header/header.html' %}
 {% include 'base/header/header__menu.html' %}
@@ -188,21 +182,6 @@
 <script src="{% static 'js/shop/Home/home_products.js' %}"></script>
 <script src="{% static 'js/interactions/showhide.js' %}"></script>
 
-<script>
-    if (!sessionStorage.isVisited) {
-    sessionStorage.isVisited = 'true'
-        $(window).on('load', function () {
-            $('body').addClass('loaded_hiding');
-            window.setTimeout(function () {
-              $('body').addClass('loaded');
-              $('body').removeClass('loaded_hiding');
-            }, 3000);
-        });
-    } else {
-        $('.preloader, .preloader__image, .loaded_hiding .preloader').hide();
-    }
-</script>
-
 <!-- LAZYLOAD -->
 <script>
     let searchTimeout
@@ -282,16 +261,11 @@ document.querySelector('.button__recall').onclick = () => {
 }
 
 
-var elements = document.querySelectorAll('.button__appear__product');
-for (var i = 0; i < elements.length; i++) {
-    elements[i].onclick = function() {
-        popupHeading.innerHTML = 'Введіть свій Email і ми вам повідомимо коли товар буде в наявності.'
-        popupContent.innerHTML = document.querySelector('.form__appear__product').innerHTML
-        openPopUp()
-    };
+document.querySelector('.button__appear__product').onclick = () => {
+    popupHeading.innerHTML = 'Введіть свій Email і ми вам повідомимо коли товар буде в наявності.'
+    popupContent.innerHTML = document.querySelector('.form__appear__product').innerHTML
+    openPopUp()
 }
-    
-    
 
 
 document.querySelector('select[name="set_language"]').onchange = (e) => {
@@ -304,5 +278,22 @@ document.querySelector('select[name="set_language"]').onchange = (e) => {
 <script src="{% static 'js/shop/wishlist.js' %}"></script>
 {% block js %}
 {% endblock %}
+
+<!--
+<script>
+  window.addEventListener('load', function() {
+    if (window.location.href.indexOf('/success/') != -1) {
+      var orderTotal = parseFloat(jQuery('[class="order__total"]').text().replace(/[^0-9.]/g, ''));
+      gtag('event', 'conversion', {
+        'send_to': 'AW-11040584244/i6N2CL-a64sYELTkx5Ap',
+        'value': orderTotal,
+        'currency': 'UAH'
+      });
+    }
+  });
+
+</script>
+-->
+
 </body>
 </html>

@@ -11,10 +11,14 @@
             <div class="info">
                 <a href="{{ variant.url }}" class="title">{{ variant.name }}</a>
                 <p class="cart__price">
-                    {% if variant.discount_price > variant.price %}
-                        <span class="discount_price">{{ variant.discount_price }} грн. </span>
+                    {% if variant.discount_price > 0 and variant.discount_price < variant.price %}
+                        <span class="discount_wrapper">
+                        <span class="price">{{ variant.discount_price }} грн.</span>
+                        <span class="discount_price">{{ variant.price }} грн.</span>
+                        </span>
+                    {% else %}
+                        <span class="price">{{ variant.price }} грн.</span>
                     {% endif %}
-                    <span class="price">{{ variant.price }} грн.</span>
                 </p>
                 <div class="counter">
                     <button class="action minus">-</button>
