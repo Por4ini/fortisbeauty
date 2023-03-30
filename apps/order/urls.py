@@ -2,7 +2,6 @@ from django.urls import include, path, re_path
 from apps.order import views
 from django.views.generic import TemplateView
 
-
 app_name = 'orders'
 
 
@@ -23,6 +22,7 @@ urlpatterns = [
    path('prepayment/',      views.OrderPrePay.as_view(),    name='prepayment'),
    path('repeat/<id>/',     views.OrderRepeat.as_view(), name="repeat"),
    path('success/',         views.order_success,         name='success'),
-   path('payment_response', views.payment_response,      name="payment_response")
+   path('payment_response', views.payment_response,      name="payment_response"),
+   path('apply_promo', views.views__promocode.apply_promo, name="apply_promo"),
 
 ]

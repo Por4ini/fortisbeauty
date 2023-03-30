@@ -108,11 +108,11 @@ class Categories(MPTTModel, NameSlug, Images, Seo):
 
     def get_absolute_url(self):
         return reverse('shop:catalogue', kwargs={
-            'category': self.get_tree(), 
+            'category': self.get_tree(),
         })
 
-    #@property
-    #def udapte_descendants(self):
+    # @property
+    # def udapte_descendants(self):
     #    for category in Categories.objects.all():
     #        category.children_category.all().delete()
     #        for c in category.get_descendants(include_self=True):

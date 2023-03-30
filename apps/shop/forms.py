@@ -45,4 +45,8 @@ class ReplyForm(forms.ModelForm):
         self.fields['parent'].widget = forms.HiddenInput()
         self.fields['comment'].widget = forms.HiddenInput()
         self.fields['user'].widget =   forms.HiddenInput()
-       
+
+
+
+class PromoCodeForm(forms.Form):
+    code = forms.CharField(label='Промокод', max_length=20, required=False)

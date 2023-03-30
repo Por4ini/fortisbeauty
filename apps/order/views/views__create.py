@@ -10,7 +10,6 @@ class CreateOrderView(View):
     def post(self, request):
         order = CreateOrder(data=request.POST, user=request.user, cart=Cart(request))
         order = order.create_order()
-
         user = request.user
         if user.is_authenticated:
             changed = False
@@ -31,5 +30,5 @@ class CreateOrderView(View):
 
             if changed:
                 user.save()
-            
+
         return redirect(reverse('order:success'))

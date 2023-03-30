@@ -12,23 +12,30 @@ import json
 
 class SearchProduct(APIView):
     def search(self, data):
-        variant_output = Variant.objects.filter(
-            Q(code__icontains=data) |
-            Q(parent__name__icontains=data) |
-            Q(parent__human__icontains=data)
-        )
-        product_output = Product.objects.filter(
-            Q(name__icontains=data) | Q(human__icontains=data)
-        )
-        brands_output = Brand.objects.filter(name__icontains=data)
-        category_output = Categories.objects.filter(
-            Q(human__icontains=data) |
-            Q(name__icontains=data) |
-            Q(parent__name__icontains=data) |
-            Q(parent__human__icontains=data)
-        )
+        # розділяємо вхідні дані на слова та зберігаємо їх в список
+        search_words = data.split()
 
-        return variant_output, product_output, category_output, brands_output
+        # створюємо порожні запити для кожної моделі
+        variant_query = Q()
+        product_query = Q()
+        category_query = Q()
+        brand_query = Q()
+
+        # для кожного слова в списку виконуємо пошук за відповідною колонкою відповідної моделі та додаємо його до запиту
+        for word in search_words:
+            variant_query |= Q(code__icontains=word) | Q(parent__name__icontains=word) | Q(
+                parent__human__icontains=word)
+            product_query |= Q(name__icontains=word) | Q(human__icontains=word) | Q(brand__name__icontains=word)
+            brand_query |= Q(name__icontains=word)
+            category_query |= Q(human__icontains=word) | Q(name__icontains=word) | Q(parent__name__icontains=word) | Q(
+                parent__human__icontains=word)
+
+        variant_output = Variant.objects.filter(variant_query)
+        product_output = Product.objects.filter(product_query)
+        brand_output = Brand.objects.filter(brand_query)
+        category_output = Categories.objects.filter(category_query)
+
+        return variant_output, product_output, category_output, brand_output
 
     def post(self, request):
         data = request.data
@@ -63,5 +70,6 @@ class SearchProduct(APIView):
                     'categories': CategorySerializer(category_output, many=True).data
                 }
             )
-    
+
         return Response(context)
+

@@ -1,9 +1,10 @@
-from django.contrib import admin
 from apps.order.models import *
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html
 from django.db import models
 from django.contrib.admin.widgets import AutocompleteSelect
+from django.contrib import admin
+from .models import PromoCode
 
 
 
@@ -91,3 +92,8 @@ class OrderAdmin(admin.ModelAdmin):
         ('Опт',               {'fields': ('whoosale',)}),
         ('Время',             {'fields': (('created','payed'),)}),
     )
+
+
+@admin.register(PromoCode)
+class PromoCodeAdmin(admin.ModelAdmin):
+    list_display = ('code', 'discount', 'created_at')

@@ -1,40 +1,43 @@
 {% extends 'base.html' %}{% load static %}{% load i18n %}
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'css/order/order.css' %}">
-    <link rel="stylesheet" href="{% static 'css/order/products__list.css' %}">
-    <link rel="stylesheet" href="{% static 'css/order/order__form.css' %}">
+<link rel="stylesheet" href="{% static 'css/order/order.css' %}" xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" href="{% static 'css/order/products__list.css' %}">
+<link rel="stylesheet" href="{% static 'css/order/order__form.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="content order__wrapper">
-        <div class="order">
-            <h1 class="title1">Ваше замовлення</h1>
-            <ul class="products__list">
-                {% include 'orders/order__products.html' with cart_data=cart_data %}
-            </ul>
-            <span class="order__total">
+<div class="content order__wrapper">
+    <div class="order">
+        <h1 class="title1">Ваше замовлення</h1>
+        <ul class="products__list">
+            {% include 'orders/order__products.html' with cart_data=cart_data %}
+        </ul>
+        <span class="order__total">
                 <span>Сума замовлення:</span>
                 <span class="order__total__num"></span>
                 <span>грн.</span>
-            </span>
-        </div>
-        <div>
-            <div class="order__form">
-                {% include 'orders/order__form.html' %}
-            </div>
+        </span>
+
+    </div>
+
+    <div>
+        <div class=" order__form
+        ">
+            {% include 'orders/order__promo.html' %}
+            {% include 'orders/order__form.html' %}
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block js %}
 
-    
 
+<script id="widget-wfp-script" language="javascript" type="text/javascript"
+        src="https://secure.wayforpay.com/server/pay-widget.js"></script>
 
-    <script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
-
-    <script type="text/javascript"> 	
+<script type="text/javascript">
         var wayforpay = new Wayforpay(); 	
 
         function Pay(reqData) { 		
@@ -92,11 +95,18 @@
             }
             
         }
-    </script>
 
 
-    
-    <script>
+
+
+
+
+
+
+</script>
+
+
+<script>
         var orderForm = document.querySelector('#order__form')
         var forms = {
             newpost : undefined,
@@ -212,6 +222,14 @@
                 input.checked = true
             }
         }
-    </script>
-    <script src="{% static 'js/form/validation.js' %}"></script>
+
+
+
+
+
+
+
+
+</script>
+<script src="{% static 'js/form/validation.js' %}"></script>
 {% endblock %}

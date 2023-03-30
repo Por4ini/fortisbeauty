@@ -168,3 +168,15 @@ class PaymentResponses(models.Model):
             reference = int(self.response['orderReference'])
             Order.objects.filter(reference=reference).update(payed=True)
         super(PaymentResponses, self).save()
+
+class PromoCode(models.Model):
+    code = models.CharField(_('Код промокоду'), max_length=20, unique=True)
+    discount = models.DecimalField(_('Сума знижки у відсотках'), max_digits=6, decimal_places=2)
+    created_at = models.DateTimeField(_('Дата створення'), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Промокод')
+        verbose_name_plural = _('Промокоди')
+
+    def __str__(self):
+        return self.code
