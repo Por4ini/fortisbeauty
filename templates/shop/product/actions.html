@@ -36,7 +36,7 @@
     {% if request.user.is_whoosaler %}
         <div class="whoosale_wrapper">
             <div class="whoosale_price_wrapper">
-                {% if variant.discount_price > 0 and variant.discount_price < variant.price %}
+                {% if variant.discount_whoosale_price > 0 and variant.whoosale_price < variant.price %}
                     <span class="discount_wrapper">
                         <span class="whoosale__price">Опт: {{ variant.discount_whoosale_price }} грн.</span>
                             <span class="discount_price">{{ variant.whoosale_price }} грн.</span>

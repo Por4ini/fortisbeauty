@@ -9,6 +9,7 @@ class CartVartinatSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source="parent.name", read_only=True)
     unit = serializers.CharField(source="parent.unit.name", read_only=True)
     price = serializers.SerializerMethodField()
+    discount_price = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
 
     class Meta:
@@ -26,6 +27,12 @@ class CartVartinatSerializer(serializers.ModelSerializer):
     def get_price(self, obj):
         whoosale = self.context['whoosale']
         if whoosale:
-            return obj.whoosale_price
+            return  obj.whoosale_price
         return obj.price
-        
+
+    def get_discount_price(self, obj):
+        whoosale = self.context['whoosale']
+        if whoosale:
+            return obj.discount_whoosale_price
+        return obj.price
+

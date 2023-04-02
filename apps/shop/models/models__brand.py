@@ -34,9 +34,16 @@ class Brand(NameSlug, Translation, Seo, Images):
                 for variant in product.variant.all():
                     if self.discount:
                         variant.discount_price = int(math.ceil(variant.price * (1 - self.discount / 100)))
-                    if self.discount_whoosale:
-                        variant.discount_whoosale_price = int(math.ceil(variant.whoosale_price * (1 - self.discount_whoosale / 100)))
+                    if variant.whoosale_price != 0:
+                        if self.discount_whoosale:
+                            variant.discount_whoosale_price = int(math.ceil(variant.whoosale_price * (1 - self.discount_whoosale / 100)))
+                        else:
+                            variant.discount_whoosale_price = 0
+                    else:
+                        variant.whoosale_price = variant.price
+                        variant.discount_whoosale_price = variant.discount_price
                     variant.save()
+
             self.enable = False
 
         # Set all disount prices to zero

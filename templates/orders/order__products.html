@@ -2,50 +2,60 @@
 
 
 {% for item in cart.items %}
-    <li>
-        <div class="image">
-            <a href="{{ item.url }}" class="wrapper">
-                <img src="{{ item.image }}" alt="*">
-            </a>
-        </div>
-        <div class="data">
-            <div class="info">
-                <span class="name">{{ item.name }}</span>
-                <span class="price">{{ item.price }} грн.</span>
-            </div>
-            <div class="qunatity">
-                <div class="counter">
-                    <button class="action minus">-</button>
-                    
-                    {% if request.user.real_stock %}
-                        <input 
-                            class="product_quantity" 
-                            data-cart="true"
-                            data-variant-id="{{ item.id }}" 
-                            type="number" value="{{ item.quantity }}" min="1" max="{{ item.stock }}"
-                        >
-                    {% else %}
-                        <input 
-                            class="product_quantity" 
-                            data-cart="true"
-                            data-variant-id="{{ item.id }}" 
-                            type="number" value="{{ item.quantity }}" min="1" max="10000"
-                        >
-                    {% endif %}
-                    
-                    <button class="action plus">+</button>
-                </div>
-            </div>
-            <div class="totol">
-                <span>{{ item.total }} грн.</span>
-            </div>
+<li>
+    <div class="image">
+        <a href="{{ item.url }}" class="wrapper">
+            <img src="{{ item.image }}" alt="*">
+        </a>
+    </div>
+    <div class="data">
+        <div class="info">
+            <p class="name">{{ item.name }}</p>
+            <p class="cart__price">
+                {% if item.discount_price > 0 and item.discount_price < item.price %}
+                <span class="discount_wrapper">
+                        <span class="price">{{ item.discount_price }} грн.</span>
+                        <span class="discount_price">{{ item.price }} грн.</span>
+                        </span>
+                {% else %}
+                    <span class="price">{{ item.price }} грн.</span>
+                {% endif %}
+            </p>
 
         </div>
-       
-        <span class="remove" data-id="{{ item.id }}" onclick=removeFromCart(this)>
+        <div class="qunatity">
+            <div class="counter">
+                <button class="action minus">-</button>
+
+                {% if request.user.real_stock %}
+                <input
+                        class="product_quantity"
+                        data-cart="true"
+                        data-variant-id="{{ item.id }}"
+                        type="number" value="{{ item.quantity }}" min="1" max="{{ item.stock }}"
+                >
+                {% else %}
+                <input
+                        class="product_quantity"
+                        data-cart="true"
+                        data-variant-id="{{ item.id }}"
+                        type="number" value="{{ item.quantity }}" min="1" max="10000"
+                >
+                {% endif %}
+
+                <button class="action plus">+</button>
+            </div>
+        </div>
+        <div class="totol">
+            <span>{{ item.total }} грн.</span>
+        </div>
+
+    </div>
+
+    <span class="remove" data-id="{{ item.id }}" onclick=removeFromCart(this)>
             <img src="{% static 'img/icons/svg/Garbage.svg' %}" alt="x">
         </span>
-    </li>
+</li>
 {% endfor %}
 
 

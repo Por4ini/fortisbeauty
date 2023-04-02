@@ -41,6 +41,7 @@ class CartViewSet(viewsets.ViewSet):
         order = request.data.get('order')
         cart = Cart(request)
         data = cart.add(request.data)
+        print(order)
         if request.data.get('order'):
             return Response(self.order_html(data))
         return Response(self.cart_html(data))
