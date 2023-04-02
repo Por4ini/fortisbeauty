@@ -225,7 +225,6 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 AUTH_USER_MODEL = 'user.CustomUser'
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 # LOGOUT_REDIRECT_URL = '/'
-DISCOUNT_SESSION_ID = 'cart_discount'
 
 CACHES = {
     'default': {

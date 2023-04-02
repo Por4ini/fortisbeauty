@@ -13,6 +13,7 @@ import datetime
 class Cart(object):
     def __init__(self, request):
         user = request.user
+        self.promo_data = request.session.get('promo_data', {'brand_id': None, 'discount': 0})
         self.whoosale = user.is_whoosaler if user.is_authenticated else False
         self.real_stock = user.real_stock if user.is_authenticated else True
         self.session = request.session
@@ -70,6 +71,7 @@ class Cart(object):
         qty = 0
         data, total = [], 0
 
+
         # Get variant cart in cart
         ids = [item['id'] for item in self.cart]
 
@@ -84,7 +86,14 @@ class Cart(object):
             variant = variants.get(pk=item['id'])
             variant = CartVartinatSerializer(variant, context={'whoosale': self.whoosale}).data
             variant['quantity'] = int(item['quantity'])
-            variant['total'] = int(variant['price']) * int(item['quantity'])
+            brand_id = Variant.objects.get(id=variant['id']).parent.brand_id
+            if self.promo_data and brand_id == self.promo_data['brand_id'] and variant['discount_price'] == 0:
+                discount_price = variant['price'] * (100 - self.promo_data['discount']) / 100
+                variant['discount_price'] = discount_price
+            if variant['discount_price'] == 0:
+                variant['total'] = int(variant['price']) * int(item['quantity'])
+            else:
+                variant['total'] = int(variant['discount_price']) * int(item['quantity'])
             total += variant['total']
             qty += variant['quantity']
             data.append(variant)

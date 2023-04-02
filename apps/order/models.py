@@ -7,7 +7,7 @@ from pygments.formatters.html import HtmlFormatter
 from pygments.lexers.data import JsonLexer
 import uuid
 import json
-
+from ..shop.models import Brand
 
 
 
@@ -171,6 +171,7 @@ class PaymentResponses(models.Model):
 
 class PromoCode(models.Model):
     code = models.CharField(_('Код промокоду'), max_length=20, unique=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     discount = models.DecimalField(_('Сума знижки у відсотках'), max_digits=6, decimal_places=2)
     created_at = models.DateTimeField(_('Дата створення'), auto_now_add=True)
 

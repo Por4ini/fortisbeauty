@@ -34,5 +34,5 @@ class CartVartinatSerializer(serializers.ModelSerializer):
         whoosale = self.context['whoosale']
         if whoosale:
             return obj.discount_whoosale_price
-        return obj.price
+        return obj.discount_price
 

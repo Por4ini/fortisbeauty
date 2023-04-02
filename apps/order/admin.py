@@ -1,10 +1,10 @@
 from apps.order.models import *
+from apps.order.models import PromoCode
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html
 from django.db import models
 from django.contrib.admin.widgets import AutocompleteSelect
 from django.contrib import admin
-from .models import PromoCode
 
 
 
