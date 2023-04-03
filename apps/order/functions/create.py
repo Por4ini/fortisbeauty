@@ -9,10 +9,11 @@ from django.core.mail import EmailMessage
 
 
 class CreateOrder():
-    def __init__(self, data, user, cart):
+    def __init__(self, data, user, cart, request):
         self.data = data
         self.user = user
         self.cart = cart
+        self.promo = request.session.get('promo_code')
 
 
     def send_to_telegram(self, order):
@@ -27,6 +28,7 @@ class CreateOrder():
             title + '\n',
             ' '.join([obj.name,obj.surname]),
             'Телефон: ' + order.phone,
+            'Промокод: ' + self.promo,
             'https://fortisbeauty.store' + url,
         ]
 

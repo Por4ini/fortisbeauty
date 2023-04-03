@@ -8,7 +8,8 @@ from apps.order.functions.create import CreateOrder
 
 class CreateOrderView(View):
     def post(self, request):
-        order = CreateOrder(data=request.POST, user=request.user, cart=Cart(request))
+        cart = Cart(request)
+        order = CreateOrder(data=request.POST, user=request.user, cart=cart, request=request)
         order = order.create_order()
         user = request.user
         if user.is_authenticated:
