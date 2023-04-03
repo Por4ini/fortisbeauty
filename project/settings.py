@@ -16,7 +16,7 @@ STATICFILE_DIR  = os.path.join(BASE_DIR, 'static')
 
 
 # Personal data
-
+DEBUG = False
 # try:
 #     from .local_settings import *
 # except:
@@ -32,7 +32,7 @@ STATICFILE_DIR  = os.path.join(BASE_DIR, 'static')
 #     GMAIL_ADRESS = ''
 #     GMAIL_PASSWORD = ''
 
-DEBUG = False
+
 
 ALLOWED_HOSTS = [
     '127.0.0.1', 

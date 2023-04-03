@@ -10,7 +10,7 @@ class CreateOrderView(View):
     def post(self, request):
         cart = Cart(request)
         order = CreateOrder(data=request.POST, user=request.user, cart=cart, request=request)
-        order = order.create_order()
+        order = order.create_order(request)
         user = request.user
         if user.is_authenticated:
             changed = False

@@ -13,8 +13,8 @@ class CreateOrder():
         self.data = data
         self.user = user
         self.cart = cart
+        self.promo_data = request.session.get('promo_data')
         self.promo = request.session.get('promo_code')
-
 
     def send_to_telegram(self, order):
         obj = order
@@ -23,31 +23,38 @@ class CreateOrder():
         title = 'Заказ'
         if order.whoosale:
             title = 'Оптовый заказ'
-
-        msg = [
-            title + '\n',
-            ' '.join([obj.name,obj.surname]),
-            'Телефон: ' + order.phone,
-            'Промокод: ' + self.promo,
-            'https://fortisbeauty.store' + url,
-        ]
+        if self.promo is None:
+            msg = [
+                title + '\n',
+                ' '.join([obj.name, obj.surname]),
+                'Телефон: ' + order.phone,
+                'https://fortisbeauty.store' + url,
+            ]
+        else:
+            msg = [
+                title + '\n',
+                ' '.join([obj.name, obj.surname]),
+                'Телефон: ' + order.phone,
+                'Промокод: ' + self.promo,
+                'https://fortisbeauty.store' + url,
+            ]
 
         for n, product in enumerate(order.products.all()):
             msg.append('\n')
             msg.append(f'{str(n + 1)}. {product.variant.code}, {product.variant.parent.name}, {product.variant.value}')
-            
+
             if product.variant.stock <= 5:
-                msg.append(f'Передзамовлення {str(product.quantity)}шт. х {str(product.price)} грн. = {str(product.total)}' )
+                msg.append(
+                    f'Передзамовлення {str(product.quantity)}шт. х {str(product.price)} грн. = {str(product.total)}')
             else:
-                msg.append(f'{str(product.quantity)}шт. х {str(product.price)} грн. = {str(product.total)}')
-        
-        
+                msg.append(
+                    f'{str(product.quantity)}шт. х {str(product.price)} грн. = {str(product.total)}')
+
         msg.append('\n')
         msg.append(f'Всего: {str(order.get_total())}', )
-
         send_telegeram(msg)
 
-    
+
     def send_email_order(self, order):
         user = self.user
         data = self.data
@@ -56,7 +63,7 @@ class CreateOrder():
         html = render_to_string('orders/order__email.html', context={
             'user': user,
             'cart': order.products.all(),
-            'total' : order.get_total(),
+            'total': order.get_total(),
 
         },
                                 )
@@ -72,17 +79,34 @@ class CreateOrder():
         )
         email.content_subtype = "html"
         email.send()
-    
-    
+
+
     def add_products(self, order):
         for item in self.cart:
             variant = Variant.objects.filter(pk=item['id']).first()
+            brand_id = variant.parent.brand_id
+            if order.whoosale:
+                if self.promo_data and brand_id == self.promo_data['brand_id'] and variant.discount_whoosale_price == 0:
+                    discount_whoosale_price = variant.whoosale_price * (100 - self.promo_data['discount']) / 100
+                    variant.discount_whoosale_price = discount_whoosale_price
+                if variant.discount_price == 0:
+                    price = int(variant.whoosale_price)
+                else:
+                    price = int(variant.discount_whoosale_price)
+            else:
+                if self.promo_data and brand_id == self.promo_data['brand_id'] and variant.discount_price == 0:
+                    discount_price = variant.price * (100 - self.promo_data['discount']) / 100
+                    variant.discount_price = discount_price
+                if variant.discount_price == 0:
+                    price = int(variant.price)
+                else:
+                    price = int(variant.discount_price)
             if variant:
                 order_product = OrderProduct(
                     parent=order,
                     variant=variant,
                     quantity=int(item['quantity']),
-                    price=int(variant.price)
+                    price=int(price)
                 )
                 order_product.save()
 
@@ -92,27 +116,27 @@ class CreateOrder():
         # Saving to NewPost models
         if self.data['delivery'] == 'newpost':
             delivery_np = OrderDeliveryNP(
-                parent=order, 
-                city=data.get('city'), 
+                parent=order,
+                city=data.get('city'),
                 branch=data.get('branch')
             )
-            delivery_np.save()  
+            delivery_np.save()
             if self.user.is_authenticated:
                 if UserNP.objects.all().count() == 0:
                     np = UserNP(
-                        parent = self.user,
-                        city = delivery_np.city,
-                        branch =  delivery_np.branch,
+                        parent=self.user,
+                        city=delivery_np.city,
+                        branch=delivery_np.branch,
                     )
                     np.save()
-        
+
         # Saving to Curier models
         elif self.data['delivery'] == 'curier':
             delivery_curier = OrderDeliveryCurier(
-                parent=order, 
-                city=data.get('city'), 
-                street=data.get('street'), 
-                house=data.get('house'), 
+                parent=order,
+                city=data.get('city'),
+                street=data.get('street'),
+                house=data.get('house'),
                 appartment=data.get('appartment'),
             )
             delivery_curier.save()
@@ -128,28 +152,24 @@ class CreateOrder():
                     )
                     adress.save()
 
-
-                    
-
-    def create_order(self):
+    def create_order(self, request):
         data = self.data
         user = self.user
 
         order = Order(
-            status =     'new',
-            name =       data.get('first_name'),
-            surname =    data.get('last_name'),
-            patronymic = data.get('father_name'),
-            phone =      data.get('phone'),
-            email =      data.get('email'),
-            pay_type =   data.get('pay_type'),
-            delivery_type =  data.get('delivery'),
-            user = user if user.is_authenticated else None,
-            whoosale = user.is_whoosaler if user.is_authenticated else False,
+            status='new',
+            name=data.get('first_name'),
+            surname=data.get('last_name'),
+            patronymic=data.get('father_name'),
+            phone=data.get('phone'),
+            email=data.get('email'),
+            pay_type=data.get('pay_type'),
+            delivery_type=data.get('delivery'),
+            user=user if user.is_authenticated else None,
+            whoosale=user.is_whoosaler if user.is_authenticated else False,
         )
         order.save()
         self.order = order
-
 
         if user.is_authenticated:
             changed = False
@@ -166,13 +186,11 @@ class CreateOrder():
 
                 if getattr(user, field[1]) in [None, '']:
                     print(field[0], field[1])
-                    setattr(user, field[1], getattr(order,field[0]))
+                    setattr(user, field[1], getattr(order, field[0]))
                     changed = True
 
             if changed:
                 user.save()
-
-
 
         self.add_products(order)
         self.save_delivery(order)

@@ -18,30 +18,37 @@
 <div class="content order__wrapper">
     <div class="order">
         <h1 class="title1">Деталі Вашого замовлення </h1>
-            <ul class="products__list__order">
-                {% for item in cart.items %}
+        <ul class="products__list__order">
+            {% for item in cart.items %}
 
-                    <li>
-                        <div class="image">
-                            <a href="{{ item.url }}" class="wrapper">
-                                <img src="{{ item.image }}" alt="*">
-                            </a>
+            <li>
+                <div class="image">
+                    <a href="{{ item.url }}" class="wrapper">
+                        <img src="{{ item.image }}" alt="*">
+                    </a>
+                </div>
+                <div class="data">
+                    <div class="info">
+                        <span class="name">{{ item.name }}</span>
+
+                        {% if item.discount_price > 0 and item.discount_price < item.price %}
+
+                        <span class="price">{{ item.discount_price }} грн.</span>
+
+                        {% else %}
+                        <span class="price">{{ item.price }} грн.</span>
+                        {% endif %}
+                    </div>
+                    <div class="qunatity">
+                        <div class="counter">{{ item.quantity }}
                         </div>
-                        <div class="data">
-                            <div class="info">
-                                <span class="name">{{ item.name }}</span>
-                                <span class="price">{{ item.price }} грн.</span>
-                            </div>
-                            <div class="qunatity">
-                                 <div class="counter">{{ item.quantity }}
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
-                    </li>
+            </li>
 
-                {% endfor %}
-            </ul>
+            {% endfor %}
+        </ul>
         <span class="order__total">
             <span>Сума замовлення:</span>
 
@@ -55,6 +62,8 @@
      var delivery = document.getElementById("delivery");
              TweenLite.to(delivery, 5, {left:"1640px"});
  }
+
+
 
 </script>
 

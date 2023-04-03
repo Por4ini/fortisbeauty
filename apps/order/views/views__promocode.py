@@ -21,3 +21,4 @@ def apply_promo(request):
 
 
     return redirect('orders:order')
+

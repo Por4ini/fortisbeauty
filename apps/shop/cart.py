@@ -97,7 +97,6 @@ class Cart(object):
             total += variant['total']
             qty += variant['quantity']
             data.append(variant)
-        print(data)
         return {'items': data, 'total': total, 'quantity': qty}
 
     def save(self):

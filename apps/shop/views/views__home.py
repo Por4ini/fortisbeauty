@@ -9,6 +9,8 @@ from django.core.mail import send_mail
 
 
 def home(request):
+    request.session['promo_data'] = {'brand_id': None, 'discount': 0}
+    request.session['promo_code'] = None
     args = {
         'banners' : Banner.objects.all(),
         'products' : ProductSerializer(
