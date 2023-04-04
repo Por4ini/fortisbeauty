@@ -12,26 +12,26 @@ NEW_POST_KEY = 'b71158ead01d7cfaa683c7a317911937'
 GMAIL_ADRESS = 'office.fortisbeauty@gmail.com'
 GMAIL_PASSWORD = 'psojmxxegfikfuvj'
 #
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'fortisbeauty',
+#         'USER' : 'fortisbeauty',
+#         'PASSWORD' : 'denegpolno12345',
+#         'HOST' : '127.0.0.1',
+#         'PORT' : '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fortisbeauty',
-        'USER' : 'fortisbeauty',
-        'PASSWORD' : 'denegpolno12345',
-        'HOST' : '127.0.0.1',
+        'NAME': 'habrdb',
+        'USER' : 'habrpguser',
+        'PASSWORD' : 'Itred1984',
+        'HOST' : 'localhost',
         'PORT' : '5432',
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'habrdb',
-#         'USER' : 'habrpguser',
-#         'PASSWORD' : 'Itred1984',
-#         'HOST' : 'localhost',
-#         'PORT' : '5432',
-#     }
-# }
-#
-#
+

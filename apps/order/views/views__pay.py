@@ -60,8 +60,8 @@ class OrderPay(APIView):
                 
     def post(self, request):
         cart = Cart(request)
-        order = CreateOrder(data=request.data, user=request.user, cart=cart)
-        order = order.create_order()
+        order = CreateOrder(data=request.data, user=request.user, cart=cart, request=request)
+        order = order.create_order(request)
         data = self.get_request_data(request.data, cart.data(), order.id)
         order.reference = int(data['orderReference'])
         order.save()
@@ -118,8 +118,8 @@ class OrderPrePay(APIView):
 
     def post(self, request):
         cart = Cart(request)
-        order = CreateOrder(data=request.data, user=request.user, cart=cart)
-        order = order.create_order()
+        order = CreateOrder(data=request.data, user=request.user, cart=cart, request=request)
+        order = order.create_order(request)
         data = self.get_request_data(request.data, cart.data(), order.id)
         order.reference = int(data['orderReference'])
         order.save()

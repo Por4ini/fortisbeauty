@@ -16,7 +16,7 @@ STATICFILE_DIR  = os.path.join(BASE_DIR, 'static')
 
 
 # Personal data
-DEBUG = False
+DEBUG = True
 # try:
 #     from .local_settings import *
 # except:
